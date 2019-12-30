@@ -1,0 +1,80 @@
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"], h1, h2, h3, h4, h5, h6, div, strong, label {
+      /* width: 100%; */
+      text-align: center;
+      padding: 2vw;
+      box-shadow: 1vw;
+      word-break: break-all;
+    }
+
+    img {
+        border-radius: 50%;
+    }
+
+    .row {
+        display: block;
+        font-size: 5vmin;
+    }
+}
+
+ h2, h3, h4, h5 div, strong, label {
+    /* width: 100%; */
+   font-size: 3vmin;
+  }
+
+  .badge-primary {
+    padding: 6vmin 10vmin 6vmin 10vmin;
+  }
+
+  .badge-primary:hover {
+      border: 1px solid black;
+  }
+
+img.profile-pic {
+    border-radius: 50% !important;
+    width: 60vw;
+}
+
+.value-heigth {
+    height: 7vmin;
+    line-height: 7min;
+}
+
+li.list-group-item:hover {
+    margin-left: 1vw;
+    margin-top: 1vh;
+    z-index: 100;
+    box-shadow: 5px 5px 5px 5px;
+    transition: all linear 0.5s;
+}
+
+li.list-group-item {
+    margin-left: 0vw;
+    margin-bottom: 0vh;
+    z-index: 0;
+    box-shadow: 1px 1px 1px 1px;
+    transition: all linear 0.5s;
+}
+
+.row {
+    font-size: 3vmin;
+}
+
+.list-group {
+    padding: 5vmin;
+    margin: 3vw;
+    
+}
+
+.list-group-item {
+    margin: 2vh 0vh 2vh 0vh;
+    border: 5px solid lightgray;
+    box-shadow: 5px 5px 5px 5px;
+}
+
+
+.col-sm-7 {
+    overflow-y: hidden;
+    border-right: 1px solid #ccc;
+}

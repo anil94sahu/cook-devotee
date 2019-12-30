@@ -1,0 +1,168 @@
+<form class="pd-10" [formGroup]="cookRegistrationForm">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="">{{Label.name}}</label>
+        <input type="text" class="form-control" id="" placeholder="" formControlName="name">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">{{Label.password}}</label>
+        <input type="password" class="form-control" id="inputPassword4" formControlName="password" placeholder="Password">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+          <label for="emailId">{{Label.emailId}}</label>
+          <input type="email" class="form-control" id="emailId" formControlName="emailId">
+          <button (click) = "verifyEmail()" class="btn btn-primary">verify</button>
+      </div>
+    </div>
+    <div formGroupName ="address">
+      <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">{{Label.address.houseNo}}</label>
+            <input type="text" class="form-control" id="" placeholder="" formControlName="houseNo">
+          </div>
+          <div class="form-group col-md-6">
+              <label for="">{{Label.address.address1}}</label>
+              <input type="text" class="form-control" id="" placeholder="" formControlName="address1">
+          </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">{{Label.address.city}}</label>
+            <input type="text" class="form-control" id="" placeholder="" formControlName="city">
+          </div>
+          <div class="form-group col-md-6">
+              <label for="">{{Label.address.state}}</label>
+              <input type="text" class="form-control" id="" placeholder="" formControlName="state">
+          </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">{{Label.address.country}}</label>
+            <input type="text" class="form-control" id="" placeholder="" formControlName="country">
+          </div>
+          <div class="form-group col-md-6">
+              <label for="">{{Label.address.pincode}}</label>
+              <input type="text" class="form-control" id="" placeholder="" formControlName="pincode">
+          </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="mobile">{{Label.mobileNo}}</label>
+        <input type="text" class="form-control" id="mobile" placeholder="mobileNo" formControlName="mobileNo">
+      </div>
+      <div class="form-group col-md-6 " >
+        <div class="flex-inline">
+          <div id="recaptcha-container"></div>
+          <button class="btn btn-primary" (click)="sendLoginCode()">SMS Text Login Code</button>
+        </div>
+        <div *ngIf="windowRef.confirmationResult">
+          <hr>
+          <label for="code">{{Message.enter_verify}}</label><br>
+          <input type="text" name="code" [(ngModel)]="verificationCode" [ngModelOptions]="{standalone: true}">
+          <button (click)="verifyLoginCode()">Verify</button>
+        </div>
+        <div *ngIf="user">
+          You have successfully logged in with your phone number!
+          {{Label.userId}}: {{ user?.uid }}
+        </div>
+      </div>
+    </div>
+    <app-profile-loader></app-profile-loader>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="">{{Label.married}}</label>
+          <input type="text" class="form-control" id="" placeholder="" formControlName="married">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="">{{Label.age}}</label>
+            <input type="text" class="form-control" id="" placeholder="" formControlName="age">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="">{{Label.specialist}}</label>
+          <input type="text" class="form-control" id="" placeholder="" formControlName="specialist">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="">{{Label.salary}}</label>
+            <input type="text" class="form-control" id="" placeholder="" formControlName="salary">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="">{{Label.study}}</label>
+          <input type="text" class="form-control" id="" placeholder="" formControlName="study">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="">{{Label.description}}</label>
+            <input type="text" class="form-control" id="" placeholder="" formControlName="description">
+        </div>
+    </div>
+    <hr>
+    <h2>{{Label.workExperience.workExperience}}</h2>
+    <div formArrayName="workExperience">
+      <div *ngFor="let comp of cookRegistrationForm.get('workExperience').controls;let i = index">
+        <div formGroupName="{{i}}">
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="">{{Label.workExperience.centerName}}</label>
+                <input type="text" class="form-control" formControlName="centerName" id="" placeholder="">
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="">{{Label.workExperience.address}}</label>
+                  <input type="text" class="form-control" formControlName="address" id="" placeholder="">
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="">{{Label.workExperience.periodOfWork}}</label>
+                <input type="text" class="form-control" formControlName="periodOfWork" id="" placeholder="">
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="">{{Label.workExperience.comment}}</label>
+                  <input type="text" class="form-control" formControlName="comment" id="" placeholder="">
+              </div>
+          </div>
+          <fieldset class="bd-2">
+            <legend>{{Label.workExperience.verifiedBy}}</legend>
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label for="">{{Label.workExperience.PMName}}</label>
+                      <input type="text" class="form-control" formControlName="PMName" id="" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="">{{Label.workExperience.PMMobile}}</label>
+                      <input type="text" class="form-control" formControlName="PMMobile" id="" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="">{{Label.workExperience.KIName}}</label>
+                    <input type="text" class="form-control" id="" formControlName="KIName" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="">{{Label.workExperience.KIMobile}}</label>
+                      <input type="text" class="form-control" id="" formControlName="KIMobile" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="">{{Label.workExperience.salary}}</label>
+                      <input type="text" class="form-control" id="" formControlName="salary" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="">{{Label.workExperience.status}}</label>
+                      <p>
+                          <i class="fa fa-close btn btn-danger" ></i>
+                          <i class="fa fa-exclamation-triangle btn btn-primary"></i>
+                          <i class="fa fa-check btn btn-success" aria-hidden="true"></i>
+                    </p>
+                  </div>
+                  
+              </div>
+          </fieldset>
+
+        </div>
+      </div>
+    </div>
+    <button (click) = "onSubmit(cookRegistrationForm.value)" class="btn btn-primary">Sign in</button>
+  </form>

@@ -1,0 +1,18 @@
+private searchCookService: SearchCookService,
+private loaderService: LoaderService,
+private hrManagementService: HRManagementService,
+private utilityService: UtilityService
+private firestore: AngularFirestore
+
+
+.subscribe(arg => {
+        this.loaderService.hide();
+        if (arg) {this.profile = arg.data(); }
+        console.log(arg);
+      },
+      err => {
+        this.loaderService.hide();
+      });
+ parseInt(localStorage.getItem(role), 10);
+
+    const devoteeId = localStorage.getItem(token);

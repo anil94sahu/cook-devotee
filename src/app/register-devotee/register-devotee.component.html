@@ -1,0 +1,94 @@
+<form class="pd-10" [formGroup]="devoteeRegistrationForm">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="name" formControlName="name">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
+      </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="mobile">Mobile No.</label>
+          <input type="text" class="form-control" id="mobile" placeholder="mobileNo" formControlName="mobileNo">
+        </div>
+        <div class="form-group col-md-6 " >
+          <div class="flex-inline">
+            <div id="recaptcha-container"></div>
+            <button class="btn btn-primary" (click)="sendLoginCode()">SMS Text Login Code</button>
+          </div>
+          <div *ngIf="windowRef.confirmationResult">
+            <hr>
+            <label for="code">Enter your Verification Code Here</label><br>
+            <input type="text" name="code" [(ngModel)]="verificationCode" [ngModelOptions]="{standalone: true}">
+            <button (click)="verifyLoginCode()">Verify</button>
+          </div>
+          <div *ngIf="user">
+            You have successfully logged in with your phone number!
+            UserId: {{ user?.uid }}
+          </div>
+        </div>
+    </div>
+      <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="center">Center Name</label>
+              <input type="text" class="form-control" id="center" placeholder="" formControlName="centerName">
+            </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="counsellor">Counsellor</label>
+        <input type="text" class="form-control" id="counsellor" formControlName="PMName">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="role">Role(In center)</label>
+        <input type="text" class="form-control" id="role" formControlName="role">
+      </div>
+    </div>
+    <div formGroupName ="address">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="">Address1</label>
+                  <input type="text" class="form-control" id="" placeholder="" formControlName="houseNo">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="">Address2</label>
+                    <input type="text" class="form-control" id="" placeholder="" formControlName="address1">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="">City</label>
+                  <input type="text" class="form-control" id="" placeholder="" formControlName="city">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="">State</label>
+                    <input type="text" class="form-control" id="" placeholder="" formControlName="state">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="">Country</label>
+                  <input type="text" class="form-control" id="" placeholder="" formControlName="country">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="">Pincode</label>
+                    <input type="text" class="form-control" id="" placeholder="" formControlName="pincode">
+                </div>
+            </div>
+          </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="emailId">Email ID</label>
+            <input type="email" class="form-control" id="emailId" formControlName="emailId">
+            <button (click) = "verifyEmail()" class="btn btn-primary">verify</button>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="description">Description(In center)</label>
+            <input type="text" class="form-control" id="description" formControlName="description">
+        </div>
+    </div>
+    <button (click) = "onSubmit(devoteeRegistrationForm.value)" type="submit" class="btn btn-primary">Submit</button>
+  </form>

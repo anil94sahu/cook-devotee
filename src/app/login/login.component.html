@@ -1,0 +1,56 @@
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<!-- Modal -->
+<!-- Modal -->
+<form *ngIf  = "loginForm" [formGroup]="loginForm">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label for="">Name</label>
+                <input type="text" formControlName="emailId" class="form-control" id="" placeholder="">
+              </div>
+              <div class="form-group col-md-12">
+                <label for="inputPassword4">Password</label>
+                <input type="password" formControlName="password" class="form-control" id="inputPassword4" placeholder="Password">
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="">Mobile No.</label>
+                  <input type="text" formControlName="mobileNo" class="form-control" id="" placeholder="">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="">Role</label>
+                  <select (change) = "onRoleChange($event.target.value)" formControlName="role"  class="form-control" >
+                    <option value = "1" class="dropdown-item" href="#">COOK</option>
+                    <option value = "2" class="dropdown-item" href="#">Devotee</option>
+                  </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id = "closeLoginModal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button (click) = "signInWithEmailAndPassword()"   type="button" class="btn btn-primary">Login</button>
+            <!-- <button (click) = "signInWithPhoneAndPassword()"   type="button" class="btn btn-primary">Login With Phone</button> -->
+          </div>
+        </div>
+      </div>
+  </div>
+  <button type="button" hidden class="btn btn-success hidden" id = "loginModal" #loginModal data-toggle="modal" data-target="#exampleModal">
+      Sign In
+  </button>
+</form>
+<!-- <form> -->
+<!-- </form> -->

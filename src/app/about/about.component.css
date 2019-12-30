@@ -1,0 +1,16 @@
+.rank {
+    background-color: black;
+    color: white;
+}
+
+.m-0 {
+    padding-left: 0vw !important;
+    padding-right: 0vw !important;
+    text-align: center;
+    background-color: black;
+    opacity: 0.9;
+}
+
+div.row {
+    margin-right: 0px !important;
+}

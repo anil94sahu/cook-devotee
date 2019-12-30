@@ -1,0 +1,178 @@
+<div class="container emp-profile">
+    <form *ngIf="profile">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="../../assets/images/profile/cook cooking.jpg" class="profile-post-pic" alt=""/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                            <h5>
+                                {{profile.name}}
+                            </h5>
+                            <p class="proile-rating"><span></span></p>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>User Name</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{profile.username}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Name</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{profile.name}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Address</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{profile.address.address1 + ',' + profile.address.city}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Mobile No</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{profile.mobileNo}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Married</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{profile.married}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Specialist</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{profile.specialist}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Salary</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{profile.salary}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Age</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{profile.age}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Email</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{profile.emailId}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Study</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{profile.study}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Work Experience</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>4 year</p>
+                                    </div>
+                                </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </form>           
+</div>
+
+<fieldset>
+    <legend>
+      <b>Hiring Detail</b>  
+
+
+    </legend>
+  <div>
+    <ul class="list-group" >
+        <li *ngFor="let cook of requestDevoteeArr" class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="row align-items-center col-sm-12">
+                <div class="col | col-sm-2">
+                    <img 
+                     src="../../assets/images/profile/sp in kitchen.jpg" class="img-fluid profile-pic" alt="Responsive image">
+                </div>
+                <div class="col | col-sm-7">
+                    <h1>{{cook.user.name | titlecase}}</h1>
+                    <!-- <h6>{{cook.user.description}}</h6> -->
+                    <div class="form-group row">
+                        <label class="col col-form-label"> 
+                            <strong>Experience</strong> </label>
+                        <div class="col value-heigth">
+                            10 Month
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+               <div class="col" *ngIf="role==1; else devotee" [ngSwitch]="cook.status">
+                <button type="button" *ngSwitchCase="1" (click) = "hiringResponse(RequestStatus.approve, cook.serviceId)" class="btn btn-primary mr-2">{{RequestStatusName[4]}}</button>
+                <button type="button" *ngSwitchCase="1" (click) = "hiringResponse(RequestStatus.reject, cook.serviceId)" class="btn btn-primary mr-2">{{RequestStatusName[5]}}</button>
+                <button type="button" *ngSwitchCase="4"  class="btn btn-success mr-2">{{RequestStatusName[8]}}</button>
+                <button type="button" *ngSwitchCase="5"  class="btn btn-success mr-2">{{RequestStatusName[9]}}</button>
+               </div>
+               <ng-template #devotee>
+                   <div class="col" [ngSwitch]="cook.status">
+                    <button *ngSwitchCase="1" type="button" (click) = "hiringResponse(RequestStatus.requestSend, cook.serviceId)" class="btn btn-primary mr-2">{{RequestStatusName[1]}}</button>
+                    <button *ngSwitchCase="(cook.status === 1 || cook.status === 4)?true:false" type="button" (click) = "hiringResponse(RequestStatus.reject, cook.serviceId)" class="btn btn-primary mr-2">{{RequestStatusName[5]}}</button>
+                    <button *ngSwitchCase="4" type="button"  class="btn btn-success mr-2">{{RequestStatusName[8]}}</button>
+                    <button *ngSwitchCase="5" type="button"  class="btn btn-success mr-2">{{RequestStatusName[9]}}</button>
+                   </div>
+               </ng-template>
+            </div>
+        </li>
+    </ul>
+  </div>
+
+</fieldset>
