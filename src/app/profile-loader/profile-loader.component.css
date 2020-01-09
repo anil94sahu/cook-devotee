@@ -1,0 +1,11 @@
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;;
+}
+.vh-5 {
+    height: 5vh;
+}

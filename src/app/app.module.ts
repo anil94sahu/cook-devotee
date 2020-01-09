@@ -12,20 +12,22 @@ import { SectionComponent } from './section/section.component';
 import { RankComponent } from './rank/rank.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { RegistrationService } from './shared/services/registration.service';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { StorageFirebaseService } from './shared/services/storage.firebase.service';
-import { ProfileLoaderComponent } from './profile-loader/profile-loader.component';
 import { DevoteeRegistrationService } from './shared/services/devotee.registration.service';
 import { SearchCookService } from './shared/services/search-cook.service';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { LoaderService } from './shared/services/loader.service';
 import { WindowService } from './shared/services/window.service';
 import { UtilityService } from './shared/services/utility.service';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { environment } from 'src/environments/environment.prod';
+import { ProfileLoaderModule } from './profile-loader/profile-loader.module';
+import { ProfileLoaderComponent } from './profile-loader/profile-loader.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,8 +40,7 @@ import { UtilityService } from './shared/services/utility.service';
     RankComponent,
     AboutComponent,
     ContactComponent,
-    ProfileLoaderComponent,
-    LoaderComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -47,11 +48,12 @@ import { UtilityService } from './shared/services/utility.service';
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ProfileLoaderModule
   ],
   providers: [AngularFirestore, RegistrationService, 
     StorageFirebaseService, DevoteeRegistrationService,
-  SearchCookService, LoaderService, WindowService, UtilityService],
+  SearchCookService, LoaderService, WindowService, UtilityService, AngularFireStorage],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

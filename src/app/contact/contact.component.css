@@ -5,6 +5,19 @@
 .footer-classic a, .footer-classic a:focus, .footer-classic a:active {
     color: #ffffff;
 }
+
+.section.footer-classic {
+    padding-top: 20vh;
+   font-weight:300;
+   
+}
+
+.section.footer-classic > .container {
+    /* margin: 0vw 2vw 0vw 2vw; */
+    padding-bottom: 20vh;
+}
+
+
 .nav-list li {
     padding-top: 5px;
     padding-bottom: 5px;

@@ -12,6 +12,7 @@ export interface IDevoteeModel {
     description: string | FormControl;
     address: IAddress  | FormGroup;
     cook?: ICookModel | FormGroup;
+    photo: string | FormControl;
 }
 
 
@@ -25,5 +26,6 @@ export const initialDevotee: IDevoteeModel = {
     emailId: 'hk94@gmail.com',
     description: 'Wonderful prasadam with salary 10000',
     address: initialAddress,
-    cook: initialCook
+    cook: initialCook,
+    photo: ''
 };

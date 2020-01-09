@@ -37,8 +37,10 @@ export interface IWorkExperience {
     comment: string | FormControl;
     PMName: string | FormControl;
     PMMobile: number | FormControl;
+    PMEmailId: string | FormControl;
     KIName: string | FormControl;
     KIMobile: number | FormControl;
+    KIEmailId: string | FormControl;
     salary: number | FormControl;
     status: number | FormControl;
 }
@@ -76,6 +78,8 @@ export const initialCook: ICookModel = {
     periodOfWork: new Date(),
     comment: '',
     PMName: '',
+    PMEmailId: '',
+    KIEmailId: '',
     PMMobile: 8382049026,
     KIName: '',
     KIMobile: 8382049026,

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
 import { token, role } from '../shared/constants/local-storage.constant';
 import { Routing } from '../shared/constants/routing.constant';
+import { images } from '../shared/constants/image.constant';
 
 @Component({
   selector: 'app-menu',
@@ -12,8 +13,9 @@ import { Routing } from '../shared/constants/routing.constant';
 })
 export class MenuComponent implements OnInit {
   @ViewChild(LoginComponent, {static: false}) loginComponentChild: LoginComponent;
+  logoImages = images;
 
-  constructor(private router: Router, private auth: AuthService) { }
+  constructor(private router: Router, public auth: AuthService) { }
 
   ngOnInit() {
   }

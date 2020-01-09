@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewProfileService } from '../shared/services/view-profile.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoaderService } from '../shared/services/loader.service';
 import { HRManagementService } from '../shared/services/hr-management.service';
 import { token, role } from '../shared/constants/local-storage.constant';
 import { IHRModel } from '../shared/models/hr.model';
 import { API } from '../shared/constants/apis.constant';
 import { Role, RequestStatus, RequestStatusName } from '../shared/constants/utility.constant';
+import { Routing } from '../shared/constants/routing.constant';
 
 @Component({
   selector: 'app-view-profile',
@@ -23,7 +24,8 @@ export class ViewProfileComponent implements OnInit {
   constructor(private viewProfileService: ViewProfileService,
               private route: ActivatedRoute,
               private loaderService: LoaderService,
-              private hrManagementService: HRManagementService ) { }
+              private hrManagementService: HRManagementService,
+              private router: Router ) { }
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
@@ -76,7 +78,20 @@ export class ViewProfileComponent implements OnInit {
 
   }
 
+  editProfile(profile) {
+    const userRole = parseInt(localStorage.getItem(role), 10);
+    const id = localStorage.getItem(token);
+    const url = (userRole === 1) ? Routing.Registration  + '/' + id : Routing.RegistrationDevotee  + '/' + id ;
+    this.router.navigate([url]);
+  }
+
   hiringResponse(status, serviceId) {
     this.hrManagementService.updateStatus(serviceId, {status});
+  }
+
+  navigateToCookRegistration() {
+    const id = localStorage.getItem(token);
+    const url = Routing.Registration;
+    this.router.navigate([url]);
   }
 }

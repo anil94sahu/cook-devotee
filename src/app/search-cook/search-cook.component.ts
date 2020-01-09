@@ -36,7 +36,8 @@ export class SearchCookComponent implements OnInit {
           id: e.payload.doc.id,
           ...e.payload.doc.data()
         };
-      }).filter(e => e.role === 1);
+      // tslint:disable-next-line: no-string-literal
+      }).filter(e => e['role'] === 1);
       this.cooks = this.addStatusParams(this.cooks);
       },
       err => {
@@ -58,7 +59,8 @@ export class SearchCookComponent implements OnInit {
           };
         });
         if (result.length > 0) {
-          const status = result[0].status;
+          // tslint:disable-next-line: no-string-literal
+          const status = result[0]['status'];
           if (status === RequestStatus.requestSend) {
             cook.status = RequestStatus.requestSend;
           } else {
