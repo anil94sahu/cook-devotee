@@ -36,7 +36,7 @@ export class SearchCookComponent implements OnInit {
           id: e.payload.doc.id,
           ...e.payload.doc.data()
         };
-      }).filter(e => e.role === 1);
+      }).filter(e => e['role'] === 1);
       this.cooks = this.addStatusParams(this.cooks);
       },
       err => {
@@ -58,7 +58,7 @@ export class SearchCookComponent implements OnInit {
           };
         });
         if (result.length > 0) {
-          const status = result[0].status;
+          const status = result[0]['status'];
           if (status === RequestStatus.requestSend) {
             cook.status = RequestStatus.requestSend;
           } else {
