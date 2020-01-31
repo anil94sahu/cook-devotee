@@ -13,7 +13,7 @@ import { Routing } from '../shared/constants/routing.constant';
 export class MenuComponent implements OnInit {
   @ViewChild(LoginComponent, {static: false}) loginComponentChild: LoginComponent;
 
-  constructor(private router: Router, private auth: AuthService) { }
+  constructor(private router: Router, public auth: AuthService) { }
 
   ngOnInit() {
   }

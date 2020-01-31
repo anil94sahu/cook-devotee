@@ -104,7 +104,7 @@
     <hr>
     <h2>{{Label.workExperience.workExperience}}</h2>
     <div formArrayName="workExperience">
-      <div *ngFor="let comp of cookRegistrationForm.get('workExperience').controls;let i = index">
+      <div *ngFor="let comp of cookRegistrationForm.get('workExperience')['controls'];let i = index">
         <div formGroupName="{{i}}">
           <div class="form-row">
               <div class="form-group col-md-6">
