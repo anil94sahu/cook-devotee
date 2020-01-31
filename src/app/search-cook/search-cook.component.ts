@@ -19,7 +19,9 @@ export class SearchCookComponent implements OnInit {
   constructor(private searchCookService: SearchCookService,
               private loaderService: LoaderService,
               private hrManagementService: HRManagementService,
-              private utilityService: UtilityService) { }
+              private utilityService: UtilityService) { 
+                this.getContent();
+              }
 
   ngOnInit() {
     this.getCook();
@@ -42,6 +44,14 @@ export class SearchCookComponent implements OnInit {
       err => {
         this.loaderService.hide();
       });
+  }
+
+  getContent() {
+    this.loaderService.show();
+    debugger;
+    this.searchCookService.getData().then(data => {
+      console.log(data);
+    })
   }
 
   addStatusParams(cooks) {
