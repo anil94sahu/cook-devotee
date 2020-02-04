@@ -3,7 +3,7 @@ private loaderService: LoaderService,
 private hrManagementService: HRManagementService,
 private utilityService: UtilityService
 private firestore: AngularFirestore
-
+private viewProfileService: ViewProfileService
 
 .subscribe(arg => {
         this.loaderService.hide();
@@ -16,3 +16,31 @@ private firestore: AngularFirestore
  parseInt(localStorage.getItem(role), 10);
 
     const devoteeId = localStorage.getItem(token);
+
+
+Mobile
+    Validators.compose([Validators.required, Validators.minLength(10), 
+      Validators.maxLength(10), Validators.pattern(MobileRegEx)])
+
+
+Email 
+Validators.compose([Validators.required, Validators.email])
+
+
+salary
+Validators.compose([Validators.required, Validators.pattern(SalaryRegEx)])
+
+
+
+    const user = (userRole === 1)? Routing.Cook : Routing.Devotee
+
+    const devoteeId = localStorage.getItem(token);
+
+ private router: Router
+ const routePage = (userData.role === 1) ? Routing.Cook : Routing.Devotee;
+  const url = Routing.ViewProfile + '/' + routePage + '/' + id;
+
+ this.router.navigate([url]);
+
+private route: ActivatedRoute,
+ const id = this.route.snapshot.params.id;

@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login.component';
 
 const routes: Routes = [
-    {path : 'login', component: LoginComponent},
+    // {path : 'login', component: LoginComponent},
   ];
 
 @NgModule({

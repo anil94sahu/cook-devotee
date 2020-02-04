@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterDevoteeComponent } from './register-devotee.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ProfileLoaderModule } from '../profile-loader/profile-loader.module';
+import { ProfileLoaderComponent } from '../profile-loader/profile-loader.component';
 
 const routes: Routes = [
   {path : 'devotee', component: RegisterDevoteeComponent},
@@ -14,7 +16,8 @@ const routes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    FormsModule
+    FormsModule,
+    ProfileLoaderModule
   ],
 })
 export class RegisterDevoteeModule { }

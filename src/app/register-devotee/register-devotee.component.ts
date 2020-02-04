@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit, AfterContentInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IDevoteeModel } from '../shared/models/devotee.model';
 import { IAddress } from '../shared/models/cook.model';
 import { DevoteeRegistrationService } from '../shared/services/devotee.registration.service';
@@ -9,13 +9,14 @@ import * as firebase from 'firebase';
 import { EmailPasswordCredentials } from '../shared/models/credentials.model';
 import { WindowService } from '../shared/services/window.service';
 import { PhoneNumber } from '../shared/models/phone.model';
-import { Recaptcha } from '../shared/constants/utility.constant';
-import { Message } from '../shared/constants/message.constant';
+import { Recaptcha, PasswordRegEx, MobileRegEx } from '../shared/constants/utility.constant';
+import { Message, RegistrationMessage } from '../shared/constants/message.constant';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-devotee',
   templateUrl: './register-devotee.component.html',
-  styleUrls: ['./register-devotee.component.css', '../shared/css/global.css']
+  styleUrls: ['./register-devotee.component.css','../registration/registration.component.css', '../shared/css/global.css']
 })
 export class RegisterDevoteeComponent implements OnInit {
   // phone verification
@@ -25,6 +26,8 @@ export class RegisterDevoteeComponent implements OnInit {
   user: any;
   devoteeRegistrationForm: FormGroup;
   devotees: any;
+  RegistrationMessage = RegistrationMessage;
+  isSubmit = false;
   constructor(private fb: FormBuilder,
               private devoteeRegistrationService: DevoteeRegistrationService,
               private loaderService: LoaderService, private auth: AuthService,
@@ -50,15 +53,17 @@ export class RegisterDevoteeComponent implements OnInit {
 
   initForm(): IDevoteeModel {
     const devoteeModel: IDevoteeModel = {
-    name: new FormControl(''),
-    password: new FormControl(''),
-    mobileNo: new FormControl(1),
+    name: new FormControl('', Validators.compose([Validators.required])),
+    password: new FormControl('', Validators.compose([Validators.required, Validators.pattern(PasswordRegEx)])),
+    mobileNo: new FormControl(1, Validators.compose([Validators.required, Validators.minLength(10),
+      Validators.maxLength(10), Validators.pattern(MobileRegEx)])),
     centerName: new FormControl(''),
     PMName: new FormControl(''),
     role: new FormControl(2),
-    emailId: new FormControl(''),
+    emailId: new FormControl('', Validators.compose([Validators.required, Validators.email])),
     description: new FormControl(''),
     address: this.fb.group(this.initAddress()),
+    photo: new FormControl('') 
     };
     return devoteeModel;
   }
@@ -89,16 +94,38 @@ export class RegisterDevoteeComponent implements OnInit {
       });
         console.log(this.devotees);
       },
-      err => this.loaderService.hide());
+      () => this.loaderService.hide());
+  }
+
+  get form() {
+    return this.devoteeRegistrationForm.controls;
+  }
+
+  profileImage(imageUrl) {
+    this.devoteeRegistrationForm.controls.photo.setValue(imageUrl);
   }
 
   onSubmit(devoteeDetail: IDevoteeModel) {
+    this.isSubmit = true;
     const devotee = devoteeDetail;
     console.log(devotee);
-    this.loaderService.show();
-    this.devoteeRegistrationService.createDevotee(devotee);
-    alert(Message.success_registered);
+    if (this.devoteeRegistrationForm.valid) {
+      this.loaderService.show();
+      this.devoteeRegistrationService.createDevotee(devotee)
+      .then(
+        e => {console.log(e),
+          alert(Message.success_registered);}
+      ).catch(
+        e => console.log(e)
+      );
+
+    } else {}
     this.loaderService.hide();
+    }
+
+  onReset() {
+      this.createForm();
+      this.isSubmit = false;
     }
 
   verifyEmail() {
@@ -110,7 +137,7 @@ export class RegisterDevoteeComponent implements OnInit {
 
   signupWithEmail(credentials: EmailPasswordCredentials): void {
       this.auth.signUp(credentials)
-      .then((result) => {
+      .then(() => {
        this.auth.SendVerificationMail(); // Sending email verification notification, when new user registers
      }).
      catch((error) => {
@@ -138,4 +165,6 @@ export class RegisterDevoteeComponent implements OnInit {
         })
         .catch(error => console.log(error, 'Incorrect code entered?'));
     }
+
+
 }

@@ -9,5 +9,6 @@ export const environment = {
     messagingSenderId: '328502240696',
     appId: '1:328502240696:web:dc42a68bea76bd331f1b4d',
     measurementId: 'G-KX48SVF1GW'
-  }
+  },
+  baseUrl: 'https://gitalife.in/cookdevotee/demo2/'
 };

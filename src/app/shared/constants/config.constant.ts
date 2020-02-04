@@ -1,0 +1,1 @@
+export const baseHref = '/cookdevotee/demo2/';
