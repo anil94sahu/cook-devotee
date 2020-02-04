@@ -16,7 +16,6 @@ const routes: Routes = [
     imports: [
       CommonModule,
       ReactiveFormsModule,
-      RouterModule.forChild(routes)
     ],
   })
   export class LoginModule { }

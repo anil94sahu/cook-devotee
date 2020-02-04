@@ -19,7 +19,9 @@ export class SearchCookComponent implements OnInit {
   constructor(private searchCookService: SearchCookService,
               private loaderService: LoaderService,
               private hrManagementService: HRManagementService,
-              private utilityService: UtilityService) { }
+              private utilityService: UtilityService) { 
+                this.getContent();
+              }
 
   ngOnInit() {
     this.getCook();
@@ -36,13 +38,20 @@ export class SearchCookComponent implements OnInit {
           id: e.payload.doc.id,
           ...e.payload.doc.data()
         };
-      // tslint:disable-next-line: no-string-literal
       }).filter(e => e['role'] === 1);
       this.cooks = this.addStatusParams(this.cooks);
       },
       err => {
         this.loaderService.hide();
       });
+  }
+
+  getContent() {
+    this.loaderService.show();
+    debugger;
+    this.searchCookService.getData().then(data => {
+      console.log(data);
+    })
   }
 
   addStatusParams(cooks) {
@@ -59,7 +68,6 @@ export class SearchCookComponent implements OnInit {
           };
         });
         if (result.length > 0) {
-          // tslint:disable-next-line: no-string-literal
           const status = result[0]['status'];
           if (status === RequestStatus.requestSend) {
             cook.status = RequestStatus.requestSend;
