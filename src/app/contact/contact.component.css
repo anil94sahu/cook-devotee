@@ -69,4 +69,5 @@ img.logo {
 a > img.logo {
     float: left;
     padding: 2vmin;
+    background-color: white;
 }

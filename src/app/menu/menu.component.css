@@ -18,3 +18,7 @@ img.logo {
     box-shadow: 0px 0px 0px 0px;
     transition: all linear 2s;
 }
+
+.bg-wht {
+    background-color: white;
+}

@@ -12,7 +12,7 @@ export const images = {
     // tslint:disable-next-line: max-line-length
     prbhupadcooking: 'https://firebasestorage.googleapis.com/v0/b/demo2-ad873.appspot.com/o/assets%2Fimages%2Fcourasel%2Fprabhupada-cooking.jpg?alt=media&token=c17e28bf-db15-445a-98e4-043c808be73b',
     // tslint:disable-next-line: max-line-length
-    logo: 'https://firebasestorage.googleapis.com/v0/b/demo2-ad873.appspot.com/o/assets%2Fimages%2Flogo%2Flogo.jpg?alt=media&token=20e189b3-8bd0-4a02-adf7-5197069bbbc9'
+    logo: 'https://gitalife.in/wp-content/uploads/2019/07/Gita-Life-Logo-Raw.png'
 };
 
 // tslint:disable-next-line: variable-name
