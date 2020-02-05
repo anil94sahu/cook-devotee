@@ -34,7 +34,7 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <div class="form-row">
-          <div class="form-group col-md-5">
+          <div class="form-group col-md-9">
             <label for="emailId">{{Label.emailId}}</label>
             <input type="email" [readonly]="isEdit" class="form-control" id="emailId" formControlName="emailId">
             <div *ngIf="(form.emailId.invalid && (form.emailId.dirty || form.emailId.touched)) || isSubmit" class="text-danger">
@@ -51,8 +51,9 @@
             </div>
            
         </div>
-        <div  class="form-group col-md-1">
-          <button (click) = "verifyEmail()" class="form-control btn btn-primary mg-8" >verify</button>
+        <div  class="form-group col-md-2">
+          <br>
+          <button (click) = "verifyEmail()" class="form-control btn btn-primary mg-1" >verify</button>
         </div>
         </div>
       </div>

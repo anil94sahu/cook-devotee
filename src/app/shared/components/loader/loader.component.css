@@ -11,7 +11,7 @@
 .loader {
   height: 4px;
   width: 100%;
-  position: relative;
+  position: static;
   overflow: hidden;
   background-color: #FFF;
 }

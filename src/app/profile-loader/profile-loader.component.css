@@ -9,3 +9,15 @@
 .vh-5 {
     height: 5vh;
 }
+
+.mg-top-2 {
+    margin-top: 2vh;
+}
+
+.pd-lft-2 {
+    padding-left: 2vw;
+}
+
+.wd-100{
+    width: 100%;
+}

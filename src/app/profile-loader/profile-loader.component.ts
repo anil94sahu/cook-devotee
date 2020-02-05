@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { StorageFirebaseService } from '../shared/services/storage.firebase.service';
 import { ProfilePictureUpload } from '../shared/models/profile.storage.model';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import {  finalize } from 'rxjs/operators';
 @Component({
@@ -12,12 +12,12 @@ import {  finalize } from 'rxjs/operators';
 export class ProfileLoaderComponent implements OnInit {
 
   selectedFiles: FileList;
-  currentFileUpload: ProfilePictureUpload;
+  currentFileUpload = false;
   progress: { percentage: number } = { percentage: 0 };
   downloadURL: Observable<string>;
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
-  uploadProgress: Observable<number>;
+  uploadProgress: Observable<number> = of(0);
   uploadState: Observable<string>;
   url: string;
   @Output() valueChange = new EventEmitter();
@@ -41,15 +41,20 @@ export class ProfileLoaderComponent implements OnInit {
   }
 
   upload() {
-    const task = this.afStorage.upload(this.basePath, this.file);
+    this.currentFileUpload = true;
+    this.task = this.afStorage.upload(this.basePath, this.file);
     const ref = this.afStorage.ref(this.basePath);
-    this.uploadProgress = task.percentageChanges();
+    this.uploadProgress = this.task.percentageChanges();
+    this.task.percentageChanges().subscribe(
+      (progress:number) => {
+        this.progress.percentage = progress;
+      }
+    );
     console.log('Image uploaded!');
-    task.snapshotChanges().pipe(
+    this.task.snapshotChanges().pipe(
       finalize(() => {
         this.downloadURL = ref.getDownloadURL();
-        this.downloadURL.subscribe(url => (this.url = url));
-        this.valueChange.emit(this.url);
+        this.downloadURL.subscribe(url => {this.url = url;this.valueChange.emit(url);});
       })
     )
       .subscribe();
