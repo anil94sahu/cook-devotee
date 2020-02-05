@@ -31,3 +31,6 @@ export const section_images = {
     foreign: 'https://firebasestorage.googleapis.com/v0/b/demo2-ad873.appspot.com/o/assets%2Fimages%2Fsections%2Fforeign%20cook%20devotee.jpg?alt=media&token=4b4fab74-39fc-4809-8d78-1565ade08755',
 
 };
+
+// tslint:disable-next-line: max-line-length
+export const profilePics = 'https://firebasestorage.googleapis.com/v0/b/demo2-ad873.appspot.com/o/profilepicture%2Fprofile%20pic%20default.png?alt=media&token=2d72a886-eb54-4f6a-b090-2b36abea29e3'

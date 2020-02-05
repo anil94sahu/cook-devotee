@@ -7,6 +7,7 @@ import { token, role } from '../shared/constants/local-storage.constant';
 import { RequestStatus, RequestStatusName } from '../shared/constants/utility.constant';
 import { UtilityService } from '../shared/services/utility.service';
 import { API } from '../shared/constants/apis.constant';
+import { profilePics } from '../shared/constants/image.constant';
 @Component({
   selector: 'app-search-cook',
   templateUrl: './search-cook.component.html',
@@ -16,6 +17,7 @@ export class SearchCookComponent implements OnInit {
   cooks: any;
   role: number;
   RequestStatusName = RequestStatusName;
+  profilePics = profilePics;
   constructor(private searchCookService: SearchCookService,
               private loaderService: LoaderService,
               private hrManagementService: HRManagementService,
