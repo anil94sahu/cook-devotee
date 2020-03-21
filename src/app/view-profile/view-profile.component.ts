@@ -1,3 +1,4 @@
+import { profilePics } from './../shared/constants/image.constant';
 import { Component, OnInit } from '@angular/core';
 import { ViewProfileService } from '../shared/services/view-profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,6 +9,7 @@ import { IHRModel } from '../shared/models/hr.model';
 import { API } from '../shared/constants/apis.constant';
 import { Role, RequestStatus, RequestStatusName } from '../shared/constants/utility.constant';
 import { Routing } from '../shared/constants/routing.constant';
+import { UtilityService } from '../shared/services/utility.service';
 
 @Component({
   selector: 'app-view-profile',
@@ -17,6 +19,7 @@ import { Routing } from '../shared/constants/routing.constant';
 export class ViewProfileComponent implements OnInit {
 
   profile: any;
+  defaultProfilePic = profilePics;
   requestDevoteeArr: any = [];
   RequestStatusName = RequestStatusName;
   RequestStatus = RequestStatus;
@@ -24,6 +27,7 @@ export class ViewProfileComponent implements OnInit {
   constructor(private viewProfileService: ViewProfileService,
               private route: ActivatedRoute,
               private loaderService: LoaderService,
+              public utilityService: UtilityService,
               private hrManagementService: HRManagementService,
               private router: Router ) { }
 

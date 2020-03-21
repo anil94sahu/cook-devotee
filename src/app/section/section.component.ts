@@ -1,5 +1,7 @@
+import { offlineSectionImages } from './../shared/constants/image.constant';
 import { Component, OnInit } from '@angular/core';
 import { section_images } from '../shared/constants/image.constant';
+import { offline } from '../shared/constants/utility.constant';
 
 @Component({
   selector: 'app-section',
@@ -7,7 +9,9 @@ import { section_images } from '../shared/constants/image.constant';
   styleUrls: ['./section.component.css']
 })
 export class SectionComponent implements OnInit {
-  section_images = section_images;
+
+  offline = offline;
+  sectionImages = (this.offline) ? section_images : offlineSectionImages;
   constructor() { }
 
   ngOnInit() {

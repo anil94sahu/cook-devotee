@@ -5,11 +5,11 @@ import { LoaderService } from '../shared/services/loader.service';
 import { HRManagementService } from '../shared/services/hr-management.service';
 import { initialHRData, IHRModel } from '../shared/models/hr.model';
 import { token, role } from '../shared/constants/local-storage.constant';
-import { RequestStatus, RequestStatusName } from '../shared/constants/utility.constant';
+import { RequestStatus, RequestStatusName, offline } from '../shared/constants/utility.constant';
 import { UtilityService } from '../shared/services/utility.service';
 import { API } from '../shared/constants/apis.constant';
 import { profilePics } from '../shared/constants/image.constant';
-import { cookJson } from '../shared/data/data.constant';
+
 
 @Component({
   selector: 'app-search-cook',
@@ -21,6 +21,7 @@ export class SearchCookComponent implements OnInit {
   role: number;
   RequestStatusName = RequestStatusName;
   profilePics = profilePics;
+  offline = offline;
   params = {searchString: ''};
   constructor(private searchCookService: SearchCookService,
               private loaderService: LoaderService,

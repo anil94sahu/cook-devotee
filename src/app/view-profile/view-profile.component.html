@@ -1,16 +1,21 @@
-<div class="container emp-profile">
-    <form *ngIf="profile">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                    <img src="{{profile.photo}}" class="profile-post-pic" alt=""/>
-                </div>
+
+<div *ngIf="profile" class="container row emp-profile">
+        <div class="profile-gallery col-md-6">
+            <div class="col-md-12 profile-img">
+                <img src="{{profile.photo?profile.photo : defaultProfilePic}}" class="profile-post-pic" alt=""/>
             </div>
-            <div class="col-md-6">
-                <div class="profile-head">
-                            <h5>
-                                {{profile.name}}
-                            </h5>
+            <div class="col-md-12 profile-sub-images d-inline-flex">
+                <div class="col-md-4 border border-primary"></div>
+                <div class="col-md-4 border border-primary"></div>
+                <div class="col-md-4 border border-primary"></div>
+            </div>
+        </div>
+        <div class="profile-detail col-md-6">
+            <div class="col-md-12 d-inline-flex">
+                <div class="profile-head col-md-8">
+                            <h1>
+                                {{profile.name | uppercase}}
+                            </h1>
                             <p class="proile-rating"><span></span></p>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
@@ -21,32 +26,21 @@
                         </li> -->
                     </ul>
                 </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-success btn-lg" title= "edit profile" (click) = "editProfile(profile)">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
+                    </button>
+                </div>
             </div>
-            <div class="col-md-2">
-                <button type="button"  class="profile-edit-btn" (click) = "editProfile(profile)" name="btnAddMore">Edit Profile</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                
-            </div>
-            <div class="col-md-8">
+            <div class="col-md-12 ml-5">
                 <div class="tab-content profile-tab" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>User Name</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{profile.username}}</p>
-                                    </div>
-                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Name</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>{{profile.name}}</p>
+                                        <p>{{profile.name | lowercase}}</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -54,7 +48,7 @@
                                         <label>Address</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>{{profile.address.address1 + ',' + profile.address.city}}</p>
+                                        <p>{{utilityService.reFrameAddress(profile.address) | lowercase}}</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -70,7 +64,7 @@
                                         <label>Married</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>{{profile.married}}</p>
+                                        <p>{{profile.married | lowercase}}</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -78,7 +72,7 @@
                                         <label>Specialist</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>{{profile.specialist}}</p>
+                                        <p>{{profile.specialist | lowercase}}</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -86,7 +80,7 @@
                                         <label>Salary</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>{{profile.salary}}</p>
+                                        <p>{{profile.salary | lowercase}}</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -102,7 +96,7 @@
                                         <label>Email</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>{{profile.emailId}}</p>
+                                        <p>{{profile.emailId | lowercase}}</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -110,7 +104,7 @@
                                         <label>Study</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>{{profile.study}}</p>
+                                        <p>{{profile.study | titlecase}}</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -126,11 +120,8 @@
                 </div>
             </div>
         </div>
-    </form>           
 </div>
-<!-- <div class="pull-right">
-    <button (click) = "navigateToCookRegistration()">want to register cook</button>
-</div> -->
+
 
 <fieldset>
     <legend>
@@ -138,7 +129,7 @@
 
 
     </legend>
-  <div>
+  <div *ngIf="profile">
     <ul class="list-group" >
         <li *ngFor="let cook of requestDevoteeArr" class="list-group-item d-flex justify-content-between align-items-center">
             <div class="row align-items-center col-sm-12">

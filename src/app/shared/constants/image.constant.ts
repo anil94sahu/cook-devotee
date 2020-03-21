@@ -15,6 +15,16 @@ export const images = {
     logo: 'https://gitalife.in/wp-content/uploads/2019/07/Gita-Life-Logo-Raw.png'
 };
 
+export const offlineCouraselImages = {
+    cookDevotee : '../../assets/images/courasel/devotee cooks.jpg',
+    prasdamFeast : '../../assets/images/courasel/prasadam-feast.jpg',
+    prbhupadTrainingDevotee: '../../assets/images/courasel/Prabhupada Training Devotee cook.jpg',
+    vegpic2: '../../assets/images/courasel/vegpic2.jpg',
+    gulabjamun : '../../assets/images/courasel/gulab jamun.jpg',
+    prbhupadcooking: '../../assets/images/courasel/prbhupad cooking.jpg',
+    logo: 'https://gitalife.in/wp-content/uploads/2019/07/Gita-Life-Logo-Raw.png'
+};
+
 // tslint:disable-next-line: variable-name
 export const section_images = {
     // tslint:disable-next-line: max-line-length
@@ -29,8 +39,22 @@ export const section_images = {
     satvikcook: 'https://firebasestorage.googleapis.com/v0/b/demo2-ad873.appspot.com/o/assets%2Fimages%2Fsections%2Fcooking%20devotee.jpg?alt=media&token=854b0725-61a8-4931-b9b7-eb7de0bc3808',
     // tslint:disable-next-line: max-line-length
     foreign: 'https://firebasestorage.googleapis.com/v0/b/demo2-ad873.appspot.com/o/assets%2Fimages%2Fsections%2Fforeign%20cook%20devotee.jpg?alt=media&token=4b4fab74-39fc-4809-8d78-1565ade08755',
+};
 
+export const offlineSectionImages = {
+    // tslint:disable-next-line: max-line-length
+    charu: '../assets/images/sections/charu swami.jpg',
+    // tslint:disable-next-line: max-line-length
+    rasamrit: '../assets/images/sections/rasamrit.jpg',
+    // tslint:disable-next-line: max-line-length
+    bigcook: '../assets/images/sections/Suna1_slideshow.jpg',
+    // tslint:disable-next-line: max-line-length
+    personalcook : '../assets/images/sections/personal cook.jpg',
+    // tslint:disable-next-line: max-line-length
+    satvikcook: '../assets/images/sections/cooking devotee.jpg',
+    // tslint:disable-next-line: max-line-length
+    foreign: '../assets/images/sections/foreign cook devotee.jpg'
 };
 
 // tslint:disable-next-line: max-line-length
-export const profilePics = 'https://firebasestorage.googleapis.com/v0/b/demo2-ad873.appspot.com/o/profilepicture%2Fprofile%20pic%20default.png?alt=media&token=2d72a886-eb54-4f6a-b090-2b36abea29e3'
+export const profilePics = '../assets/images/profile/profile-pic-default.jpg';
