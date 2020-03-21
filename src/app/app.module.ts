@@ -14,7 +14,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 import { RegistrationService } from './shared/services/registration.service';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { StorageFirebaseService } from './shared/services/storage.firebase.service';
@@ -47,6 +47,7 @@ import { ProfileLoaderComponent } from './profile-loader/profile-loader.componen
     AppRoutingModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule.enablePersistence(),
     ReactiveFormsModule,
     FormsModule,
     ProfileLoaderModule

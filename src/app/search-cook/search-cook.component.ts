@@ -9,6 +9,8 @@ import { RequestStatus, RequestStatusName } from '../shared/constants/utility.co
 import { UtilityService } from '../shared/services/utility.service';
 import { API } from '../shared/constants/apis.constant';
 import { profilePics } from '../shared/constants/image.constant';
+import { cookJson } from '../shared/data/data.constant';
+
 @Component({
   selector: 'app-search-cook',
   templateUrl: './search-cook.component.html',
@@ -23,7 +25,7 @@ export class SearchCookComponent implements OnInit {
   constructor(private searchCookService: SearchCookService,
               private loaderService: LoaderService,
               private hrManagementService: HRManagementService,
-              private utilityService: UtilityService,
+              public utilityService: UtilityService,
               private activatedRoute: ActivatedRoute) {
                 this.getContent();
                 this.activatedRoute.queryParams.subscribe(params => {
@@ -54,8 +56,9 @@ export class SearchCookComponent implements OnInit {
       }).filter((e: any) => {
         return e.role === 1;
       });
+      // this.cooks = cookJson.data;
       this.cooks = this.addStatusParams(this.cooks);
-      if (this.params.searchString != '') {this.searchByParams(); }
+      if (this.params.searchString !== '') {this.searchByParams(); }
       },
       err => {
         this.loaderService.hide();

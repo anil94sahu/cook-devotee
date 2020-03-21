@@ -1,3 +1,4 @@
+import { IAddress } from './../models/cook.model';
 import { Injectable } from '@angular/core';
 import { FirebaseService } from './crud.firebase.service';
 import { API } from '../constants/apis.constant';
@@ -26,4 +27,16 @@ export class UtilityService {
     getKeyByValue(object, value) {
         return Object.keys(object).find(key => object[key] === value);
       }
+
+    reFrameAddress(address: IAddress) {
+      let fullAddress = '';
+      if (address.houseNo) {fullAddress += address.houseNo + ` `; }
+      if (address.address1) {fullAddress += address.address1 + ` `; }
+      if (address.landmark) {fullAddress += address.landmark + ` `; }
+      if (address.city) {fullAddress += address.city + ` `; }
+      if (address.state) {fullAddress += address.state + ` `; }
+      if (address.country) {fullAddress += address.country + ` `; }
+      if (address.pincode !== 0) {fullAddress += address.pincode + ` `; }
+      return fullAddress;
+    }
 }
