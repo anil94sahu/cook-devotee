@@ -229,7 +229,7 @@
         </div>
     </div>
     <hr>
-   <!--  <h2>{{Label.workExperience.workExperience}}</h2>
+    <!-- <h2>{{Label.workExperience.workExperience}}</h2>
     <div formArrayName="workExperience">
       <div *ngFor="let comp of cookRegistrationForm.get('workExperience')['controls'];let i = index">
         <div formGroupName="{{i}}">
@@ -241,12 +241,6 @@
                   <div *ngIf="wiform[i].controls.centerName.errors?.required">
                     {{RegistrationMessage.centerName}}
                   </div>
-                  <!-- <div *ngIf="name.errors.minlength">
-                    Name must be at least 4 characters long.
-                  </div>
-                  <div *ngIf="name.errors.maxlength">
-                    Name must not exceed 15 characters.
-                  </div> -->
                 </div>
               </div>
               <div class="form-group col-md-6">
@@ -256,12 +250,12 @@
                     <div *ngIf="form.name.errors?.required">
                       {{RegistrationMessage.name}}
                     </div>
-                    <!-- <div *ngIf="name.errors.minlength">
+                     <div *ngIf="form.name.errors.minlength">
                       Name must be at least 4 characters long.
                     </div>
-                    <div *ngIf="name.errors.maxlength">
+                    <div *ngIf="form.name.errors.maxlength">
                       Name must not exceed 15 characters.
-                    </div> -->
+                    </div>
                   </div>
               </div>
           </div>
@@ -273,12 +267,12 @@
                   <div *ngIf="wiform[i].controls.periodOfWork.errors?.required">
                     {{RegistrationMessage.periodOfWork}}
                   </div>
-                  <!-- <div *ngIf="name.errors.minlength">
+                  <div *ngIf="form.name.errors.minlength">
                     Name must be at least 4 characters long.
                   </div>
-                  <div *ngIf="name.errors.maxlength">
+                  <div *ngIf="form.name.errors.maxlength">
                     Name must not exceed 15 characters.
-                  </div> -->
+                  </div>
                 </div>
               </div>
               <div class="form-group col-md-6">
@@ -296,12 +290,7 @@
                         <div *ngIf="wiform[i].controls.PMName.errors?.required">
                           {{RegistrationMessage.PMName}}
                         </div>
-                        <!-- <div *ngIf="name.errors.minlength">
-                          Name must be at least 4 characters long.
-                        </div>
-                        <div *ngIf="name.errors.maxlength">
-                          Name must not exceed 15 characters.
-                        </div> -->
+                       
                       </div>
                   </div>
                   <div class="form-group col-md-4">
@@ -311,27 +300,17 @@
                         <div *ngIf="wiform[i].controls.PMMobile.errors?.required">
                           {{RegistrationMessage.PMMobile}}
                         </div>
-                        <!-- <div *ngIf="name.errors.minlength">
-                          Name must be at least 4 characters long.
-                        </div>
-                        <div *ngIf="name.errors.maxlength">
-                          Name must not exceed 15 characters.
-                        </div> -->
+                       
                       </div>
                   </div>
                   <div class="form-group col-md-4">
                     <label for="">{{Label.workExperience['PMEmailId']}}</label>
                     <input type="text" class="form-control" formControlName="PMEmailId" id="" placeholder="">
                     <div *ngIf="wiform[i].controls.PMEmailId.invalid && (wiform[i].controls.PMEmailId.dirty || wiform[i].controls.PMEmailId.touched)" class="text-danger">
-                      <!-- <div *ngIf="wiform[i].get('PMEmailId').errors?.required">
+                      <div *ngIf="wiform[i].get('PMEmailId').errors?.required">
                         {{RegistrationMessage.PMEmailId}}
-                      </div> -->
-                      <!-- <div *ngIf="name.errors.minlength">
-                        Name must be at least 4 characters long.
                       </div>
-                      <div *ngIf="name.errors.maxlength">
-                        Name must not exceed 15 characters.
-                      </div> -->
+                      
                     </div>
                 </div>
                   <div class="form-group col-md-4">
@@ -341,12 +320,7 @@
                       <div *ngIf="wiform[i].controls.KIName.errors?.required">
                         {{RegistrationMessage.KIName}}
                       </div>
-                      <!-- <div *ngIf="name.errors.minlength">
-                        Name must be at least 4 characters long.
-                      </div>
-                      <div *ngIf="name.errors.maxlength">
-                        Name must not exceed 15 characters.
-                      </div> -->
+                      
                     </div>
                   </div>
                   <div class="form-group col-md-4">
@@ -356,12 +330,7 @@
                         <div *ngIf="wiform[i].controls.KIMobile.errors?.required">
                           {{RegistrationMessage.KIMobile}}
                         </div>
-                        <!-- <div *ngIf="name.errors.minlength">
-                          Name must be at least 4 characters long.
-                        </div>
-                        <div *ngIf="name.errors.maxlength">
-                          Name must not exceed 15 characters.
-                        </div> -->
+                       
                       </div>
                   </div>
                   <div class="form-group col-md-4">
@@ -371,12 +340,7 @@
                       <div *ngIf="wiform[i].controls.KIEmailId.errors?.required">
                         {{RegistrationMessage.KIEmailId}}
                       </div>
-                      <!-- <div *ngIf="name.errors.minlength">
-                        Name must be at least 4 characters long.
-                      </div>
-                      <div *ngIf="name.errors.maxlength">
-                        Name must not exceed 15 characters.
-                      </div> -->
+                      
                     </div>
                 </div>
                   <div class="form-group col-md-4">
@@ -386,12 +350,7 @@
                         <div *ngIf="wiform[i].controls.salary.errors?.required">
                           {{RegistrationMessage.salary}}
                         </div>
-                        <!-- <div *ngIf="name.errors.minlength">
-                          Name must be at least 4 characters long.
-                        </div>
-                        <div *ngIf="name.errors.maxlength">
-                          Name must not exceed 15 characters.
-                        </div> -->
+                        
                       </div>
                   </div>
                   <div class="form-group col-md-6">
