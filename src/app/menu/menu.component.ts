@@ -14,6 +14,7 @@ import { images } from '../shared/constants/image.constant';
 export class MenuComponent implements OnInit {
   @ViewChild(LoginComponent, {static: false}) loginComponentChild: LoginComponent;
   logoImages = images;
+  searchParam: string = '';
 
   constructor(private router: Router, public auth: AuthService) { }
 
@@ -22,6 +23,12 @@ export class MenuComponent implements OnInit {
 
   navigateToRegistration() {
 
+  }
+
+  /* search navigation */
+  navigateToSearch(params){
+    const url = '/search-cook/cook/' + params
+    this.router.navigateByUrl(url);
   }
 
   navigateToViewProfile() {

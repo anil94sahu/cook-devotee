@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {path : 'cook', component: SearchCookComponent},
+  {path : 'cook/:id', component: SearchCookComponent},
 ];
 
 @NgModule({
