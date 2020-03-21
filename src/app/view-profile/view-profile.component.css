@@ -1,17 +1,24 @@
 .emp-profile{
-    padding: 3%;
-    margin-top: 3%;
-    margin-bottom: 3%;
+    padding: 3rem 0rem;
+    margin: 0 auto;
+    width: 100%;
     border-radius: 0.5rem;
     background: #fff;
 }
-.profile-img{
+.profile-gallery > .profile-img{
     text-align: center;
+    width: 100%;
+    height: 34rem;
 }
 .profile-img img{
-    width: 70%;
+    width: 100%;
     height: 100%;
 }
+
+.profile-gallery > .profile-sub-images {
+    height: 16rem;
+}
+
 .profile-img .file {
     position: relative;
     overflow: hidden;
@@ -82,11 +89,12 @@
     list-style: none;
 }
 .profile-tab label{
-    font-weight: 600;
+    font-weight: 200;
+    font-family: "Times New Roman", Times, serif;
 }
 .profile-tab p{
-    font-weight: 600;
-    color: #0062cc;
+    font-weight: 200;
+    font-family: 'Lobster', cursive;
 }
 
 .align-items-center {
@@ -245,12 +253,13 @@ li.list-group-item {
     border-right: 1px solid #ccc;
 }
 
-img.profile-post-pic {
-    width: 10vw !important;
-    height: 10vh !important;
-    border-radius: 50%;
-}
-
 .mr-2 {
     margin: 2vw 0vw 2vw 0vw;
 }
+
+@media (min-width: 1200px){
+    .container {
+        max-width: 90%;
+    }
+}
+

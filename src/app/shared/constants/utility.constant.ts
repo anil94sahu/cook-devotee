@@ -16,3 +16,5 @@ export const RequestStatusName = {
     2: 'waiting', 3: 'response', 4: 'approve', 5: 'reject', 6: 'block', 7: 'pending',
     8: 'Approved', 9: 'Rejected'
 };
+
+export const offline = navigator.onLine;

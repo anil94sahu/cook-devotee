@@ -75,9 +75,17 @@ li.list-group-item {
 }
 
 
-.col-sm-7 {
+.col-sm-8{
     overflow-y: hidden;
     border-right: 1px solid #ccc;
+}
+
+.cook-request-button > span:hover{
+    cursor: pointer;
+}
+
+.cook-request-button{
+    padding: 3rem;
 }
 
 @media only screen and (min-width: 1200px) {

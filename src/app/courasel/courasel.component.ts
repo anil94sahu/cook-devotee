@@ -1,6 +1,8 @@
+import { offlineCouraselImages } from './../shared/constants/image.constant';
 import { Component, OnInit } from '@angular/core';
 import { baseHref } from '../shared/constants/config.constant';
 import { images } from '../shared/constants/image.constant';
+import { offline } from '../shared/constants/utility.constant';
 
 @Component({
   selector: 'app-courasel',
@@ -10,7 +12,8 @@ import { images } from '../shared/constants/image.constant';
 export class CouraselComponent implements OnInit {
 
   public baseHref = baseHref;
-  couraselImages = images;
+  offline = offline;
+  couraselImages = (this.offline) ? images : offlineCouraselImages;
   constructor() { }
 
   ngOnInit() {
