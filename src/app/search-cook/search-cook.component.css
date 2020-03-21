@@ -24,7 +24,7 @@
   }
 
   .badge-primary {
-    padding: 6vmin 10vmin 6vmin 10vmin;
+    padding: 1rem;
   }
 
   .badge-primary:hover {
@@ -33,7 +33,7 @@
 
 img.profile-pic {
     border-radius: 50% !important;
-    width: 60vw;
+    width: 10rem;
 }
 
 .value-heigth {
@@ -41,7 +41,7 @@ img.profile-pic {
     line-height: 7min;
 }
 
-li.list-group-item:hover {
+.cook-box > li.list-group-item:hover {
     margin-left: 1vw;
     margin-top: 1vh;
     z-index: 100;
@@ -55,6 +55,7 @@ li.list-group-item {
     z-index: 0;
     box-shadow: 1px 1px 1px 1px;
     transition: all linear 0.5s;
+    
 }
 
 .row {
@@ -62,19 +63,26 @@ li.list-group-item {
 }
 
 .list-group {
-    padding: 5vmin;
-    margin: 3vw;
+    padding: 0rem 3rem;
+    margin: 1rem 1rem;
     
 }
 
 .list-group-item {
     margin: 2vh 0vh 2vh 0vh;
-    border: 5px solid lightgray;
-    box-shadow: 5px 5px 5px 5px;
+    border: 1px solid lightgray;
+    box-shadow: 2px 2px 2px 2px;
 }
 
 
 .col-sm-7 {
     overflow-y: hidden;
     border-right: 1px solid #ccc;
+}
+
+@media only screen and (min-width: 1200px) {
+    .container {
+        max-width: 100% !important;
+    }
+    
 }

@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'demo2';
+  public onlineOffline: boolean = navigator.onLine;
+
+  constructor(){
+    // alert(this.onlineOffline? 'you are online': 'you are offline');
+  }
 }
