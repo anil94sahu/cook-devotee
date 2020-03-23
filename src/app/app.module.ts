@@ -31,6 +31,7 @@ import { ProfileLoaderComponent } from './profile-loader/profile-loader.componen
 import { RegisterFormComponent } from './shared/components/reusable-component/register-form/register-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { EmailVerificationComponent } from './shared/components/reusable-component/email-verification/email-verification.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ToastrModule } from 'ngx-toastr';
     AboutComponent,
     ContactComponent,
     LoaderComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    EmailVerificationComponent
   ],
   imports: [
     BrowserModule,

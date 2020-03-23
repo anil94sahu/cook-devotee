@@ -1,3 +1,5 @@
+import { UtilityService } from './../shared/services/utility.service';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IStateModel, defaultState } from './../shared/models/state.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -35,7 +37,9 @@ export class RegistrationComponent implements OnInit, OnDestroy {
               private auth: AuthService,
               private win: WindowService,
               private viewProfileService: ViewProfileService,
-              private toastr: ToastrService
+              private toastr: ToastrService,
+              private router: Router,
+              private utilityService: UtilityService
 ) { }
 
   ngOnInit() {
@@ -48,10 +52,11 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   response($event) {
     const {url, cookDetail, userId}  = $event;
+    const {emailId, password} = cookDetail;
     if (url === 'edit') {
       this.update(userId, cookDetail);
     } else {
-      this.onSubmit(cookDetail);
+      this.verifyEmail(emailId, password, cookDetail);
     }
   }
 
@@ -63,7 +68,10 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     this.loaderService.show();
     this.registrationService.createCook(cook).then(
       e => {console.log(e),
-        this.toastr.success(Message.success_registered, 'success'); }
+        this.toastr.success(Message.success_registered, 'success');
+            this.toastr.info('kindly login with your credential', 'info');
+            this.router.navigateByUrl('');
+      }
     ).catch(
       () => {
         this.loaderService.hide();
@@ -76,6 +84,8 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     this.loaderService.show();
     this.registrationService.updateCook(Id, cook);
     this.toastr.success('successfully updated', 'success');
+    const {token, routePage} = this.utilityService.getLocalStorage();
+    this.router.navigateByUrl(`view-profile/${routePage}/${token}`);
     this.loaderService.hide();
   }
 
@@ -83,17 +93,18 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   }
 
 
-  verifyEmail() {
-    const email  = this.cookRegistrationForm.controls.emailId.value;
-    const password = this.cookRegistrationForm.controls.password.value;
+  verifyEmail(email, password, cookDetail?) {
     const credentials: EmailPasswordCredentials = {email, password};
-    this.signupWithEmail(credentials);
+    this.signupWithEmail(credentials, cookDetail);
   }
 
-  signupWithEmail(credentials: EmailPasswordCredentials): void {
+  signupWithEmail(credentials: EmailPasswordCredentials, cookDetail?): void {
       this.auth.signUp(credentials)
       .then(() => {
-        this.auth.SendVerificationMail(); // Sending email verification notification, when new user registers
+        this.auth.SendVerificationMail().then(() => {
+          this.toastr.warning('verification mail send to your mail ID.', 'Alert');
+          this.onSubmit(cookDetail);
+          }); // Sending email verification notification, when new user registers
       }).
       catch((error) => {
         this.toastr.error(error.message, 'error');

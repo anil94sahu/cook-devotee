@@ -25,10 +25,7 @@ export class AuthService {
     }
 
     SendVerificationMail() {
-        return firebase.auth().currentUser.sendEmailVerification()
-        .then(() => {
-              this.toastr.warning('verification mail send to your mail ID.', 'Alert');
-        });
+        return firebase.auth().currentUser.sendEmailVerification();
       }
 
     resetPassword(email: string) {
