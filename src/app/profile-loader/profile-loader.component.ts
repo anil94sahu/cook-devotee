@@ -1,6 +1,6 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { StorageFirebaseService } from '../shared/services/storage.firebase.service';
-import { ProfilePictureUpload } from '../shared/models/profile.storage.model';
 import { Observable, of } from 'rxjs';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import {  finalize } from 'rxjs/operators';
@@ -23,7 +23,7 @@ export class ProfileLoaderComponent implements OnInit {
   @Output() valueChange = new EventEmitter();
   private basePath = '/profilepicture';
   file: any;
-  constructor(private storageFbs: StorageFirebaseService, private afStorage: AngularFireStorage) { }
+  constructor(private afStorage: AngularFireStorage, private toastr: ToastrService) { }
 
   ngOnInit() {
   }
@@ -34,7 +34,7 @@ export class ProfileLoaderComponent implements OnInit {
     if (file.type.match('image.*')) {
       this.selectedFiles = event.target.files;
     } else {
-      alert('invalid format!');
+      this.toastr.warning('invalid format!', 'Alert');
     }
 
 
