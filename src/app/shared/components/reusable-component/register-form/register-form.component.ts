@@ -37,13 +37,8 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
   @Input()state: IStateModel;
   @Output() response = new EventEmitter<{cookDetail, url, userId}>();
 
-  constructor(private registrationService: RegistrationService,
-              private fb: FormBuilder,
-              private loaderService: LoaderService,
-              private auth: AuthService,
-              private win: WindowService,
-              private route: ActivatedRoute,
-              private viewProfileService: ViewProfileService) { }
+  constructor(private fb: FormBuilder,
+              private loaderService: LoaderService) { }
 
   ngOnInit() {
     console.log(this.state);
@@ -154,7 +149,7 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     this.cookRegistrationForm.setValue(res);
   }
 
-  setState(value){
+  setState(value) {
     this.state = value;
   }
 

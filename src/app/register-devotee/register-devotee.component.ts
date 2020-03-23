@@ -139,7 +139,9 @@ export class RegisterDevoteeComponent implements OnInit {
   signupWithEmail(credentials: EmailPasswordCredentials): void {
       this.auth.signUp(credentials)
       .then(() => {
-       this.auth.SendVerificationMail(); // Sending email verification notification, when new user registers
+       this.auth.SendVerificationMail().then(() => {
+        this.toastr.warning('verification mail send to your mail ID.', 'Alert');
+        }); // Sending email verification notification, when new user registers
      }).
      catch((error) => {
       this.toastr.error(error.message, 'error');

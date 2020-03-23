@@ -93,7 +93,6 @@ export class LoginComponent implements OnInit {
     this.auth.login(credential)
     .then((result) => {
      if (result.user.emailVerified !== true) {
-       this.auth.SendVerificationMail();
        this.toastr.info('Please validate your email address. Kindly check your inbox.', 'Alert');
      } else {
       const userId = result.user.uid;

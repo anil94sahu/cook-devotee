@@ -33,30 +33,10 @@
           </div>
         </div>
         <div class="form-row" >
-          <div *ngIf="state.emailId" class="form-group col-md-6">
-            <div class="form-row">
-              <div class="form-group col-md-9">
-                <label for="emailId">{{Label.emailId}}</label>
-                <input type="email" [readonly]="(state.emailId === 'disable')?true:false" class="form-control" id="emailId" formControlName="emailId">
-                <div *ngIf="(form.emailId.invalid && (form.emailId.dirty || form.emailId.touched)) || isSubmit" class="text-danger">
-                  <div *ngIf="form.emailId.errors?.required">
-                    {{RegistrationMessage.emailId}}
-                  </div>
-                  <div *ngIf="form.emailId.errors?.email">
-                    emailId is not correct
-                  </div>
-                   <!--
-                  <div *ngIf="name.errors.maxlength">
-                    Name must not exceed 15 characters.
-                  </div> -->
-                </div>
-               
-            </div>
-            <div *ngIf="(state.emailId === 'disable')?false:true" class="form-group col-md-2">
-              <br>
-              <button (click) = "verifyEmail()" class="form-control btn btn-primary mg-1" >verify</button>
-            </div>
-            </div>
+          <div class="col-md-6">
+            <ng-container>
+              <app-email-verification [state] = "state" [emailForm] = "cookRegistrationForm" (response) = "getEmailState($event)"></app-email-verification>
+            </ng-container>
           </div>
           <div *ngIf="state.mobileNo" class="form-group col-md-6">
             <div class="form-row">
@@ -373,8 +353,11 @@
         </div>
 
         <div class="m-2 text-center w-100 p-3">
-          <button (click) = "onSubmit(cookRegistrationForm.value)" class="btn btn-primary btn-mg">Sign Up</button>
-          <button (click) = "onReset()" class="btn btn-primary btn-mg">Reset</button>
+          <button *ngIf="state.url === 'edit'; else add" (click) = "onSubmit(cookRegistrationForm.value)" class="btn btn-success btn-mg">Update</button>
+          <ng-template #add>
+            <button (click) = "onSubmit(cookRegistrationForm.value)" class="btn btn-primary btn-mg">Sign Up</button>
+            <button (click) = "onReset()" class="btn btn-primary btn-mg">Reset</button>
+          </ng-template>
         </div>
     </form>
 </div>
