@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IDevoteeModel } from '../shared/models/devotee.model';
@@ -11,7 +12,6 @@ import { WindowService } from '../shared/services/window.service';
 import { PhoneNumber } from '../shared/models/phone.model';
 import { Recaptcha, PasswordRegEx, MobileRegEx } from '../shared/constants/utility.constant';
 import { Message, RegistrationMessage } from '../shared/constants/message.constant';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-devotee',
@@ -31,7 +31,7 @@ export class RegisterDevoteeComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private devoteeRegistrationService: DevoteeRegistrationService,
               private loaderService: LoaderService, private auth: AuthService,
-              private win: WindowService) {
+              private win: WindowService, private toastr: ToastrService) {
                }
 
   ngOnInit() {
@@ -113,10 +113,11 @@ export class RegisterDevoteeComponent implements OnInit {
       this.loaderService.show();
       this.devoteeRegistrationService.createDevotee(devotee)
       .then(
-        e => {console.log(e),
-          alert(Message.success_registered);}
+        () => {
+              this.toastr.success(Message.success_registered, 'success');
+          }
       ).catch(
-        e => console.log(e)
+        e => this.toastr.error(e, 'error')
       );
 
     } else {}
@@ -141,7 +142,7 @@ export class RegisterDevoteeComponent implements OnInit {
        this.auth.SendVerificationMail(); // Sending email verification notification, when new user registers
      }).
      catch((error) => {
-       window.alert(error.message);
+      this.toastr.error(error.message, 'error');
      });
     }
 

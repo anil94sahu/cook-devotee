@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 import { EmailPasswordCredentials } from '../models/credentials.model';
@@ -8,8 +9,7 @@ import { token } from '../constants/local-storage.constant';
 export class AuthService {
 
     public isAuthenticate = localStorage.getItem(token) ? true : false;
-    constructor() {
-        
+    constructor(private toastr: ToastrService) {
     }
 
     signUp(credentials: EmailPasswordCredentials) {
@@ -27,7 +27,7 @@ export class AuthService {
     SendVerificationMail() {
         return firebase.auth().currentUser.sendEmailVerification()
         .then(() => {
-          alert('verification mail send to your mail ID.');
+              this.toastr.warning('verification mail send to your mail ID.', 'Alert');
         });
       }
 

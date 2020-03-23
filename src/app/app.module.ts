@@ -29,6 +29,9 @@ import { environment } from 'src/environments/environment.prod';
 import { ProfileLoaderModule } from './profile-loader/profile-loader.module';
 import { ProfileLoaderComponent } from './profile-loader/profile-loader.component';
 import { RegisterFormComponent } from './shared/components/reusable-component/register-form/register-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +55,9 @@ import { RegisterFormComponent } from './shared/components/reusable-component/re
     AngularFirestoreModule.enablePersistence(),
     ReactiveFormsModule,
     FormsModule,
-    ProfileLoaderModule
+    ProfileLoaderModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot() // ToastrModule added
   ],
   providers: [AngularFirestore, RegistrationService, 
     StorageFirebaseService, DevoteeRegistrationService,

@@ -1,17 +1,15 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ILoginModel } from '../shared/models/login.model';
-import { UserRegEx, PasswordRegEx, MobileRegEx, Role, RoleRegEx } from '../shared/constants/utility.constant';
+import { UserRegEx, PasswordRegEx, RoleRegEx } from '../shared/constants/utility.constant';
 import { LoginService } from '../shared/services/login.service';
 import { Router } from '@angular/router';
 import { Routing } from '../shared/constants/routing.constant';
 import { LoaderService } from '../shared/services/loader.service';
 import { AuthService } from '../shared/services/auth.service';
 import { EmailPasswordCredentials } from '../shared/models/credentials.model';
-import { token, userId, currentUserData, role } from '../shared/constants/local-storage.constant';
-import { UtilityService } from '../shared/services/utility.service';
-import { ViewProfileService } from '../shared/services/view-profile.service';
-import { FirebaseService } from '../shared/services/crud.firebase.service';
+import { token, userId, role } from '../shared/constants/local-storage.constant';
 
 @Component({
   selector: 'app-login',
@@ -26,9 +24,7 @@ export class LoginComponent implements OnInit {
               private loaderService: LoaderService,
               private auth: AuthService,
               public ngZone: NgZone,
-              private utilityService: UtilityService,
-              private viewProfileService: ViewProfileService,
-              private fbs: FirebaseService
+              private toastr: ToastrService
     ) { }
 
   ngOnInit() {
@@ -68,7 +64,6 @@ export class LoginComponent implements OnInit {
         if (result.length > 0) {
           // this.closeLoginModal.nativeElement.click();
           const id = result[0].payload.doc.id;
-          const body = result[0].payload.doc.data();
           if (uid) {
           const obj = {userId :  uid};
           this.loginService.updateUserId(userData.role, id, obj );
@@ -81,10 +76,11 @@ export class LoginComponent implements OnInit {
           this.auth.isAuthenticate = true;
           this.loginModal.nativeElement.click();
           this.router.navigate([url]);
-
-         } else { alert('Invalid credential'); }
+         } else {
+                this.toastr.error('Invalid credential', 'Alert');
+              }
       },
-      err => {
+      () => {
         this.loaderService.hide();
       }
     );
@@ -98,14 +94,14 @@ export class LoginComponent implements OnInit {
     .then((result) => {
      if (result.user.emailVerified !== true) {
        this.auth.SendVerificationMail();
-       window.alert('Please validate your email address. Kindly check your inbox.');
+       this.toastr.info('Please validate your email address. Kindly check your inbox.', 'Alert');
      } else {
       const userId = result.user.uid;
       this.login(userId);
      }
      console.log(result.user);
    }).catch((error) => {
-     window.alert(error.message);
+    this.toastr.error(error.message, 'Alert');
    });
   }
 
