@@ -1,3 +1,4 @@
+import { IStateModel } from './../shared/models/state.model';
 import { profilePics } from './../shared/constants/image.constant';
 import { Component, OnInit } from '@angular/core';
 import { ViewProfileService } from '../shared/services/view-profile.service';
@@ -24,6 +25,7 @@ export class ViewProfileComponent implements OnInit {
   RequestStatusName = RequestStatusName;
   RequestStatus = RequestStatus;
   role = parseInt(localStorage.getItem(role), 10);
+  state: IStateModel;
   constructor(private viewProfileService: ViewProfileService,
               private route: ActivatedRoute,
               private loaderService: LoaderService,
@@ -86,8 +88,38 @@ export class ViewProfileComponent implements OnInit {
     const userRole = parseInt(localStorage.getItem(role), 10);
     const id = localStorage.getItem(token);
     const url = (userRole === 1) ? Routing.Registration  + '/' + id : Routing.RegistrationDevotee  + '/' + id ;
+    this.setState();
     this.router.navigate([url]);
   }
+
+  setState() {
+    const requiredState: IStateModel = {
+      name: true,
+      address: true,
+      mobileNo: 'disable',
+      altMobileNO: true,
+      password: false,
+      photo: false,
+      married: true,
+      specialist: true,
+      description: true,
+      salary: true,
+      age: true,
+      study: true,
+      emailId: 'disable',
+      availibility: false,
+      role: false,
+      workExperience: false,
+      userId: false,
+      data: {...this.profile},
+      url: 'edit'
+    };
+    this.sendValue(requiredState);
+  }
+
+  sendValue(value) {
+    this.viewProfileService.setState(value);
+    }
 
   hiringResponse(status, serviceId) {
     this.hrManagementService.updateStatus(serviceId, {status});

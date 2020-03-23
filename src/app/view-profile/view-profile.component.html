@@ -138,7 +138,7 @@
                      src="../../assets/images/profile/sp in kitchen.jpg" class="img-fluid profile-pic" alt="Responsive image">
                 </div>
                 <div class="col | col-sm-7">
-                    <h1>{{cook.user.name | titlecase}}</h1>
+                    <h1 *ngIf="cook && cook.user && cook.user.name">{{cook.user.name | titlecase}}</h1>
                     <!-- <h6>{{cook.user.description}}</h6> -->
                     <div class="form-group row">
                         <label class="col col-form-label"> 

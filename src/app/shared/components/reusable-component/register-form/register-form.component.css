@@ -1,0 +1,25 @@
+.pd-10 {
+    padding: 10vmin;
+}
+
+.bd-2 {
+    border: 2px solid lightgray;
+    padding: 2vmin;
+    margin-bottom: 5vmin;
+}
+
+.btn-mg {
+    margin: 0vw 2vw 0vw 2vw;
+}
+
+.register-ui > .form-row > .form-group > label { 
+    font-weight: 200;
+    font-family: "Times New Roman", Times, serif;
+    font-size: x-large;
+}
+
+.form-row > .form-group > label { 
+    font-weight: 100;
+    font-family: "Times New Roman", Times, serif;
+    font-size: x-large;
+}
