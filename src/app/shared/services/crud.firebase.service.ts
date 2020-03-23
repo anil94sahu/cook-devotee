@@ -27,8 +27,7 @@ export class FirebaseService {
     }
 
     update(tableName: string, body: any, docId?: string) {
-        // delete body.id;
-        this.firestore.doc(tableName + docId).update(body);
+       return this.firestore.collection(tableName).doc(`${docId}`).set(body, {merge: true});
     }
 
     delete(tableName: string, Id: number) {

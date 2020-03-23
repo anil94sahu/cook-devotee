@@ -1,5 +1,5 @@
 export const UserRegEx = '^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$';
-export const PasswordRegEx = '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}';
+export const PasswordRegEx = '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}';
 export const MobileRegEx = '^[0-9]{10}$';
 export const SalaryRegEx = '^[0-9]{4,5}$';
 export const Role = { cook: 1, devotee: 2 };

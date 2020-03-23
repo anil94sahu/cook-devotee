@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { IStateModel, defaultState } from './../shared/models/state.model';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RegistrationService } from '../shared/services/registration.service';
-import { ICookModel, initialCook, IWorkExperience, IAddress } from '../shared/models/cook.model';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { ICookModel } from '../shared/models/cook.model';
+import { FormGroup } from '@angular/forms';
 import { LoaderService } from '../shared/services/loader.service';
 import { EmailPasswordCredentials } from '../shared/models/credentials.model';
 import * as firebase from 'firebase';
 import { AuthService } from '../shared/services/auth.service';
 import { WindowService } from '../shared/services/window.service';
 import { PhoneNumber } from '../shared/models/phone.model';
-import { Recaptcha, MobileRegEx, SalaryRegEx, PasswordRegEx } from '../shared/constants/utility.constant';
-import { Message, RegistrationMessage } from '../shared/constants/message.constant';
+import { Recaptcha } from '../shared/constants/utility.constant';
+import { Message } from '../shared/constants/message.constant';
 import { Label } from '../shared/constants/label.constant';
 import { ActivatedRoute } from '@angular/router';
-import { role } from '../shared/constants/local-storage.constant';
 import { ViewProfileService } from '../shared/services/view-profile.service';
 
 @Component({
@@ -20,7 +20,7 @@ import { ViewProfileService } from '../shared/services/view-profile.service';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit, OnDestroy {
   // phone verification
   windowRef: any;
   phoneNumber = new PhoneNumber();
@@ -29,168 +29,56 @@ export class RegistrationComponent implements OnInit {
   Label = Label;
   Message = Message;
   cookRegistrationForm: FormGroup;
-  cooks: any;
-  workExperience: IWorkExperience[];
-  RegistrationMessage = RegistrationMessage;
-  isSubmit = false;
-  isEdit = false;
+  state: IStateModel;
   constructor(private registrationService: RegistrationService,
-              private fb: FormBuilder,
               private loaderService: LoaderService,
               private auth: AuthService,
               private win: WindowService,
-              private route: ActivatedRoute,
               private viewProfileService: ViewProfileService
 ) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.params.id;
-    if (id) {
-      this.getCook(id);
-      this.isEdit = true;
+    this.viewProfileService.getState().subscribe(state => {
+      this.state = state;
+      });
+
+    // this.getRecaptcha();
+  }
+
+  response($event) {
+    const {url, cookDetail, userId}  = $event;
+    if (url === 'edit') {
+      this.update(userId, cookDetail);
+    } else {
+      this.onSubmit(cookDetail);
     }
-    this.getCooks();
-    this.workExperience = [];
-    this.createForm();
-    console.log(this.cookRegistrationForm.value);
-    this.getRecaptcha();
   }
-
-  createForm() {
-    this.cookRegistrationForm  = this.fb.group(this.initForm());
-  }
-
-  initForm(): ICookModel {
-    const cookModel: ICookModel = {
-    userId: new FormControl(''),
-    name: new FormControl('', Validators.compose([Validators.required])),
-    address: this.fb.group(this.initAddress()),
-    password: new FormControl('', Validators.compose([Validators.required, Validators.pattern(PasswordRegEx)])),
-    mobileNo: new FormControl(1, Validators.compose([Validators.required, Validators.minLength(10),
-      Validators.maxLength(10), Validators.pattern(MobileRegEx)])),
-    altMobileNO: new FormControl(1),
-    photo: new FormControl(''),
-    married: new FormControl(''),
-    specialist: new FormControl(''),
-    description: new FormControl(''),
-    salary: new FormControl(1, Validators.compose([Validators.required, Validators.pattern(SalaryRegEx)])),
-    age: new FormControl(1),
-    study: new FormControl(''),
-    emailId: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-    availibility: new FormControl(new Date()),
-    role: new FormControl(1, Validators.compose([Validators.required])),
-    workExperience: new FormArray([this.fb.group(this.initWorkExperience())])
-    };
-    return cookModel;
-  }
-
-  initAddress(): IAddress {
-    const cookAddress: IAddress =  {
-      houseNo: new FormControl('', /*  Validators.compose([Validators.required]) */),
-      address1: new FormControl(''),
-      landmark: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl('', /*  Validators.compose([Validators.required]) */),
-      country: new FormControl('india'),
-      pincode: new FormControl(1)
-    };
-    return cookAddress;
-  }
-
-  initWorkExperience(): IWorkExperience {
-    const cookExperience =  {
-      centerName: new FormControl(''/* ,Validators.compose([Validators.required]) */),
-      address: new FormControl(''),
-      periodOfWork: new FormControl(''/* , Validators.compose([Validators.required]) */),
-      comment: new FormControl(''),
-      PMName: new FormControl(''/* , Validators.compose([Validators.required]) */),
-      PMMobile: new FormControl(''/* , Validators.compose([Validators.required, Validators.minLength(10),
-        Validators.maxLength(10), Validators.pattern(MobileRegEx)]) */),
-      PMEmailId: new FormControl(''/* , Validators.compose([Validators.required, Validators.email]) */),
-      KIName: new FormControl('',  /* Validators.compose([Validators.required]) */),
-      KIMobile: new FormControl('',  /* Validators.compose([Validators.required, Validators.minLength(10),
-        Validators.maxLength(10), Validators.pattern(MobileRegEx)]) */),
-      KIEmailId: new FormControl('', /* Validators.compose([Validators.required, Validators.email]) */),
-      salary: new FormControl(''/* ,Validators.compose([Validators.required, Validators.pattern(SalaryRegEx)]) */),
-      status: new FormControl('')
-    };
-    return cookExperience;
-  }
-
-  get form() {
-    return this.cookRegistrationForm.controls;
-  }
-
-  get aform() {
-    // tslint:disable-next-line: no-string-literal
-    return this.cookRegistrationForm.controls.address['controls'];
-  }
-
-  get wiform() {
-    // tslint:disable-next-line: no-string-literal
-    return this.cookRegistrationForm.controls.workExperience['controls'];
-  }
-
-  getCooks() {
-    this.loaderService.show();
-    this.registrationService.getCooks()
-      .subscribe(arg => {
-        this.loaderService.hide();
-        this.cooks = arg.map(e => {
-        return {
-          id: e.payload.doc.id,
-          ...e.payload.doc.data()
-        };
-      });
-        console.log(this.cooks);
-      },
-      err => {
-        this.loaderService.hide();
-
-      });
-  }
-
-  getCook(id: string) {
-    this.loaderService.show();
-    const userrole = parseInt(localStorage.getItem(role), 10);
-    this.viewProfileService.getProfileById(userrole, id)
-      .subscribe(arg => {
-        this.loaderService.hide();
-        if (arg) {const data = arg.data(); this.setValue(data); }
-        console.log(arg);
-      },
-      err => {
-        this.loaderService.hide();
-      });
-  }
-
 
   profileImage(imageUrl) {
     this.cookRegistrationForm.controls.photo.setValue(imageUrl);
   }
 
-  onSubmit(cookDetail: ICookModel) {
-    this.isSubmit = true;
-    const cook = cookDetail;
-    console.log(cook);
+  onSubmit(cook) {
     this.loaderService.show();
-    if (this.cookRegistrationForm.valid) {
-      this.registrationService.createCook(cook).then(
-        e => {console.log(e),
-          alert(Message.success_registered); }
-      ).catch(
-        e => console.log(e)
-      );
-
-    } else {
-
-    }
+    this.registrationService.createCook(cook).then(
+      e => {console.log(e),
+        alert(Message.success_registered); }
+    ).catch(
+      () => {
+        this.loaderService.hide();
+      }
+    );
     this.loaderService.hide();
     }
 
+  update(Id, cook) {
+    this.loaderService.show();
+    this.registrationService.updateCook(Id, cook);
+    alert('successfully updated');
+    this.loaderService.hide();
+  }
+
     onReset() {
-      this.createForm();
-      this.isSubmit = false;
     }
 
 
@@ -203,7 +91,7 @@ export class RegistrationComponent implements OnInit {
 
     signupWithEmail(credentials: EmailPasswordCredentials): void {
         this.auth.signUp(credentials)
-        .then((result) => {
+        .then(() => {
          this.auth.SendVerificationMail(); // Sending email verification notification, when new user registers
        }).
        catch((error) => {
@@ -285,7 +173,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.isEdit = false;
+    this.viewProfileService.setState(defaultState);
   }
 
 }

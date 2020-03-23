@@ -1,0 +1,380 @@
+<div *ngIf="Label">
+    <form class="pd-10 register-ui" [formGroup]="cookRegistrationForm">
+        <div class="form-row">
+          <div *ngIf="state.name" class="form-group col-md-6">
+            <label for="">{{Label.name}}</label>
+            <input type="text" class="form-control" id="" placeholder="" formControlName="name">
+            <div *ngIf="(form.name.invalid && (form.name.dirty || form.name.touched)) || isSubmit" class="text-danger">
+              <div *ngIf="form.name.errors?.required">
+                {{RegistrationMessage.name}}
+              </div>
+              <!-- <div *ngIf="name.errors.minlength">
+                Name must be at least 4 characters long.
+              </div>
+              <div *ngIf="name.errors.maxlength">
+                Name must not exceed 15 characters.
+              </div> -->
+            </div>
+          </div>
+          <div *ngIf="state.password" class="form-group col-md-6">
+            <label for="inputPassword4">{{Label.password}}</label>
+            <input type="password" [readonly]="(state.password === 'disable')?true:false" class="form-control" id="inputPassword4" formControlName="password" placeholder="Password">
+            <div *ngIf="(form.password.invalid && (form.password.dirty || form.password.touched)) || isSubmit" class="text-danger">
+              <div *ngIf="form.password.errors?.required">
+                {{RegistrationMessage.password}}
+              </div>
+               <div *ngIf="form.password.errors?.pattern">
+                {{RegistrationMessage.strong_password}}
+              </div>
+             <!-- <div *ngIf="name.errors.maxlength">
+                Name must not exceed 15 characters.
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="form-row" >
+          <div *ngIf="state.emailId" class="form-group col-md-6">
+            <div class="form-row">
+              <div class="form-group col-md-9">
+                <label for="emailId">{{Label.emailId}}</label>
+                <input type="email" [readonly]="(state.emailId === 'disable')?true:false" class="form-control" id="emailId" formControlName="emailId">
+                <div *ngIf="(form.emailId.invalid && (form.emailId.dirty || form.emailId.touched)) || isSubmit" class="text-danger">
+                  <div *ngIf="form.emailId.errors?.required">
+                    {{RegistrationMessage.emailId}}
+                  </div>
+                  <div *ngIf="form.emailId.errors?.email">
+                    emailId is not correct
+                  </div>
+                   <!--
+                  <div *ngIf="name.errors.maxlength">
+                    Name must not exceed 15 characters.
+                  </div> -->
+                </div>
+               
+            </div>
+            <div *ngIf="(state.emailId === 'disable')?false:true" class="form-group col-md-2">
+              <br>
+              <button (click) = "verifyEmail()" class="form-control btn btn-primary mg-1" >verify</button>
+            </div>
+            </div>
+          </div>
+          <div *ngIf="state.mobileNo" class="form-group col-md-6">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="mobile">{{Label.mobileNo}}</label>
+                <input type="text" [readonly]="(state.mobileNo === 'disable')?true:false" class="form-control" id="mobile" placeholder="mobileNo" formControlName="mobileNo">
+                <div *ngIf="(form.mobileNo.invalid && (form.mobileNo.dirty || form.mobileNo.touched)) || isSubmit" class="text-danger">
+                  <div *ngIf="form.mobileNo.errors?.required">
+                    {{RegistrationMessage.mobileNo}}
+                  </div>
+                   <div *ngIf="(form.mobileNo.errors?.minlength || form.mobileNo.errors?.maxlength) || form.mobileNo.errors?.pattern">
+                    {{RegistrationMessage.min_mobileNo}}
+                  </div>
+                 <!--  <div *ngIf="form.mobileNo.errors.maxlength">
+                    {{RegistrationMessage.min_mobileNo}}
+                  </div> -->
+                  <!-- <div *ngIf="form.mobileNo.errors?.pattern">
+                    {{RegistrationMessage.num_mobileNo}}
+                  </div> -->
+                </div>
+              </div>
+              <div *ngIf="(state.mobileNo === 'disable')?false:true" class="form-group col-md-6 " >
+                <div class="flex-inline">
+                  <div id="recaptcha-container"></div>
+                  <button class="btn btn-primary" (click)="sendLoginCode()">SMS Text Login Code</button>
+                </div>
+                <!-- <div *ngIf="windowRef.confirmationResult">
+                  <hr>
+                  <label for="code">{{Message.enter_verify}}</label><br>
+                  <input type="text" name="code" [(ngModel)]="verificationCode" [ngModelOptions]="{standalone: true}">
+                  <button (click)="verifyLoginCode()">Verify</button>
+                </div> -->
+                <div *ngIf="user">
+                  You have successfully logged in with your phone number!
+                  <!-- {{Label.userId}}: {{ user?.uid }} -->
+                </div>
+              </div>
+            </div>
+          </div>
+         
+         
+        </div>
+       
+        <div *ngIf="state.photo" class="form-group col-md-6 br">
+          <app-profile-loader (valueChange)='profileImage($event)'></app-profile-loader>
+        </div>
+        <div *ngIf="state.address" formGroupName ="address">
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="">{{Label.address.houseNo}}</label>
+                <input type="text" class="form-control" id="" placeholder="" formControlName="houseNo">
+                <div *ngIf="(aform.houseNo.invalid && (aform.houseNo.dirty || aform.houseNo.touched)) || isSubmit" class="text-danger">
+                  <div *ngIf="aform.houseNo.errors?.required">
+                    {{RegistrationMessage.houseNo}}
+                  </div>
+                  <!-- <div *ngIf="name.errors.minlength">
+                    Name must be at least 4 characters long.
+                  </div>
+                  <div *ngIf="name.errors.maxlength">
+                    Name must not exceed 15 characters.
+                  </div> -->
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="">{{Label.address.address1}}</label>
+                  <input type="text" class="form-control" id="" placeholder="" formControlName="address1">
+                  <div *ngIf="aform.address1.invalid && (aform.address1.dirty || aform.address1.touched)" class="text-danger">
+                    <div *ngIf="aform.address1.errors?.required">
+                      {{RegistrationMessage.address1}}
+                    </div>
+                    <!-- <div *ngIf="name.errors.minlength">
+                      Name must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="name.errors.maxlength">
+                      Name must not exceed 15 characters.
+                    </div> -->
+                  </div>
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="">{{Label.address.city}}</label>
+                <input type="text" class="form-control" id="" placeholder="" formControlName="city">
+                <div *ngIf="aform.city.invalid && (aform.city.dirty || aform.city.touched)" class="text-danger">
+                  <div *ngIf="aform.city.errors?.required">
+                    {{RegistrationMessage.city}}
+                  </div>
+                  <!-- <div *ngIf="name.errors.minlength">
+                    Name must be at least 4 characters long.
+                  </div>
+                  <div *ngIf="name.errors.maxlength">
+                    Name must not exceed 15 characters.
+                  </div> -->
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="">{{Label.address.state}}</label>
+                  <input type="text" class="form-control" id="" placeholder="" formControlName="state">
+                  <div *ngIf="aform.state.invalid && (aform.state.dirty || aform.state.touched)" class="text-danger">
+                    <div *ngIf="aform.state.errors?.required">
+                      {{RegistrationMessage.state}}
+                    </div>
+                    <!-- <div *ngIf="name.errors.minlength">
+                      Name must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="name.errors.maxlength">
+                      Name must not exceed 15 characters.
+                    </div> -->
+                  </div>
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="">{{Label.address.country}}</label>
+                <select  formControlName="country"  class="form-control" >
+                  <option value = "india" class="dropdown-item" href="#">India</option>
+                  <option value = "other" class="dropdown-item" href="#">Other</option>
+                </select>
+                <!-- <input type="text" class="form-control" id="" placeholder="" formControlName="country"> -->
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="">{{Label.address.pincode}}</label>
+                  <input type="text" class="form-control" id="" placeholder="" formControlName="pincode">
+              </div>
+          </div>
+        </div>
+        
+        <div  class="form-row">
+            <div *ngIf="state.married" class="form-group col-md-6">
+              <label for="">{{Label.married}}</label>
+              <select formControlName="married"  class="form-control" >
+                <option value = "single" class="dropdown-item" href="#">Single</option>
+                <option value = "married" class="dropdown-item" href="#">Married</option>
+              </select>
+              <!-- <input type="text" class="form-control" id="" placeholder="" formControlName="married"> -->
+            </div>
+            <div *ngIf="state.age" class="form-group col-md-6">
+                <label for="">{{Label.age}}</label>
+                <input type="text" class="form-control" id="" placeholder="" formControlName="age">
+            </div>
+        </div>
+        <div class="form-row">
+            <div *ngIf="state.specialist" class="form-group col-md-6">
+              <label for="">{{Label.specialist}}</label>
+              <input type="text" class="form-control" id="" placeholder="" formControlName="specialist">
+            </div>
+            <div *ngIf="state.salary" class="form-group col-md-6">
+                <label for="">{{Label.salary}}</label>
+                <input type="text" class="form-control" id="" placeholder="" formControlName="salary">
+                <div *ngIf="(form.salary.invalid && (form.salary.dirty || form.salary.touched)) || isSubmit" class="text-danger">
+                  <div *ngIf="form.salary.errors?.required">
+                    {{RegistrationMessage.salary}}
+                  </div>
+                  <div *ngIf="form.salary.errors?.pattern">
+                    {{RegistrationMessage.num_salary}}
+                  </div>
+                 <!--  <div *ngIf="name.errors.maxlength">
+                    Name must not exceed 15 characters.
+                  </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div *ngIf="state.study" class="form-group col-md-6">
+              <label for="">{{Label.study}}</label>
+              <input type="text" class="form-control" id="" placeholder="" formControlName="study">
+            </div>
+            <div *ngIf="state.description" class="form-group col-md-6">
+                <label for="">{{Label.description}}</label>
+                <input type="text" class="form-control" id="" placeholder="" formControlName="description">
+            </div>
+        </div>
+        <hr>
+        <div *ngIf="state.workExperience" class="work-experience">
+            <h2>{{Label.workExperience.workExperience}}</h2>
+            <div formArrayName="workExperience">
+              <div *ngFor="let comp of cookRegistrationForm.get('workExperience')['controls'];let i = index">
+                <div formGroupName="{{i}}">
+                  <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="">{{Label.workExperience.centerName}}</label>
+                        <input type="text" class="form-control" formControlName="centerName" id="" placeholder="">
+                        <div *ngIf="(wiform[i].controls.centerName.invalid && (wiform[i].controls.centerName.dirty || wiform[i].controls.centerName.touched))" class="text-danger">
+                          <div *ngIf="wiform[i].controls.centerName.errors?.required">
+                            {{RegistrationMessage.centerName}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="">{{Label.workExperience.address}}</label>
+                          <input type="text" class="form-control" formControlName="address" id="" placeholder="">
+                          <div *ngIf="form.name.invalid && (form.name.dirty || form.name.touched)" class="text-danger">
+                            <div *ngIf="form.name.errors?.required">
+                              {{RegistrationMessage.name}}
+                            </div>
+                              <div *ngIf="form.name.errors.minlength">
+                              Name must be at least 4 characters long.
+                            </div>
+                            <div *ngIf="form.name.errors.maxlength">
+                              Name must not exceed 15 characters.
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="">{{Label.workExperience.periodOfWork}}</label>
+                        <input type="text" class="form-control" formControlName="periodOfWork" id="" placeholder="">
+                        <div *ngIf="wiform[i].controls.periodOfWork.invalid && (wiform[i].controls.periodOfWork.dirty || wiform[i].controls.periodOfWork.touched)" class="text-danger">
+                          <div *ngIf="wiform[i].controls.periodOfWork.errors?.required">
+                            {{RegistrationMessage.periodOfWork}}
+                          </div>
+                          <div *ngIf="form.name.errors.minlength">
+                            Name must be at least 4 characters long.
+                          </div>
+                          <div *ngIf="form.name.errors.maxlength">
+                            Name must not exceed 15 characters.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="">{{Label.workExperience.comment}}</label>
+                          <input type="text" class="form-control" formControlName="comment" id="" placeholder="">
+                      </div>
+                  </div>
+                  <fieldset class="bd-2">
+                    <legend>{{Label.workExperience.verifiedBy}}</legend>
+                      <div class="form-row">
+                          <div class="form-group col-md-4">
+                              <label for="">{{Label.workExperience.PMName}}</label>
+                              <input type="text" class="form-control" formControlName="PMName" id="" placeholder="">
+                              <div *ngIf="wiform[i].controls.PMName.invalid && (wiform[i].controls.PMName.dirty || wiform[i].controls.PMName.touched)" class="text-danger">
+                                <div *ngIf="wiform[i].controls.PMName.errors?.required">
+                                  {{RegistrationMessage.PMName}}
+                                </div>
+                                
+                              </div>
+                          </div>
+                          <div class="form-group col-md-4">
+                              <label for="">{{Label.workExperience.PMMobile}}</label>
+                              <input type="text" class="form-control" formControlName="PMMobile" id="" placeholder="">
+                              <div *ngIf="wiform[i].controls.PMMobile.invalid && (wiform[i].controls.PMMobile.dirty || wiform[i].controls.PMMobile.touched)" class="text-danger">
+                                <div *ngIf="wiform[i].controls.PMMobile.errors?.required">
+                                  {{RegistrationMessage.PMMobile}}
+                                </div>
+                                
+                              </div>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <label for="">{{Label.workExperience['PMEmailId']}}</label>
+                            <input type="text" class="form-control" formControlName="PMEmailId" id="" placeholder="">
+                            <div *ngIf="wiform[i].controls.PMEmailId.invalid && (wiform[i].controls.PMEmailId.dirty || wiform[i].controls.PMEmailId.touched)" class="text-danger">
+                              <div *ngIf="wiform[i].get('PMEmailId').errors?.required">
+                                {{RegistrationMessage.PMEmailId}}
+                              </div>
+                              
+                            </div>
+                        </div>
+                          <div class="form-group col-md-4">
+                            <label for="">{{Label.workExperience.KIName}}</label>
+                            <input type="text" class="form-control" id="" formControlName="KIName" placeholder="">
+                            <div *ngIf="wiform[i].controls.KIName.invalid && (wiform[i].controls.KIName.dirty || wiform[i].controls.KIName.touched)" class="text-danger">
+                              <div *ngIf="wiform[i].controls.KIName.errors?.required">
+                                {{RegistrationMessage.KIName}}
+                              </div>
+                              
+                            </div>
+                          </div>
+                          <div class="form-group col-md-4">
+                              <label for="">{{Label.workExperience.KIMobile}}</label>
+                              <input type="text" class="form-control" id="" formControlName="KIMobile" placeholder="">
+                              <div *ngIf="wiform[i].controls.KIMobile.invalid && (wiform[i].controls.KIMobile.dirty || wiform[i].controls.KIMobile.touched)" class="text-danger">
+                                <div *ngIf="wiform[i].controls.KIMobile.errors?.required">
+                                  {{RegistrationMessage.KIMobile}}
+                                </div>
+                                
+                              </div>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <label for="">{{Label.workExperience['KIEmailId']}}</label>
+                            <input type="text" class="form-control" id="" formControlName="KIEmailId" placeholder="">
+                            <div *ngIf="wiform[i].controls.KIEmailId.invalid && (wiform[i].controls.KIEmailId.dirty || wiform[i].controls.KIEmailId.touched)" class="text-danger">
+                              <div *ngIf="wiform[i].controls.KIEmailId.errors?.required">
+                                {{RegistrationMessage.KIEmailId}}
+                              </div>
+                              
+                            </div>
+                        </div>
+                          <div class="form-group col-md-4">
+                              <label for="">{{Label.workExperience.salary}}</label>
+                              <input type="text" class="form-control" id="" formControlName="salary" placeholder="">
+                              <div *ngIf="wiform[i].controls.salary.invalid && (wiform[i].controls.salary.dirty || wiform[i].controls.salary.touched)" class="text-danger">
+                                <div *ngIf="wiform[i].controls.salary.errors?.required">
+                                  {{RegistrationMessage.salary}}
+                                </div>
+                                
+                              </div>
+                          </div>
+                          <div class="form-group col-md-6">
+                              <label for="">{{Label.workExperience.status}}</label>
+                              <p>
+                                  <i class="fa fa-close btn btn-danger" ></i>
+                                  <i class="fa fa-exclamation-triangle btn btn-primary"></i>
+                                  <i class="fa fa-check btn btn-success" aria-hidden="true"></i>
+                            </p>
+                          </div>
+                          
+                      </div>
+                  </fieldset>
+        
+                </div>
+              </div>
+            </div> 
+        </div>
+
+        <div class="m-2 text-center w-100 p-3">
+          <button (click) = "onSubmit(cookRegistrationForm.value)" class="btn btn-primary btn-mg">Sign Up</button>
+          <button (click) = "onReset()" class="btn btn-primary btn-mg">Reset</button>
+        </div>
+    </form>
+</div>

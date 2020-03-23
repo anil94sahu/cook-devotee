@@ -28,6 +28,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment.prod';
 import { ProfileLoaderModule } from './profile-loader/profile-loader.module';
 import { ProfileLoaderComponent } from './profile-loader/profile-loader.component';
+import { RegisterFormComponent } from './shared/components/reusable-component/register-form/register-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { ProfileLoaderComponent } from './profile-loader/profile-loader.componen
     RankComponent,
     AboutComponent,
     ContactComponent,
-    LoaderComponent
+    LoaderComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,
