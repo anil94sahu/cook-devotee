@@ -1,3 +1,4 @@
+import { IStateModel } from './../models/state.model';
 import { Routing } from './../constants/routing.constant';
 import { role } from './../constants/local-storage.constant';
 import { IAddress } from './../models/cook.model';
@@ -52,10 +53,18 @@ export class UtilityService {
       return routePage;
     }
 
-    getLocalStorage(){
+    getLocalStorage() {
       const token = localStorage.getItem('token');
       const userRole = parseInt(localStorage.getItem(role), 10);
       const routePage = (userRole === 1) ? Routing.Cook : Routing.Devotee;
       return {token, userRole, routePage};
+    }
+
+    getState(): IStateModel {
+      return JSON.parse(localStorage.getItem('state')) as IStateModel;
+    }
+
+    setState(body) {
+      localStorage.setItem('state', JSON.stringify(body));
     }
 }

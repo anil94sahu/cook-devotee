@@ -1,10 +1,9 @@
 import { IStateModel, defaultState } from './../models/state.model';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { API } from '../constants/apis.constant';
 import { FirebaseService } from './crud.firebase.service';
 import { UtilityService } from './utility.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class ViewProfileService {
@@ -23,11 +22,13 @@ export class ViewProfileService {
     }
 
     setState(behave: IStateModel) {
+            this.utilityService.setState(behave);
             this.behave.next(behave);
         }
 
     getState(): Observable<IStateModel> {
-        return this.behave.asObservable();
+       return of(this.utilityService.getState());
+    //     return this.behave.asObservable();
     }
 
 }
