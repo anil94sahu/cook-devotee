@@ -27,11 +27,11 @@ import { UtilityService } from './shared/services/utility.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment.prod';
 import { ProfileLoaderModule } from './profile-loader/profile-loader.module';
-import { ProfileLoaderComponent } from './profile-loader/profile-loader.component';
 import { RegisterFormComponent } from './shared/components/reusable-component/register-form/register-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { EmailVerificationComponent } from './shared/components/reusable-component/email-verification/email-verification.component';
+import { MobileVerificationComponent } from './shared/components/reusable-component/mobile-verification/mobile-verification.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +47,8 @@ import { EmailVerificationComponent } from './shared/components/reusable-compone
     ContactComponent,
     LoaderComponent,
     RegisterFormComponent,
-    EmailVerificationComponent
+    EmailVerificationComponent,
+    MobileVerificationComponent
   ],
   imports: [
     BrowserModule,
