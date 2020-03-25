@@ -31,58 +31,21 @@
               </div> -->
             </div>
           </div>
-        </div>
-        <div class="form-row" >
           <div class="col-md-6">
             <ng-container>
               <app-email-verification [state] = "state" [emailForm] = "cookRegistrationForm" (response) = "getEmailState($event)"></app-email-verification>
             </ng-container>
           </div>
-          <div *ngIf="state.mobileNo" class="form-group col-md-6">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="mobile">{{Label.mobileNo}}</label>
-                <input type="text" [readonly]="(state.mobileNo === 'disable')?true:false" class="form-control" id="mobile" placeholder="mobileNo" formControlName="mobileNo">
-                <div *ngIf="(form.mobileNo.invalid && (form.mobileNo.dirty || form.mobileNo.touched)) || isSubmit" class="text-danger">
-                  <div *ngIf="form.mobileNo.errors?.required">
-                    {{RegistrationMessage.mobileNo}}
-                  </div>
-                   <div *ngIf="(form.mobileNo.errors?.minlength || form.mobileNo.errors?.maxlength) || form.mobileNo.errors?.pattern">
-                    {{RegistrationMessage.min_mobileNo}}
-                  </div>
-                 <!--  <div *ngIf="form.mobileNo.errors.maxlength">
-                    {{RegistrationMessage.min_mobileNo}}
-                  </div> -->
-                  <!-- <div *ngIf="form.mobileNo.errors?.pattern">
-                    {{RegistrationMessage.num_mobileNo}}
-                  </div> -->
-                </div>
-              </div>
-              <div *ngIf="(state.mobileNo === 'disable')?false:true" class="form-group col-md-6 " >
-                <div class="flex-inline">
-                  <div id="recaptcha-container"></div>
-                  <button class="btn btn-primary" (click)="sendLoginCode()">SMS Text Login Code</button>
-                </div>
-                <!-- <div *ngIf="windowRef.confirmationResult">
-                  <hr>
-                  <label for="code">{{Message.enter_verify}}</label><br>
-                  <input type="text" name="code" [(ngModel)]="verificationCode" [ngModelOptions]="{standalone: true}">
-                  <button (click)="verifyLoginCode()">Verify</button>
-                </div> -->
-                <div *ngIf="user">
-                  You have successfully logged in with your phone number!
-                  <!-- {{Label.userId}}: {{ user?.uid }} -->
-                </div>
-              </div>
-            </div>
+          <div class="col-md-6">
+            <ng-container>
+              <app-mobile-verification [state] = "state" [mobileForm] = "cookRegistrationForm" (response) = "getEmailState($event)"></app-mobile-verification>
+            </ng-container>
           </div>
-         
-         
+          <div *ngIf="state.photo" class="form-group col-md-6 br">
+            <app-profile-loader (valueChange)='profileImage($event)'></app-profile-loader>
+          </div>
         </div>
-       
-        <div *ngIf="state.photo" class="form-group col-md-6 br">
-          <app-profile-loader (valueChange)='profileImage($event)'></app-profile-loader>
-        </div>
+          
         <div *ngIf="state.address" formGroupName ="address">
           <div class="form-row">
               <div class="form-group col-md-6">
