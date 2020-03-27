@@ -162,6 +162,21 @@
                 </div>
             </div>
         </div>
+        <div  class="form-row">
+          <div *ngIf="state.centerName" class="form-group col-md-6">
+            <label for="">{{Label.workExperience.centerName}}</label>
+            <input type="text" class="form-control" formControlName="centerName" id="" placeholder="">
+            <div *ngIf="(form.centerName.invalid && (form.centerName.dirty || form.centerName.touched))" class="text-danger">
+              <div *ngIf="form.centerName.errors?.required">
+                {{RegistrationMessage.centerName}}
+              </div>
+            </div>
+          </div>
+          <div *ngIf="state.PMName" class="form-group col-md-6">
+              <label for="">{{Label.workExperience.PMName}}</label>
+              <input type="text" class="form-control" formControlName="PMName" id="" placeholder="">
+          </div>
+      </div>
         <div class="form-row">
             <div *ngIf="state.study" class="form-group col-md-6">
               <label for="">{{Label.study}}</label>

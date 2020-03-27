@@ -42,7 +42,7 @@ export class RegisterDevoteeComponent implements OnInit {
   setState() {
     const requiredState: IStateModel = {
       name: true,
-      address: false,
+      address: true,
       mobileNo: true,
       altMobileNO: false,
       password: true,
@@ -58,6 +58,8 @@ export class RegisterDevoteeComponent implements OnInit {
       role: true,
       workExperience: false,
       userId: false,
+      centerName: true,
+      PMName :true,
       url: 'devotee'
     };
     this.sendValue(requiredState);

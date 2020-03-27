@@ -18,6 +18,8 @@ export interface ICookModel {
     role: string | FormControl;
     workExperience: IWorkExperience[] | FormArray;
     userId: string | FormControl;
+    centerName?: string | FormControl;
+    PMName?: string | FormControl;
 }
 
 export interface IAddress {

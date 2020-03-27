@@ -16,6 +16,8 @@ export interface IStateModel {
     role: true | false | 'disable';
     workExperience: true | false | 'disable';
     userId: true | false | 'disable';
+    centerName?: true | false | 'disable';
+    PMName?: true | false | 'disable';
     data?: any;
     url?: string;
 }
@@ -23,4 +25,5 @@ export interface IStateModel {
 
 export const defaultState: IStateModel = {name: true , address: true , mobileNo: true , altMobileNO: true ,
     password: true , photo: true , married: true , specialist: true , description: true , salary: true , age: true ,
-    study: true , emailId: true , availibility: true , role: true , workExperience: true , userId: true, url: 'cook'};
+    study: true , emailId: true , availibility: true , role: true , workExperience: true , userId: true, url: 'cook',
+centerName: false , PMName: false };
