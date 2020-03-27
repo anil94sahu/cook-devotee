@@ -118,9 +118,9 @@ export class ViewProfileComponent implements OnInit {
     this.sendValue(requiredState);
   }
 
-  isCookOrDevotee(key, state){
+  isCookOrDevotee(key, state) {
     switch (key) {
-      case 'devotee':
+      case 'devotee': {
         state.salary = false;
         state.address = false;
         state.altMobileNO = false;
@@ -128,7 +128,20 @@ export class ViewProfileComponent implements OnInit {
         state.married = false;
         state.specialist = false;
         state.availibility = false;
+        state.centerName = true;
+        state.PMName = true;
         break;
+      }
+      case 'cookByDevotee' : {
+        const {emailId, password, address, centerName, name, mobileNo} = this.profile;
+        const add1 = this.utilityService.reFrameAddress(address);
+        state.emailId = 'disable';
+        state.url = 'cookByDevotee';
+        state.workExperience = true;
+        state.mobileNo = true;
+        state.data = {emailId, password, workExperience: [{centerName, address: add1, KIName: name, KIMobile: mobileNo}]};
+        break;
+      }
       default:
         break;
     }
@@ -144,9 +157,8 @@ export class ViewProfileComponent implements OnInit {
     this.hrManagementService.updateStatus(serviceId, {status});
   }
 
-  navigateToCookRegistration() {
-    const id = localStorage.getItem(token);
-    const url = Routing.Registration;
-    this.router.navigate([url]);
+  registerCookByDevotee($event) {
+    this.setState('cookByDevotee');
+    this.router.navigate(['register']);
   }
 }

@@ -69,6 +69,8 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     salary: new FormControl(null, Validators.compose([Validators.required, Validators.pattern(SalaryRegEx)])),
     age: new FormControl(null),
     study: new FormControl(''),
+    centerName: new FormControl(''),
+    PMName: new FormControl(''),
     emailId: new FormControl('', Validators.compose([Validators.required, Validators.email])),
     availibility: new FormControl(new Date()),
     role: new FormControl(1, Validators.compose([Validators.required])),
@@ -144,7 +146,7 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
   }
 
   setValue(res) {
-    this.cookRegistrationForm.setValue(res);
+    this.cookRegistrationForm.patchValue(res);
   }
 
   setState(url, data?) {
@@ -154,7 +156,6 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
         if (data) {this.setValue(data); }
         break;
       }
-
       case 'devotee' : {
         this.cookRegistrationForm.removeControl('salary');
         this.form.role.setValue(2);
@@ -163,6 +164,10 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
       case 'edit-devotee': {
         this.cookRegistrationForm.removeControl('salary');
         this.form.role.setValue(2);
+        if (data) {this.setValue(data); }
+        break;
+      }
+      case 'cookByDevotee': {
         if (data) {this.setValue(data); }
         break;
       }

@@ -45,6 +45,8 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       this.update(userId, cookDetail);
     } else if (url === 'edit-devotee') {
       this.emitter.emit($event);
+    } else if (url === 'cookByDevotee') {
+      this.onSubmit(cookDetail);
     } else {
       this.verifyEmail(emailId, password, $event);
     }
