@@ -46,9 +46,7 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     this.createForm();
     console.log(this.cookRegistrationForm.value);
     const {url, data} = this.state;
-    if (url === 'edit') {
-      this.setValue(data);
-    }
+    this.setState(url, data);
   }
 
   createForm() {
@@ -61,15 +59,15 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     name: new FormControl('', Validators.compose([Validators.required])),
     address: this.fb.group(this.initAddress()),
     password: new FormControl('', Validators.compose([Validators.required, Validators.pattern(PasswordRegEx)])),
-    mobileNo: new FormControl(1, Validators.compose([Validators.required, Validators.minLength(10),
+    mobileNo: new FormControl(null, Validators.compose([Validators.required, Validators.minLength(10),
       Validators.maxLength(10), Validators.pattern(MobileRegEx)])),
-    altMobileNO: new FormControl(1),
+    altMobileNO: new FormControl(null),
     photo: new FormControl(''),
     married: new FormControl(''),
     specialist: new FormControl(''),
     description: new FormControl(''),
-    salary: new FormControl(1, Validators.compose([Validators.required, Validators.pattern(SalaryRegEx)])),
-    age: new FormControl(1),
+    salary: new FormControl(null, Validators.compose([Validators.required, Validators.pattern(SalaryRegEx)])),
+    age: new FormControl(null),
     study: new FormControl(''),
     emailId: new FormControl('', Validators.compose([Validators.required, Validators.email])),
     availibility: new FormControl(new Date()),
@@ -87,7 +85,7 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
       city: new FormControl(''),
       state: new FormControl('', /*  Validators.compose([Validators.required]) */),
       country: new FormControl('india'),
-      pincode: new FormControl(1)
+      pincode: new FormControl(null)
     };
     return cookAddress;
   }
@@ -138,7 +136,7 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
 
     }
     this.loaderService.hide();
-    }
+  }
 
   onReset() {
     this.createForm();
@@ -149,10 +147,31 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     this.cookRegistrationForm.setValue(res);
   }
 
-  setState(value) {
-    this.state = value;
+  setState(url, data?) {
+    switch (url) {
+      case 'cook': { break; }
+      case 'edit-cook': {
+        if (data) {this.setValue(data); }
+        break;
+      }
+
+      case 'devotee' : {
+        this.cookRegistrationForm.removeControl('salary');
+        this.form.role.setValue(2);
+        break;
+      }
+      case 'edit-devotee': {
+        this.cookRegistrationForm.removeControl('salary');
+        this.form.role.setValue(2);
+        if (data) {this.setValue(data); }
+        break;
+      }
+    }
   }
 
+  profileImage(imageUrl) {
+    this.form.photo.setValue(imageUrl);
+  }
 
   ngOnDestroy() {
   }
