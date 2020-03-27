@@ -27,7 +27,11 @@ export class ViewProfileService {
         }
 
     getState(): Observable<IStateModel> {
+    if (this.utilityService.getState()) {
        return of(this.utilityService.getState());
+    } else {
+       return this.behave.asObservable();
+    }
     //     return this.behave.asObservable();
     }
 

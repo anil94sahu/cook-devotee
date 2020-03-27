@@ -87,12 +87,12 @@ export class ViewProfileComponent implements OnInit {
   editProfile(profile) {
     const userRole = parseInt(localStorage.getItem(role), 10);
     const id = localStorage.getItem(token);
-    const url = (userRole === 1) ? Routing.Registration  + '/' + id : Routing.RegistrationDevotee  + '/' + id ;
-    this.setState();
-    this.router.navigate([url]);
+    const url = (userRole === 1) ? 'cook' : 'devotee';
+    this.setState(url);
+    this.router.navigate([`edit/${url}/${id}`]);
   }
 
-  setState() {
+  setState(url) {
     const requiredState: IStateModel = {
       name: true,
       address: true,
@@ -112,9 +112,28 @@ export class ViewProfileComponent implements OnInit {
       workExperience: false,
       userId: false,
       data: {...this.profile},
-      url: 'edit'
+      url: `edit-${url}`
     };
+    this.isCookOrDevotee(url, requiredState);
     this.sendValue(requiredState);
+  }
+
+  isCookOrDevotee(key, state){
+    switch (key) {
+      case 'devotee':
+        state.salary = false;
+        state.address = false;
+        state.altMobileNO = false;
+        state.photo = true;
+        state.married = false;
+        state.specialist = false;
+        state.availibility = false;
+        break;
+      default:
+        break;
+    }
+
+    return state;
   }
 
   sendValue(value) {

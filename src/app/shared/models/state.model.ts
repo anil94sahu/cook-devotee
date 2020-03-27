@@ -23,4 +23,4 @@ export interface IStateModel {
 
 export const defaultState: IStateModel = {name: true , address: true , mobileNo: true , altMobileNO: true ,
     password: true , photo: true , married: true , specialist: true , description: true , salary: true , age: true ,
-    study: true , emailId: true , availibility: true , role: true , workExperience: true , userId: true};
+    study: true , emailId: true , availibility: true , role: true , workExperience: true , userId: true, url: 'cook'};

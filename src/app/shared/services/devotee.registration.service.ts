@@ -18,8 +18,8 @@ export class DevoteeRegistrationService {
         return this.fbs.create(this.tableName, devotee);
     }
 
-    public updateDevotee( devotee: IDevoteeModel) {
-        return this.fbs.update(this.tableName, devotee);
+    public updateDevotee(Id: string, devotee: IDevoteeModel) {
+        return this.fbs.update(this.tableName, devotee, Id);
     }
 
     public delete( Id: number) {

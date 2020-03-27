@@ -40,8 +40,8 @@
         <button *ngIf="!auth.isAuthenticate" (click) = "login()"  class="btn my-2 my-sm-0 btn-success m-2" >Login</button>
         <button *ngIf="auth.isAuthenticate" (click) = "logout()"  class="btn my-2 my-sm-0 btn-success m-2" >Logout</button>
         <button *ngIf="auth.isAuthenticate" (click) = "navigateToViewProfile()"  class="btn my-2 my-sm-0 btn-success m-2" >View Profile</button>
-        <button [routerLink] ="'/register'"  class="btn my-2 my-sm-0 btn-success m-2" >Registration</button>
-        <button [routerLink] ="'/register-devotee/devotee'"  class="btn my-2 my-sm-0 btn-success m-2" >Registration as devotee</button>
+        <button *ngIf="!auth.isAuthenticate" [routerLink] ="'/register'"  class="btn my-2 my-sm-0 btn-success m-2" >Registration</button>
+        <button *ngIf="!auth.isAuthenticate" [routerLink] ="'/register-devotee'"  class="btn my-2 my-sm-0 btn-success m-2" >Registration as devotee</button>
         <input class="form-control mr-sm-2 search" [(ngModel)]="searchParam" type="search" placeholder="Search" aria-label="Search">
         <button (click) = "navigateToSearch(searchParam)" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </div>

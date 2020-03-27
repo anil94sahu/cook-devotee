@@ -1,3 +1,4 @@
+import { RegisterDevoteeComponent } from './register-devotee/register-devotee.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -37,6 +38,7 @@ import { MobileVerificationComponent } from './shared/components/reusable-compon
   declarations: [
     AppComponent,
     RegistrationComponent,
+    RegisterDevoteeComponent,
     LoginComponent,
     HomeComponent,
     MenuComponent,
