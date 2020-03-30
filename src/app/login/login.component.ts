@@ -10,7 +10,7 @@ import { LoaderService } from '../shared/services/loader.service';
 import { AuthService } from '../shared/services/auth.service';
 import { EmailPasswordCredentials } from '../shared/models/credentials.model';
 import { token, userId, role } from '../shared/constants/local-storage.constant';
-
+import { NgbModalConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,14 +18,22 @@ import { token, userId, role } from '../shared/constants/local-storage.constant'
 })
 export class LoginComponent implements OnInit {
   @ViewChild('loginModal', {static: false}) loginModal: ElementRef;
-  @ViewChild('closeLoginModal', {static: false}) closeLoginModal: ElementRef;
+  @ViewChild('content', {static: false}) content: ElementRef;
   loginForm: FormGroup;
+  chooseCookModal: NgbModalRef;
+  loginModalPopup: NgbModalRef;
+  cookUsers = [];
+  selectUser: any; // ngmodel for select cook
   constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router,
               private loaderService: LoaderService,
               private auth: AuthService,
               public ngZone: NgZone,
-              private toastr: ToastrService
-    ) { }
+              private toastr: ToastrService,
+              config: NgbModalConfig, private modalService: NgbModal
+    ) {
+      config.backdrop = 'static';
+      config.keyboard = false;
+     }
 
   ngOnInit() {
     this.createForm();
@@ -49,7 +57,7 @@ export class LoginComponent implements OnInit {
   }
 
   openLoginModal() {
-    this.loginModal.nativeElement.click();
+    this.loginModalPopup = this.modalService.open(this.loginModal);
   }
 
   login(uid?) {
@@ -61,21 +69,18 @@ export class LoginComponent implements OnInit {
     .subscribe(
       result => {
         this.loaderService.hide();
+        this.closeLoginModal(); ;
         if (result.length > 0) {
-          // this.closeLoginModal.nativeElement.click();
-          const id = result[0].payload.doc.id;
-          if (uid) {
-          const obj = {userId :  uid};
-          this.loginService.updateUserId(userData.role, id, obj );
-         }
-          localStorage.setItem(token, id);
-          localStorage.setItem(userId, id);
-          localStorage.setItem(role, userData.role);
-          const routePage = (userData.role === 1) ? Routing.Cook : Routing.Devotee;
-          const url = Routing.ViewProfile + '/' + routePage + '/' + id;
-          this.auth.isAuthenticate = true;
-          this.loginModal.nativeElement.click();
-          this.router.navigate([url]);
+          const res  = result.map(e => {
+           return  {id : e.payload.doc.id, data: e.payload.doc.data(), uid};
+          });
+          if (result.length > 1) {
+            this.cookUsers = [...res];
+            this.open(this.content);
+          } else {
+            this.loginModalPopup.close();
+            this.chooseCook(res[0]);
+          }
          } else {
                 this.toastr.error('Invalid credential', 'Alert');
               }
@@ -84,6 +89,23 @@ export class LoginComponent implements OnInit {
         this.loaderService.hide();
       }
     );
+  }
+
+  chooseCook(result) {
+    if (this.chooseCookModal) {this.chooseCookModal.close(); }
+    const {id, data, uid} = result;
+    const userData = {role: data.role};
+    if (uid) {
+          const obj = {userId :  uid};
+          this.loginService.updateUserId(userData.role, id, obj );
+         }
+    localStorage.setItem(token, id);
+    localStorage.setItem(userId, id);
+    localStorage.setItem(role, JSON.stringify(userData.role));
+    const routePage = (userData.role === 1) ? Routing.Cook : Routing.Devotee;
+    const url = Routing.ViewProfile + '/' + routePage + '/' + id;
+    this.auth.isAuthenticate = true;
+    this.router.navigate([url]);
   }
 
   signInWithEmailAndPassword(): void {
@@ -106,5 +128,14 @@ export class LoginComponent implements OnInit {
 
   onRoleChange(roleEvent: number) {
     console.log(roleEvent);
+  }
+
+  open(content) {
+    this.chooseCookModal = this.modalService.open(content);
+  }
+
+  closeLoginModal() {
+    this.loginModalPopup.close();
+    this.createForm();
   }
 }
