@@ -33,6 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { EmailVerificationComponent } from './shared/components/reusable-component/email-verification/email-verification.component';
 import { MobileVerificationComponent } from './shared/components/reusable-component/mobile-verification/mobile-verification.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { MobileVerificationComponent } from './shared/components/reusable-compon
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgbModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule.enablePersistence(),
