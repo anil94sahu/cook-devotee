@@ -6,16 +6,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoaderService } from '../shared/services/loader.service';
 import { HRManagementService } from '../shared/services/hr-management.service';
 import { token, role } from '../shared/constants/local-storage.constant';
-import { IHRModel } from '../shared/models/hr.model';
 import { API } from '../shared/constants/apis.constant';
 import { Role, RequestStatus, RequestStatusName } from '../shared/constants/utility.constant';
-import { Routing } from '../shared/constants/routing.constant';
 import { UtilityService } from '../shared/services/utility.service';
 
 @Component({
   selector: 'app-view-profile',
   templateUrl: './view-profile.component.html',
-  styleUrls: ['./view-profile.component.css']
+  styleUrls: ['./../search-cook/search-cook.component.css', './view-profile.component.css']
 })
 export class ViewProfileComponent implements OnInit {
 
@@ -26,12 +24,16 @@ export class ViewProfileComponent implements OnInit {
   RequestStatus = RequestStatus;
   role = parseInt(localStorage.getItem(role), 10);
   state: IStateModel;
+  isAddCook = false;
   constructor(private viewProfileService: ViewProfileService,
               private route: ActivatedRoute,
               private loaderService: LoaderService,
               public utilityService: UtilityService,
               private hrManagementService: HRManagementService,
-              private router: Router ) { }
+              private router: Router ) {
+               const  userRole =  this.utilityService.getRole();
+               if (userRole === 'devotee') {this.isAddCook = true; } else {this.isAddCook = false; }
+               }
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
@@ -48,7 +50,7 @@ export class ViewProfileComponent implements OnInit {
         if (arg) {this.profile = arg.data(); }
         console.log(arg);
       },
-      err => {
+      () => {
         this.loaderService.hide();
       });
   }
@@ -65,7 +67,6 @@ export class ViewProfileComponent implements OnInit {
           return {id: e.payload.doc.id, cookId : e.payload.doc.data()[tempParam], status: e.payload.doc.data()[API.Status]};
         });
         console.log(id);
-        const arr = [];
         const oppRole = (userrole === 2) ? Role.cook : Role.devotee;
         this.requestDevoteeArr = [];
         id.forEach(e => {
@@ -75,7 +76,7 @@ export class ViewProfileComponent implements OnInit {
               if (arg) {this.requestDevoteeArr.push({user: arg.data(), serviceId : e.id, status: e.status}); }
               console.log(arg);
             },
-            err => {
+            () => {
               this.loaderService.hide();
             });
           });
@@ -84,7 +85,7 @@ export class ViewProfileComponent implements OnInit {
 
   }
 
-  editProfile(profile) {
+  editProfile() {
     const userRole = parseInt(localStorage.getItem(role), 10);
     const id = localStorage.getItem(token);
     const url = (userRole === 1) ? 'cook' : 'devotee';
@@ -157,7 +158,7 @@ export class ViewProfileComponent implements OnInit {
     this.hrManagementService.updateStatus(serviceId, {status});
   }
 
-  registerCookByDevotee($event) {
+  registerCookByDevotee() {
     this.setState('cookByDevotee');
     this.router.navigate(['register']);
   }
