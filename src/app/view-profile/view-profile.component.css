@@ -105,7 +105,7 @@ fieldset {
     border: 1px solid lightgray;
     margin: 2%;
     box-shadow: 1px 2px 2px 2px;
-    padding: 2vw;
+    padding-bottom: 1rem;
 }
 
 .switch {
@@ -204,21 +204,11 @@ fieldset {
 
 img.profile-pic {
     border-radius: 50% !important;
-    width: 5vw;
-    height: 50px;
 }
 
 .value-heigth {
     height: 7vmin;
     line-height: 7min;
-}
-
-li.list-group-item:hover {
-    margin-left: 1vw;
-    margin-top: 1vh;
-    z-index: 100;
-    box-shadow: 5px 5px 5px 5px;
-    transition: all linear 0.5s;
 }
 
 li.list-group-item {
@@ -227,26 +217,11 @@ li.list-group-item {
     z-index: 0;
     box-shadow: 1px 1px 1px 1px;
     transition: all linear 0.5s;
-    padding-top: 0vmin;
-    padding-bottom: 0vmin;
 }
 
 .row {
     font-size: 3vmin;
 }
-
-.list-group {
-    padding: 0vmin 2vmin 0vmin 2vmin;
-    margin: 0vw 3vw 0vw 3vw;
-    
-}
-
-.list-group-item {
-    margin: 2vh 0vh 2vh 0vh;
-    border: 5px solid lightgray;
-    box-shadow: 5px 5px 5px 5px;
-}
-
 
 .col-sm-7 {
     overflow-y: hidden;
@@ -263,3 +238,74 @@ li.list-group-item {
     }
 }
 
+.request-box > legend {
+    margin-bottom: 0px;
+
+}
+
+@media only screen and (min-width: 1200px) {
+    .request-box > .container {
+        max-width: 100% !important;
+    }
+}
+
+h2, h3, h4, h5 div, strong, label {
+    /* width: 100%; */
+   font-size: 3vmin;
+  }
+
+  .badge-primary {
+    padding: 1rem;
+  }
+
+  .badge-primary:hover {
+      border: 1px solid black;
+  }
+
+  img.profile-pic {
+    border-radius: 50% !important;
+    width: 10rem;
+}
+
+.value-heigth {
+    height: 7vmin;
+    line-height: 7min;
+}
+
+.cook-box > li.list-group-item:hover {
+    margin-left: 0.5rem;
+    z-index: 100;
+    box-shadow: 1px 1px 1px 1px;
+    transition: all linear 0.5s;
+}
+
+li.list-group-item {
+    margin-left: 0vw;
+    margin-bottom: 0vh;
+    z-index: 0;
+    box-shadow: 1px 1px 1px 1px;
+    transition: all linear 0.5s;
+}
+
+.row {
+    font-size: 3vmin;
+}
+
+.list-group {
+    padding: 0rem 3rem;
+    margin: 1rem 1rem;
+    
+}
+
+.col-sm-8{
+    overflow-y: hidden;
+    border-right: 1px solid #ccc;
+}
+
+.cook-request-button > span:hover{
+    cursor: pointer;
+}
+
+.cook-request-button{
+    padding: 0rem !important;
+}

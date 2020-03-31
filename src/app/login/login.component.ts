@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
     .subscribe(
       result => {
         this.loaderService.hide();
-        this.closeLoginModal(); ;
+        this.closeLoginModal();
         if (result.length > 0) {
           const res  = result.map(e => {
            return  {id : e.payload.doc.id, data: e.payload.doc.data(), uid};
