@@ -17,4 +17,45 @@ export const RequestStatusName = {
     8: 'Approved', 9: 'Rejected'
 };
 
+export const allState = [
+  'Andhra Pradesh',
+  'Arunachal Pradesh',
+  'Assam',
+  'Bihar',
+  'Chhattisgarh',
+  'Goa',
+  'Gujarat',
+  'Haryana',
+  'Himachal Pradesh',
+  'Jammu & Kashmir',
+  'Jharkhand',
+  'Karnataka',
+  'Kerala',
+  'Madhya Pradesh',
+  'Maharashtra',
+  'Manipur',
+  'Meghalaya',
+  'Mizoram',
+  'Nagaland',
+  'Odisha',
+  'Punjab',
+  'Rajasthan',
+  'Sikkim',
+  'Tamil Nadu',
+  'Tripura',
+  'Uttarakhand',
+  'Uttar Pradesh',
+  'West Bengal',
+  'Andaman & Nicobar',
+  'Chandigarh',
+  'Dadra and Nagar Haveli',
+  'Daman & Diu',
+  'Delhi',
+  'Lakshadweep',
+  'Puducherry',
+];
+
+export const salaries = [{key: '10', value: '<=10000'}, {key: '10-12', value: '>10000 and <12000'},
+{key: '12-14', value: '=>120000 and <14000'}, {key: '14-15', value: '=>140000 and <15000'},
+{key: '15-17', value: '=>15000 and <17000'}, {key: '17-20', value: '>=17000 and <20000'}];
 export const offline = navigator.onLine;
