@@ -1,3 +1,4 @@
+import { ModalPopUpComponent } from './../shared/components/reusable-component/modal-pop-up/modal-pop-up.component';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { Router } from '@angular/router';
@@ -13,8 +14,9 @@ import { images } from '../shared/constants/image.constant';
 })
 export class MenuComponent implements OnInit {
   @ViewChild(LoginComponent, {static: false}) loginComponentChild: LoginComponent;
+  @ViewChild(ModalPopUpComponent, {static: false}) ModalPopUpComponentChild: ModalPopUpComponent;
   logoImages = images;
-  searchParam: string = '';
+  searchParam = '';
 
   constructor(private router: Router, public auth: AuthService) { }
 
@@ -26,8 +28,8 @@ export class MenuComponent implements OnInit {
   }
 
   /* search navigation */
-  navigateToSearch(params){
-    const url = '/search-cook/cook/' + params
+  navigateToSearch(params) {
+    const url = '/search-cook/cook/' + params;
     this.router.navigateByUrl(url);
   }
 
@@ -38,6 +40,10 @@ export class MenuComponent implements OnInit {
     const url = Routing.ViewProfile + '/' + routePage + '/' + id;
     this.auth.isAuthenticate = true;
     this.router.navigate([url]);
+  }
+
+  openChangePassword() {
+    this.ModalPopUpComponentChild.openModal();
   }
 
   login() {
