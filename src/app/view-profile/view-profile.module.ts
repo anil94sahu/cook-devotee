@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ViewProfileComponent } from './view-profile.component';
 import { Routes, RouterModule } from '@angular/router';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 const routes: Routes = [
   {path : 'cook/:id', component: ViewProfileComponent},
@@ -13,8 +14,8 @@ const routes: Routes = [
   declarations: [ViewProfileComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
-
+    RouterModule.forChild(routes),
+    PerfectScrollbarModule
   ]
 })
 export class ViewProfileModule { }
