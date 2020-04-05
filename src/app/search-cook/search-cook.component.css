@@ -102,3 +102,7 @@ li.list-group-item {
 .scroll-container{
     position: relative;
 }
+
+.search-box > .search-result >  .cook-box, .search-box > .search-container {
+    font-family: "Times New Roman", Times, serif;
+}

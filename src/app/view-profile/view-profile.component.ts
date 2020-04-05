@@ -1,3 +1,4 @@
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { IStateModel } from './../shared/models/state.model';
 import { profilePics } from './../shared/constants/image.constant';
 import { Component, OnInit } from '@angular/core';
@@ -25,6 +26,8 @@ export class ViewProfileComponent implements OnInit {
   role = parseInt(localStorage.getItem(role), 10);
   state: IStateModel;
   isAddCook = false;
+  public config: PerfectScrollbarConfigInterface = {};
+
   constructor(private viewProfileService: ViewProfileService,
               private route: ActivatedRoute,
               private loaderService: LoaderService,
