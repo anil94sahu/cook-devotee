@@ -144,28 +144,30 @@
                     <div *ngIf="cook && cook.user" class="col | col-sm-8  cook-detail">
                         <h1 *ngIf="cook.user.name">{{cook.user.name | titlecase}}</h1>
                         <!-- <h6>{{cook.user.description}}</h6> -->
-                        <ul class="p-0 m-0 d-inline-flex">
-                            <li class="list-group-item d-inline-flex justify-content-between align-items-center">
-                                <strong>Experience</strong>
-                              <span class="badge badge-primary badge-pill text-break">10 Month</span>
-                            </li>
-                            <li *ngIf="cook.user.centerName" class="list-group-item d-inline-flex justify-content-between align-items-center">
-                                <strong>Center Name</strong>
-                              <span class="badge badge-primary badge-pill text-break">{{cook.user.centerName}}</span>
-                            </li>
-                            <li *ngIf="cook.user.mobileNo" class="list-group-item d-inline-flex justify-content-between align-items-center">
-                                <strong>Mobile No.</strong>
-                              <span class="badge badge-primary badge-pill text-break">{{cook.user.mobileNo}}</span>
-                            </li>
-                            <li *ngIf="utilityService.reFrameAddress(cook.user.address)" class="list-group-item .d-inline-flex justify-content-between align-items-center">
-                                <strong> Address</strong>
-                              <span class="badge badge-primary badge-pill text-break">{{utilityService.reFrameAddress(cook.user.address)}}</span>
-                            </li>
-                            <li *ngIf="cook.user.specialist" class="list-group-item .d-inline-flex justify-content-between align-items-center">
-                                <strong>Specialist</strong>
-                              <span class="badge badge-primary badge-pill text-break">{{cook.user.specialist}}</span>
-                            </li>
-                        </ul>
+                        <perfect-scrollbar class="scroll-container" [config]="config" >
+                            <ul class="p-0 m-0 d-inline-flex">
+                                <li class="list-group-item d-inline-flex justify-content-between align-items-center">
+                                    <strong>Experience</strong>
+                                  <span class="badge badge-primary badge-pill text-break">10 Month</span>
+                                </li>
+                                <li *ngIf="cook.user.centerName" class="list-group-item d-inline-flex justify-content-between align-items-center">
+                                    <strong>Center Name</strong>
+                                  <span class="badge badge-primary badge-pill text-break">{{cook.user.centerName}}</span>
+                                </li>
+                                <li *ngIf="cook.user.mobileNo" class="list-group-item d-inline-flex justify-content-between align-items-center">
+                                    <strong>Mobile No.</strong>
+                                  <span class="badge badge-primary badge-pill text-break">{{cook.user.mobileNo}}</span>
+                                </li>
+                                <li *ngIf="utilityService.reFrameAddress(cook.user.address)" class="list-group-item .d-inline-flex justify-content-between align-items-center">
+                                    <strong> Address</strong>
+                                  <span class="badge badge-primary badge-pill text-break">{{utilityService.reFrameAddress(cook.user.address)}}</span>
+                                </li>
+                                <li *ngIf="cook.user.specialist" class="list-group-item .d-inline-flex justify-content-between align-items-center">
+                                    <strong>Specialist</strong>
+                                  <span class="badge badge-primary badge-pill text-break">{{cook.user.specialist}}</span>
+                                </li>
+                            </ul>
+                        </perfect-scrollbar>
                     </div>
                     <div class="col-sm-2 cook-request-button">
                         <div class="col-sm-12" *ngIf="role==1; else devotee" [ngSwitch]="cook.status">

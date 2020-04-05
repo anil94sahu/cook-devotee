@@ -97,6 +97,9 @@
     font-family: 'Lobster', cursive;
 }
 
+.cook-box {
+    font-family: "Times New Roman", Times, serif;
+}
 .align-items-center {
     display: inline-flex;
 }
