@@ -1,3 +1,5 @@
+import { UtilityService } from './../shared/services/utility.service';
+import { currentUserData } from './../shared/constants/local-storage.constant';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit {
               private auth: AuthService,
               public ngZone: NgZone,
               private toastr: ToastrService,
+              private utilityService: UtilityService,
               config: NgbModalConfig, private modalService: NgbModal
     ) {
       config.backdrop = 'static';
@@ -102,6 +105,7 @@ export class LoginComponent implements OnInit {
     localStorage.setItem(token, id);
     localStorage.setItem(userId, id);
     localStorage.setItem(role, JSON.stringify(userData.role));
+    this.utilityService.setValue(currentUserData, {email : data.emailId});
     const routePage = (userData.role === 1) ? Routing.Cook : Routing.Devotee;
     const url = Routing.ViewProfile + '/' + routePage + '/' + id;
     this.auth.isAuthenticate = true;

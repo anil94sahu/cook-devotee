@@ -1,14 +1,17 @@
+import { currentUserData } from './../shared/constants/local-storage.constant';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { SearchCookService } from '../shared/services/search-cook.service';
 import { LoaderService } from '../shared/services/loader.service';
 import { HRManagementService } from '../shared/services/hr-management.service';
 import { initialHRData, IHRModel } from '../shared/models/hr.model';
-import { token, role } from '../shared/constants/local-storage.constant';
-import { RequestStatus, RequestStatusName, offline } from '../shared/constants/utility.constant';
+import { token } from '../shared/constants/local-storage.constant';
+import { RequestStatus, RequestStatusName, offline, allState, salaries } from '../shared/constants/utility.constant';
 import { UtilityService } from '../shared/services/utility.service';
 import { API } from '../shared/constants/apis.constant';
 import { profilePics } from '../shared/constants/image.constant';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
 
 
 @Component({
@@ -18,11 +21,17 @@ import { profilePics } from '../shared/constants/image.constant';
 })
 export class SearchCookComponent implements OnInit {
   cooks: any;
-  role: number;
+  role: string;
   RequestStatusName = RequestStatusName;
   profilePics = profilePics;
   offline = offline;
-  params = {searchString: ''};
+  params = {searchString: '', name: '', emailId: '', salary: 'salary', state: 'state', centerName: '', };
+  public search = {name: ''};
+  tempCookList = [];
+  paramsConst = {allStates: allState, salaries};
+  allStates = allState;
+  public config: PerfectScrollbarConfigInterface = {};
+
   constructor(private searchCookService: SearchCookService,
               private loaderService: LoaderService,
               private hrManagementService: HRManagementService,
@@ -41,7 +50,6 @@ export class SearchCookComponent implements OnInit {
 
   ngOnInit() {
     this.getCook();
-    this.role =  parseInt(localStorage.getItem(role), 10);
   }
 
   getCook() {
@@ -59,9 +67,14 @@ export class SearchCookComponent implements OnInit {
       });
       // this.cooks = cookJson.data;
       this.cooks = this.addStatusParams(this.cooks);
-      if (this.params.searchString !== '') {this.searchByParams(); }
+      this.tempCookList = [...this.cooks];
+      const roleValue =  this.utilityService.getRole();
+      const currentUser = this.utilityService.getValue(currentUserData);
+      if (roleValue === 'cook' && currentUser) {this.params.emailId = currentUser.email;
+                                                this.searchByParams();
+        }
       },
-      err => {
+      () => {
         this.loaderService.hide();
       });
   }
@@ -111,17 +124,55 @@ export class SearchCookComponent implements OnInit {
     if (cook.status !== RequestStatus.requestSend) {this.hrManagementService.createHireRequst(hr); }
   }
 
-  hiringResponse(status) {
+  hiringResponse() {
 
   }
 
   searchByParams() {
     const arr = [...this.cooks];
-    const params = `/${this.params.searchString}/gi`;
-    const tempArr = arr.filter(item => {
-        item.name.match(params);
-    });
-    this.cooks = tempArr;
+    let tempArr = arr;
+    const params = {...this.params};
+    if (this.params.searchString) {
+      tempArr = tempArr.filter(item => {
+         return item.name.toLowerCase().includes(params.searchString.toLowerCase());
+      });
+    }
+
+    if (this.params.state !== 'state') {
+      tempArr = tempArr.filter(item => {
+        const add = this.utilityService.reFrameAddress(item.address);
+        return add.toLowerCase().includes(params.state.toLowerCase());
+     });
+    }
+
+    if (this.params.salary !== 'salary') {
+      const split = params.salary;
+      if (split) {
+        const value = split.split('-');
+        let min = 0;
+        let max = 0;
+        if (value.length > 0) {
+          min  = parseInt(`${value[0]}000`, 10);
+          max = parseInt(`${value[1]}000`, 10);
+          tempArr = arr.filter(item => {
+            return item.salary >= min && item.salary <= max;
+         });
+        } else {
+          min  = parseInt(`${value[0]}000`, 10);
+          tempArr = tempArr.filter(item => {
+            return item.salary >= min;
+         });
+        }
+      }
+    }
+
+    if (this.params.emailId) {
+      tempArr = tempArr.filter(item => {
+        return item.emailId.toLowerCase().includes(params.emailId.toLowerCase());
+     });
+    }
+
+    this.tempCookList = tempArr;
   }
 
 }

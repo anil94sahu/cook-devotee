@@ -94,3 +94,11 @@ li.list-group-item {
     }
     
 }
+
+.search-container > .search-params > .search-row > .search-input {
+    border: 5px solid lightslategray;
+}
+
+.scroll-container{
+    position: relative;
+}
