@@ -24,8 +24,10 @@ export class ScrollToComponent implements OnInit {
   scrollTo(): void {
     const elementList = document.getElementById(this.scrollToClass);
     const element = elementList as HTMLElement;
-    element.scrollIntoView({  behavior: 'smooth' });
-    this.onScroll.emit('scrolled to: ' + this.scrollToClass);
+    if (element) {
+      element.scrollIntoView({  behavior: 'smooth' });
+      this.onScroll.emit('scrolled to: ' + this.scrollToClass);
+    }
   }
 
 }
