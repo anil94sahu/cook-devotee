@@ -6,10 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'demo2';
+  title = 'cook-devotee';
   public onlineOffline: boolean = navigator.onLine;
 
-  constructor(){
+  constructor() {
     // alert(this.onlineOffline? 'you are online': 'you are offline');
   }
 }
