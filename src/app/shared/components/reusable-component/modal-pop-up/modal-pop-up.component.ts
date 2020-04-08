@@ -18,6 +18,8 @@ export class ModalPopUpComponent implements OnInit {
   ngOnInit() {
     if (this.role === 'cp') {
       this.state.header = 'Change Password';
+    } else if (this.role === 'fp') {
+      this.state.header = 'Forgot Password';
     }
   }
 

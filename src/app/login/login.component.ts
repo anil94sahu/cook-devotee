@@ -1,3 +1,4 @@
+import { ModalPopUpComponent } from './../shared/components/reusable-component/modal-pop-up/modal-pop-up.component';
 import { UtilityService } from './../shared/services/utility.service';
 import { currentUserData } from './../shared/constants/local-storage.constant';
 import { ToastrService } from 'ngx-toastr';
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
   loginModalPopup: NgbModalRef;
   cookUsers = [];
   selectUser: any; // ngmodel for select cook
+  @ViewChild(ModalPopUpComponent, {static: false}) forgorPasswordComponentChild: ModalPopUpComponent;
   constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router,
               private loaderService: LoaderService,
               private auth: AuthService,
@@ -142,4 +144,19 @@ export class LoginComponent implements OnInit {
     this.loginModalPopup.close();
     this.createForm();
   }
+
+  openForgotModal() {
+    this.closeLoginModal();
+    this.forgorPasswordComponentChild.openModal();
+  }
+
+  sendVerificationEmail(value) {
+    this.auth.SendVerificationMail().then(() => {
+      this.toastr.warning('verification mail send to your mail ID.', 'Alert');
+      })
+      .catch(error => {
+      this.toastr.error(error.code, 'Error');
+        });
+  }
+
 }
