@@ -16,7 +16,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), SearchCookModule],
+  imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'enabled', // Add options right here
+  }), SearchCookModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

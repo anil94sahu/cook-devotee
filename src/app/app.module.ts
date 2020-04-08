@@ -1,3 +1,4 @@
+import { ScrollToComponent } from './shared/components/reusable-component/scroll-to/scroll-to.component';
 import { RegisterDevoteeComponent } from './register-devotee/register-devotee.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -57,7 +58,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     MobileVerificationComponent,
     ModalPopUpComponent,
     ChangePasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ScrollToComponent
   ],
   imports: [
     BrowserModule,
