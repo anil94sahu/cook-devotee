@@ -46,7 +46,7 @@ export class ProfileLoaderComponent implements OnInit {
     const ref = this.afStorage.ref(this.basePath);
     this.uploadProgress = this.task.percentageChanges();
     this.task.percentageChanges().subscribe(
-      (progress:number) => {
+      (progress: number) => {
         this.progress.percentage = progress;
       }
     );
@@ -54,7 +54,7 @@ export class ProfileLoaderComponent implements OnInit {
     this.task.snapshotChanges().pipe(
       finalize(() => {
         this.downloadURL = ref.getDownloadURL();
-        this.downloadURL.subscribe(url => {this.url = url;this.valueChange.emit(url);});
+        this.downloadURL.subscribe(url => {this.url = url; this.valueChange.emit(url); });
       })
     )
       .subscribe();
