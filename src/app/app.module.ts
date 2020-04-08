@@ -36,6 +36,7 @@ import { MobileVerificationComponent } from './shared/components/reusable-compon
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalPopUpComponent } from './shared/components/reusable-component/modal-pop-up/modal-pop-up.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     EmailVerificationComponent,
     MobileVerificationComponent,
     ModalPopUpComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
