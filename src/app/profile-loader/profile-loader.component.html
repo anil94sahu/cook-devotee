@@ -5,7 +5,7 @@
         role="progressbar" attr.aria-valuenow="(uploadProgress | async)"
         aria-valuemin="0" aria-valuemax="100" 
         [ngStyle]="{width:progress.percentage+'%'}">
-        {{uploadProgress | async}}%</div>
+        {{uploadProgress | async | number:'1.0-0'}}%</div>
   </div>
 </div>
 
