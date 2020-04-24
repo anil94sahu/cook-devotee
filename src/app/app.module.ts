@@ -38,6 +38,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalPopUpComponent } from './shared/components/reusable-component/modal-pop-up/modal-pop-up.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { CategoryBoxesComponent } from './category-boxes/category-boxes.component';
+import { SlideContentComponent } from './slide-content/slide-content.component';
+import { FooterComponent } from './footer/footer.component';
+import { LatestFromBlogComponent } from './latest-from-blog/latest-from-blog.component';
+import { ArticleComponent } from './article/article.component';
+import { DirectorBlogComponent } from './director-blog/director-blog.component';
+import { GuideComponent } from './guide/guide.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +66,14 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     ModalPopUpComponent,
     ChangePasswordComponent,
     ResetPasswordComponent,
-    ScrollToComponent
+    ScrollToComponent,
+    CategoryBoxesComponent,
+    SlideContentComponent,
+    FooterComponent,
+    LatestFromBlogComponent,
+    ArticleComponent,
+    DirectorBlogComponent,
+    GuideComponent
   ],
   imports: [
     BrowserModule,

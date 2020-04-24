@@ -1,0 +1,85 @@
+.director-blog{
+    padding: 5% 0;
+}
+.cid-rctxb4TdS3 {
+    padding-top: 45px;
+    padding-bottom: 0px;
+    background-color: #ffffff;
+
+    font-style: normal;
+    line-height: 1.5;
+  }
+  .cid-rctxb4TdS3 H2 {
+    color: #4f4943;
+    text-align: center;
+  }
+  .cid-rctxb4TdS3 .mbr-section-subtitle {
+    color: #272728;
+  }
+
+  .display-2 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 3.5rem;
+  }
+  .display-2 > .mbr-iconfont {
+    font-size: 5.6rem;
+  }
+
+  .cid-rcB5oliqyU {
+    background: #ffffff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .cid-rcB5oliqyU .image-block {
+    margin: auto;
+  }
+  .cid-rcB5oliqyU figcaption {
+    position: relative;
+  }
+  .cid-rcB5oliqyU figcaption div {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  @media (max-width: 768px) {
+    .cid-rcB5oliqyU .image-block {
+      width: 100% !important;
+    }
+  }
+
+  .cid-rcB6mOjrbv {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: #ffffff;
+  }
+  .cid-rcB6mOjrbv .mbr-text,
+  .cid-rcB6mOjrbv blockquote {
+    color: #767676;
+  }
+
+  .display-7 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.5rem;
+  }
+  .display-7 > .mbr-iconfont {
+    font-size: 2.4rem;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+blockquote {
+    font-style: italic;
+    padding: 10px 0 10px 20px;
+    font-size: 1.09rem;
+    position: relative;
+    border-color: #149dcc;
+    border-width: 3px;
+  }
+
+  .mbr-text {
+    font-style: normal;
+    line-height: 1.6;
+  }

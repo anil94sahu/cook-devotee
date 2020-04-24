@@ -1,16 +1,50 @@
-.rank {
-    background-color: black;
-    color: white;
-}
+	/***************************************************/
+	/*chef welcome */
+	/***************************************************/
 
-.m-0 {
-    padding-left: 0vw !important;
-    padding-right: 0vw !important;
-    text-align: center;
-    background-color: black;
-    opacity: 0.9;
-}
+@media (max-width: 1199px) {
+        body, .btn {
+            font-size: 14px;
+    }
+        .chef-welcome {
+		padding-bottom: 30px;
+		padding-left: 30px;
+	}
 
-div.row {
-    margin-right: 0px !important;
-}
+	.chef-welcome h1 {
+		padding: 30px 0 10px 0;
+		font-size: 35px;
+	}
+
+	.chef-welcome p {
+		width: 55%;
+		line-height: 30px;
+    }
+} 
+    
+.chef-welcome {
+    margin: 0;
+    padding-bottom: 125px;
+    position: relative;
+    width: 100%;
+    background: url(../../assets/images/about/devotee-welcome-bg.jpg) top center no-repeat;
+    background-size: cover;
+  }
+  
+  .chef-welcome h1 {
+    margin: 0;
+    padding: 100px 0 60px 0;
+    font-weight: bold;
+    color: #323430;
+  }
+  
+  .chef-welcome p {
+    margin: 0;
+    width: 50%;
+    padding-bottom: 50px;
+    font-size: 20px;
+    line-height: 40px;
+    color: #666;
+  }
+  
+  
