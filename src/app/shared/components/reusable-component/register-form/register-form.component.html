@@ -1,3 +1,4 @@
+
 <div *ngIf="Label">
     <form class="pd-10 register-ui" [formGroup]="cookRegistrationForm">
         <div class="form-row">
@@ -147,7 +148,7 @@
               <input type="text" class="form-control" id="" placeholder="" formControlName="specialist">
             </div>
             <div *ngIf="state.salary" class="form-group col-md-6">
-                <label for="">{{Label.salary}}</label>
+                <label for="">Current {{Label.salary}}</label>
                 <input type="text" class="form-control" id="" placeholder="" formControlName="salary">
                 <div *ngIf="(form.salary.invalid && (form.salary.dirty || form.salary.touched)) || isSubmit" class="text-danger">
                   <div *ngIf="form.salary.errors?.required">
@@ -173,14 +174,23 @@
             </div>
           </div>
           <div *ngIf="state.PMName" class="form-group col-md-6">
-              <label for="">{{Label.workExperience.PMName}}</label>
+              <label for="">{{(state.url === 'devotee' || 'edit-devotee')?Label.workExperience.inchargeName : Label.workExperience.PMName}}</label>
               <input type="text" class="form-control" formControlName="PMName" id="" placeholder="">
           </div>
       </div>
         <div class="form-row">
-            <div *ngIf="state.study" class="form-group col-md-6">
+            <ng-template #cook>
+              <div *ngIf="state.study" class="form-group col-md-6">
+                <label for="">{{Label.study}}</label>
+                <input type="text" class="form-control" id="" placeholder="" formControlName="study">
+              </div>
+            </ng-template>
+            <div *ngIf="(state.url === 'devotee' || 'edit-devotee'); else cook" class="form-group col-md-6">
               <label for="">{{Label.study}}</label>
-              <input type="text" class="form-control" id="" placeholder="" formControlName="study">
+              <select class="form-control" placeholder="student or working" formControlName="study">
+                <option  value = "student" selected>Student</option>
+                <option  value = "Working">Working</option>
+              </select>
             </div>
             <div *ngIf="state.description" class="form-group col-md-6">
                 <label for="">{{Label.description}}</label>
@@ -204,7 +214,7 @@
                         </div>
                       </div>
                       <div class="form-group col-md-6">
-                          <label for="">{{Label.workExperience.address}}</label>
+                          <label for="">Center {{Label.workExperience.address}}</label>
                           <input type="text" class="form-control" formControlName="address" id="" placeholder="">
                           <div *ngIf="form.name.invalid && (form.name.dirty || form.name.touched)" class="text-danger">
                             <div *ngIf="form.name.errors?.required">
@@ -221,7 +231,7 @@
                   </div>
                   <div class="form-row">
                       <div class="form-group col-md-6">
-                        <label for="">{{Label.workExperience.periodOfWork}}</label>
+                        <label for="">No of years of cooking</label>
                         <input type="text" class="form-control" formControlName="periodOfWork" id="" placeholder="">
                         <div *ngIf="wiform[i].controls.periodOfWork.invalid && (wiform[i].controls.periodOfWork.dirty || wiform[i].controls.periodOfWork.touched)" class="text-danger">
                           <div *ngIf="wiform[i].controls.periodOfWork.errors?.required">
@@ -235,16 +245,16 @@
                           </div>
                         </div>
                       </div>
-                      <div class="form-group col-md-6">
+                      <!-- <div class="form-group col-md-6">
                           <label for="">{{Label.workExperience.comment}}</label>
                           <input type="text" class="form-control" formControlName="comment" id="" placeholder="">
-                      </div>
+                      </div> -->
                   </div>
                   <fieldset class="bd-2">
                     <legend>{{Label.workExperience.verifiedBy}}</legend>
                       <div class="form-row">
-                          <div class="form-group col-md-4">
-                              <label for="">{{Label.workExperience.PMName}}</label>
+                          <div class="form-group col-md-3">
+                              <label for="">Current {{Label.workExperience.PMName}}</label>
                               <input type="text" class="form-control" formControlName="PMName" id="" placeholder="">
                               <div *ngIf="wiform[i].controls.PMName.invalid && (wiform[i].controls.PMName.dirty || wiform[i].controls.PMName.touched)" class="text-danger">
                                 <div *ngIf="wiform[i].controls.PMName.errors?.required">
@@ -253,8 +263,8 @@
                                 
                               </div>
                           </div>
-                          <div class="form-group col-md-4">
-                              <label for="">{{Label.workExperience.PMMobile}}</label>
+                          <div class="form-group col-md-3">
+                              <label for="">Current {{Label.workExperience.PMMobile}}</label>
                               <input type="text" class="form-control" formControlName="PMMobile" id="" placeholder="">
                               <div *ngIf="wiform[i].controls.PMMobile.invalid && (wiform[i].controls.PMMobile.dirty || wiform[i].controls.PMMobile.touched)" class="text-danger">
                                 <div *ngIf="wiform[i].controls.PMMobile.errors?.required">
@@ -263,17 +273,7 @@
                                 
                               </div>
                           </div>
-                          <div class="form-group col-md-4">
-                            <label for="">{{Label.workExperience['PMEmailId']}}</label>
-                            <input type="text" class="form-control" formControlName="PMEmailId" id="" placeholder="">
-                            <div *ngIf="wiform[i].controls.PMEmailId.invalid && (wiform[i].controls.PMEmailId.dirty || wiform[i].controls.PMEmailId.touched)" class="text-danger">
-                              <div *ngIf="wiform[i].get('PMEmailId').errors?.required">
-                                {{RegistrationMessage.PMEmailId}}
-                              </div>
-                              
-                            </div>
-                        </div>
-                          <div class="form-group col-md-4">
+                          <div class="form-group col-md-3">
                             <label for="">{{Label.workExperience.KIName}}</label>
                             <input type="text" class="form-control" id="" formControlName="KIName" placeholder="">
                             <div *ngIf="wiform[i].controls.KIName.invalid && (wiform[i].controls.KIName.dirty || wiform[i].controls.KIName.touched)" class="text-danger">
@@ -283,7 +283,7 @@
                               
                             </div>
                           </div>
-                          <div class="form-group col-md-4">
+                          <div class="form-group col-md-3">
                               <label for="">{{Label.workExperience.KIMobile}}</label>
                               <input type="text" class="form-control" id="" formControlName="KIMobile" placeholder="">
                               <div *ngIf="wiform[i].controls.KIMobile.invalid && (wiform[i].controls.KIMobile.dirty || wiform[i].controls.KIMobile.touched)" class="text-danger">
@@ -293,17 +293,7 @@
                                 
                               </div>
                           </div>
-                          <div class="form-group col-md-4">
-                            <label for="">{{Label.workExperience['KIEmailId']}}</label>
-                            <input type="text" class="form-control" id="" formControlName="KIEmailId" placeholder="">
-                            <div *ngIf="wiform[i].controls.KIEmailId.invalid && (wiform[i].controls.KIEmailId.dirty || wiform[i].controls.KIEmailId.touched)" class="text-danger">
-                              <div *ngIf="wiform[i].controls.KIEmailId.errors?.required">
-                                {{RegistrationMessage.KIEmailId}}
-                              </div>
-                              
-                            </div>
-                        </div>
-                          <div class="form-group col-md-4">
+                          <div class="form-group col-md-3">
                               <label for="">{{Label.workExperience.salary}}</label>
                               <input type="text" class="form-control" id="" formControlName="salary" placeholder="">
                               <div *ngIf="wiform[i].controls.salary.invalid && (wiform[i].controls.salary.dirty || wiform[i].controls.salary.touched)" class="text-danger">
@@ -312,14 +302,6 @@
                                 </div>
                                 
                               </div>
-                          </div>
-                          <div class="form-group col-md-6">
-                              <label for="">{{Label.workExperience.status}}</label>
-                              <p>
-                                  <i class="fa fa-close btn btn-danger" ></i>
-                                  <i class="fa fa-exclamation-triangle btn btn-primary"></i>
-                                  <i class="fa fa-check btn btn-success" aria-hidden="true"></i>
-                            </p>
                           </div>
                           
                       </div>

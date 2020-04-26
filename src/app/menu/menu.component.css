@@ -22,3 +22,9 @@ img.logo {
 .bg-wht {
     background-color: white;
 }
+
+.menu .navbar-collapse .navbar-nav .nav-item .find-devotee{
+    font-weight: 200;
+    font-family: 'Lobster', cursive;
+    font-size: 25px;
+}
