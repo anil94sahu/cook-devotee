@@ -9,10 +9,10 @@
   </div>
 </div>
 
-<div class="form-row">
-  <div class="container row mg-top-2">
-    <div class="form-group col-md-5">
-      <label class="btn btn-default"> 
+<div class="container">
+  <div class="row py-5">
+    <div class="form-group col-md-5 pl-5">
+      <label class=""> 
         <input type="file"
         (change)="selectFile($event)">
       </label>
@@ -20,7 +20,7 @@
         <img src="{{url}}" alt="" srcset="" class="">
       </div>
     </div>
-    <div class="form-group col-md-4 pd-lft-2">
+    <div class="form-group col-md-4">
       <button class="btn btn-success" [disabled]="!selectedFiles"
         (click)="upload()">Upload</button>
     </div>
