@@ -15,7 +15,7 @@ export interface ICookModel {
     study: string | FormControl;
     emailId: string | FormControl;
     availibility: Date | FormControl;
-    availibilityDate: Date | FormControl;
+    availibilityDate?: Date | FormControl;
     role: string | FormControl;
     workExperience: IWorkExperience[] | FormArray;
     userId: string | FormControl;
