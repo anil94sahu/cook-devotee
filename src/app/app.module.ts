@@ -1,3 +1,4 @@
+import { CanActivateTeam } from './shared/components/reusable-component/canActivateTeam/canActivateTeam';
 import { ScrollToComponent } from './shared/components/reusable-component/scroll-to/scroll-to.component';
 import { RegisterDevoteeComponent } from './register-devotee/register-devotee.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -90,7 +91,7 @@ import { GuideComponent } from './guide/guide.component';
   ],
   providers: [AngularFirestore, RegistrationService, 
     StorageFirebaseService, DevoteeRegistrationService,
-  SearchCookService, LoaderService, WindowService, UtilityService, AngularFireStorage],
+  SearchCookService, LoaderService, WindowService, UtilityService, AngularFireStorage, CanActivateTeam],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

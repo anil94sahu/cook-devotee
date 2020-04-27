@@ -522,3 +522,8 @@
       top: 0;
       left: -2400px;
   }
+
+  .btn .btn-success{
+    color: white !important;
+    
+  }

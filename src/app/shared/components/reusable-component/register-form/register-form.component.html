@@ -50,7 +50,7 @@
         <div *ngIf="state.address" formGroupName ="address">
           <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="">{{Label.address.houseNo}}</label>
+                <label for="">{{(state.url === 'devotee' || state.url === 'edit-devotee')?'Center House No' : Label.address.houseNo}}</label>
                 <input type="text" class="form-control" id="" placeholder="" formControlName="houseNo">
                 <div *ngIf="(aform.houseNo.invalid && (aform.houseNo.dirty || aform.houseNo.touched)) || isSubmit" class="text-danger">
                   <div *ngIf="aform.houseNo.errors?.required">
@@ -65,7 +65,7 @@
                 </div>
               </div>
               <div class="form-group col-md-6">
-                  <label for="">{{(state.url === 'devotee' || 'edit-devotee')?'Center Address' : Label.address.address1}}</label>
+                  <label for="">{{(state.url === 'devotee' || state.url === 'edit-devotee')?'Center Address' : Label.address.address1}}</label>
                   <input type="text" class="form-control" id="" placeholder="" formControlName="address1">
                   <div *ngIf="aform.address1.invalid && (aform.address1.dirty || aform.address1.touched)" class="text-danger">
                     <div *ngIf="aform.address1.errors?.required">
@@ -162,7 +162,7 @@
                   </div> -->
                 </div>
             </div>
-            <div *ngIf="state.url === 'cook' || state.url === 'edit-cook'" class="form-group col-md-3">
+            <div *ngIf="state.url === 'cook' || state.url === 'edit-cook' || state.url === 'cookByDevotee'" class="form-group col-md-3">
               <label for="">Available</label>
               <select  formControlName="availibility"  class="form-control" >
                 <option value = "true" class="dropdown-item">Yes</option>
@@ -185,7 +185,7 @@
             </div>
           </div>
           <div *ngIf="state.PMName" class="form-group col-md-6">
-              <label for="">{{(state.url === 'devotee' || 'edit-devotee')?Label.workExperience.inchargeName : Label.workExperience.PMName}}</label>
+              <label for="">{{(state.url === 'devotee' || state.url === 'edit-devotee')?Label.workExperience.inchargeName : Label.workExperience.PMName}}</label>
               <input type="text" class="form-control" formControlName="PMName" id="" placeholder="">
           </div>
       </div>
@@ -196,7 +196,7 @@
                 <input type="text" class="form-control" id="" placeholder="" formControlName="study">
               </div>
             </ng-template>
-            <div *ngIf="(state.url === 'devotee' || 'edit-devotee'); else cook" class="form-group col-md-6">
+            <div *ngIf="(state.url === 'devotee' || state.url === 'edit-devotee'); else cook" class="form-group col-md-6">
               <label for="">{{Label.study}}</label>
               <select class="form-control" placeholder="student or working" formControlName="study">
                 <option  value = "student" selected>Student</option>
@@ -326,8 +326,8 @@
         <div class="m-2 text-center w-100 p-3">
           <button *ngIf="state.url === 'edit'; else add" (click) = "onSubmit(cookRegistrationForm.value)" class="btn btn-success btn-mg">Update</button>
           <ng-template #add>
-            <button (click) = "onSubmit(cookRegistrationForm.value)" class="btn btn-primary btn-mg">Sign Up</button>
-            <button (click) = "onReset()" class="btn btn-primary btn-mg">Reset</button>
+            <button (click) = "onSubmit(cookRegistrationForm.value)" class="btn btn-success btn-mg">Sign Up</button>
+            <button (click) = "onReset()" class="btn btn-primary btn-danger">Reset</button>
           </ng-template>
         </div>
     </form>

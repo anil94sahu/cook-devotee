@@ -42,8 +42,8 @@ export class ProfileLoaderComponent implements OnInit {
 
   upload() {
     this.currentFileUpload = true;
-    this.task = this.afStorage.upload(this.basePath, this.file);
-    const ref = this.afStorage.ref(this.basePath);
+    this.task = this.afStorage.upload(this.basePath + '/' +  this.file.name, this.file);
+    const ref = this.afStorage.ref(this.basePath + '/' + this.file.name);
     this.uploadProgress = this.task.percentageChanges();
     this.task.percentageChanges().subscribe(
       (progress: number) => {

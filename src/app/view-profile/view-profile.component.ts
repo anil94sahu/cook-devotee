@@ -103,7 +103,7 @@ export class ViewProfileComponent implements OnInit {
       mobileNo: 'disable',
       altMobileNO: true,
       password: false,
-      photo: false,
+      photo: true,
       married: true,
       specialist: true,
       description: true,
