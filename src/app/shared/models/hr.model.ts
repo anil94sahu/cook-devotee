@@ -6,6 +6,7 @@ export interface IHRModel {
     status: number;
     createdDate: string;
     modifiedDate: string;
+    valid: boolean;
   }
 
 export const initialHRData = {
@@ -13,5 +14,6 @@ export const initialHRData = {
     devoteeId: '',
     status: RequestStatus.requestSend,
     createdDate: new Date().toString(),
-    modifiedDate: new Date().toString()
+    modifiedDate: new Date().toString(),
+    valid: true
   };

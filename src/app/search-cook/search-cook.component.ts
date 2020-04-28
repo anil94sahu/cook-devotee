@@ -68,7 +68,7 @@ export class SearchCookComponent implements OnInit {
         return e.role === 1;
       });
       // this.cooks = cookJson.data;
-      this.cooks = this.cooks.filter(e => e.availibility === 'true');
+      this.cooks = this.cooks.filter(e => {if (e.availibility === 'true') {return true; }});
       this.cooks = this.addStatusParams(this.cooks);
       this.tempCookList = [...this.cooks];
       const roleValue =  this.utilityService.getRole();
@@ -103,13 +103,14 @@ export class SearchCookComponent implements OnInit {
           };
         });
         if (result.length > 0) {
-          const status = result[0].status;
-          if (status === RequestStatus.requestSend) {
-            cook.status = RequestStatus.requestSend;
-          } else {
-            cook.status = RequestStatus.hireMe;
-          }
-
+          result.forEach(e => {
+            if (e.valid) {
+              const status = e.status;
+              if (status === RequestStatus.requestSend) {
+                cook.status = RequestStatus.requestSend;
+              }
+            }
+          });
         } else { cook.status = RequestStatus.hireMe; }
       },
       err => {
@@ -123,8 +124,10 @@ export class SearchCookComponent implements OnInit {
     const hr: IHRModel = initialHRData;
     hr.cookId = cook.id;
     hr.devoteeId = localStorage.getItem(token);
+    hr.valid = true;
     // hr.devoteeId =
     if (cook.status !== RequestStatus.requestSend) {this.hrManagementService.createHireRequst(hr);
+                                                    this.getCook();
                                                     this.toastr.success('please check your profile for further detail of cook', 'success');
      }
   }

@@ -72,7 +72,7 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     centerName: new FormControl(''),
     PMName: new FormControl(''),
     emailId: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-    availibility: new FormControl(true),
+    availibility: new FormControl('true'),
     availibilityDate: new FormControl(true),
     role: new FormControl(1, Validators.compose([Validators.required])),
     workExperience: new FormArray([this.fb.group(this.initWorkExperience())])

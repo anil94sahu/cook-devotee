@@ -76,7 +76,7 @@ export class ViewProfileComponent implements OnInit {
           this.viewProfileService.getProfileById(oppRole, e.cookId)
             .subscribe(arg => {
               this.loaderService.hide();
-              if (arg) {this.requestDevoteeArr.push({user: arg.data(), serviceId : e.id, status: e.status}); }
+              if (arg && e.status !== 0) {this.requestDevoteeArr.push({user: arg.data(), serviceId : e.id, status: e.status}); }
               console.log(arg);
             },
             () => {
@@ -158,7 +158,12 @@ export class ViewProfileComponent implements OnInit {
     }
 
   hiringResponse(status, serviceId) {
-    this.hrManagementService.updateStatus(serviceId, {status});
+    const body = {status, valid: true};
+    if (status === 0) {
+      this.hrManagementService.deleteHireRequest(serviceId);
+     } else {
+      this.hrManagementService.updateStatus(serviceId, body);
+    }
   }
 
   registerCookByDevotee() {

@@ -28,7 +28,11 @@ export class HRManagementService {
         .snapshotChanges();
       }
 
-  public updateStatus(serviceId:string, body:any) {
-      this.firestore.doc(this.tableName+'/' + serviceId).update(body);
+  public updateStatus(serviceId: string, body: any) {
+      this.firestore.doc(this.tableName + '/' + serviceId).update(body);
       }
+
+  public deleteHireRequest(Id) {
+      this.fbs.delete(this.tableName + '/' , Id);
+  }
 }
