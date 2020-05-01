@@ -9,14 +9,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="javascript:void(0);"><span class="sr-only">(current)</span>
+          <a class="nav-link" [routerLink]="['']" routerLinkActive="router-link-active" ><span class="sr-only">(current)</span>
             <app-scroll-to [linkText]="'Home'" [scrollToClass]="'home'"></app-scroll-to>
           </a>
         </li>
         
         <li class="nav-item">
             <a class="nav-link" href="javascript:void(0);">
-              <app-scroll-to [linkText]="'Contact'" [scrollToClass]="'contact'"></app-scroll-to>
+              <app-scroll-to [linkText]="'Contact'" [scrollToClass]="'footer'"></app-scroll-to>
             </a>
         </li>
         <li class="nav-item">

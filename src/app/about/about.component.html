@@ -1,23 +1,74 @@
 <div class="chef-welcome">
-  <div class="container">
-    <h1>Instruction</h1>
-    
-    <p>
-      Register with your mail Id and mobile number
-    </p>
-    <p>
-      Search  for the cook
-    </p>
-    <p>
-      Filter and send hire request to cook devotee
-    </p>
-    <p>
-      Get the phone number and final the deal on call
-    </p>
-    <p>
-      You are done....
-    </p>
-    <a href="#" class="btn btn-default-red"><i class="fa fa-file-text-o"></i> Read  More</a>
+  <div class="container ml-5">
+    <div class="row">
+      <div class="col-sm-6 mt-5">
+        <div>
+          <ul class="list-group">
+            <li class="list-group-item active">
+              <h4>Instruction</h4>
+            </li>
+            <li class="list-group-item">
+                Register with your mail Id and mobile number
+            </li>
+            <li class="list-group-item">
+                Search  for the cook
+            </li>
+            <li class="list-group-item">
+                Filter and send hire request to cook devotee
+            </li>
+            <li class="list-group-item">
+                Get the phone number and final the deal on call
+            </li>
+            <li class="list-group-item">
+              <b>You are done....</b>
+            </li>
+            
+          </ul>
+          <br>
+          <br>
+          <br>
+
+          <ng-template #extended>
+            <ul class="list-group text-left">
+              <li class="list-group-item active">
+                <h4>Advance Feature</h4>
+              </li>
+              <li class="list-group-item">
+                  You can verify you email address by click on the link send to your mail ID.
+              </li>
+              <li class="list-group-item">
+                  Devotee can verify his mobile number for verification code for validity.
+              </li>
+              <li class="list-group-item">
+                  Devotee can add cook with his own mail ID.
+              </li>
+              <li class="list-group-item">
+                  Devotee can edit profile.
+              </li>
+              <li class="list-group-item">
+                  Change/forgot password can make the devotee reliable.
+              </li>
+              <li class="list-group-item">
+                Devotee can search cook with varioous parameter like state, salary etc...
+              </li>
+
+            </ul>
+            <br>
+            <br>
+            <br>
+          </ng-template>
+         
+          
+          <div class="text-right">
+            <a *ngIf="!extend;else extended" (click) = "readMore(true)" class="btn btn-default-red"><i class="fa fa-file-text-o"></i> Read  More</a>
+            <a *ngIf="extend" (click) = "readMore(false)" class="btn btn-default-red"><i class="fa fa-file-text-o"></i> Read  Less</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        
+      </div>
+    </div>
   </div>
   <!-- end .container -->
 </div>

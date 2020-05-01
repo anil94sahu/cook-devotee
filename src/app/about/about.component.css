@@ -9,7 +9,20 @@
         .chef-welcome {
 		padding-bottom: 30px;
 		padding-left: 30px;
-	}
+  }
+  
+@media (max-width: 768px) {
+  .chef-welcome {
+		padding:0;
+  }
+  .col-sm-6{ 
+      width: 80%;
+    }
+    .ml-5, .mt-5{
+      margin: 0;
+    }
+    
+  }
 
 	.chef-welcome h1 {
 		padding: 30px 0 10px 0;
@@ -29,6 +42,7 @@
     width: 100%;
     background: url(../../assets/images/about/devotee-welcome-bg.jpg) top center no-repeat;
     background-size: cover;
+    min-height: 800px;
   }
   
   .chef-welcome h1 {
