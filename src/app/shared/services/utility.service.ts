@@ -78,4 +78,8 @@ export class UtilityService {
     getValue(key) {
       return JSON.parse(localStorage.getItem(key));
     }
+
+    response(res){
+      return res.map(e => e.payload.doc.data());
+    }
 }

@@ -1,7 +1,7 @@
 <form [formGroup]="emailForm">
     <div *ngIf="state.emailId" class="form-group col-md-12 ml-0 pl-0">
         <div class="form-row">
-          <div class="form-group col-md-9">
+          <div class="form-group required col-md-9">
             <label for="emailId">{{Label.emailId}}</label>
             <input type="email" [readonly]="(state.emailId === 'disable')?true:false" class="form-control" id="emailId" formControlName="emailId">
             <div *ngIf="(form.emailId.invalid && (form.emailId.dirty || form.emailId.touched))" class="text-danger">

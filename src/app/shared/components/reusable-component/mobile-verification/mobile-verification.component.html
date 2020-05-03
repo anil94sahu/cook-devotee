@@ -1,7 +1,7 @@
 <form [formGroup]="mobileForm" class="mobile-form">
     <div  class="form-group col-md-12 pl-0">
         <div class="form-row">
-          <div *ngIf="state.mobileNo" class="form-group col-md-6">
+          <div *ngIf="state.mobileNo" class="form-group required col-md-6">
             <label for="mobile">{{Label.mobileNo}}</label>
             <input type="text" [readonly]="(state.mobileNo == 'disable')?true:false" class="form-control" id="mobile" placeholder="mobileNo" formControlName="mobileNo">
             <div *ngIf="(form.mobileNo.invalid && (form.mobileNo.dirty || form.mobileNo.touched)) || isSubmit" class="text-danger">

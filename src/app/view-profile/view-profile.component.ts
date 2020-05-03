@@ -26,6 +26,7 @@ export class ViewProfileComponent implements OnInit {
   role = parseInt(localStorage.getItem(role), 10);
   state: IStateModel;
   isAddCook = false;
+  registeredCooks = [];
   public config: PerfectScrollbarConfigInterface = {};
 
   constructor(private viewProfileService: ViewProfileService,
@@ -42,6 +43,7 @@ export class ViewProfileComponent implements OnInit {
     const id = this.route.snapshot.params.id;
     this.getCook(id);
     this.getRequestCook();
+    this.getListOfRegisteredCook();
   }
 
   getCook(id: string) {
@@ -169,5 +171,13 @@ export class ViewProfileComponent implements OnInit {
   registerCookByDevotee() {
     this.setState('cookByDevotee');
     this.router.navigate(['register']);
+  }
+
+  getListOfRegisteredCook() {
+    const {currentUser} = this.utilityService.getLocalStorage();
+    this.viewProfileService.getListOfRegisteredCook(currentUser.email)
+    .subscribe(res => {
+        this.registeredCooks = this.utilityService.response(res);
+      });
   }
 }

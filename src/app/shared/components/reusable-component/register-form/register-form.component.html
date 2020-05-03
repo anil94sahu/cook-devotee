@@ -2,7 +2,7 @@
 <div *ngIf="Label">
     <form class="pd-10 register-ui" [formGroup]="cookRegistrationForm">
         <div class="form-row">
-          <div *ngIf="state.name" class="form-group col-md-6">
+          <div *ngIf="state.name" class="form-group required col-md-6">
             <label for="">{{Label.name}}</label>
             <input type="text" class="form-control" id="" placeholder="" formControlName="name">
             <div *ngIf="(form.name.invalid && (form.name.dirty || form.name.touched)) || isSubmit" class="text-danger">
@@ -17,7 +17,7 @@
               </div> -->
             </div>
           </div>
-          <div *ngIf="state.password" class="form-group col-md-6">
+          <div *ngIf="state.password" class="form-group required col-md-6">
             <label for="inputPassword4">{{Label.password}}</label>
             <input type="password" [readonly]="(state.password === 'disable')?true:false" class="form-control" id="inputPassword4" formControlName="password" placeholder="Password">
             <div *ngIf="(form.password.invalid && (form.password.dirty || form.password.touched)) || isSubmit" class="text-danger">
@@ -48,7 +48,7 @@
         </div>
           
         <div *ngIf="state.address" formGroupName ="address">
-          <div class="form-row">
+          <div class="form-row" *ngIf="(state.url === 'devotee' || state.url === 'edit-devotee')">
               <div class="form-group col-md-6">
                 <label for="">{{(state.url === 'devotee' || state.url === 'edit-devotee')?'Center House No' : Label.address.houseNo}}</label>
                 <input type="text" class="form-control" id="" placeholder="" formControlName="houseNo">
@@ -147,7 +147,7 @@
               <label for="">{{Label.specialist}}</label>
               <input type="text" class="form-control" id="" placeholder="" formControlName="specialist">
             </div>
-            <div *ngIf="state.salary" class="form-group col-md-3">
+            <div *ngIf="state.salary" class="form-group required col-md-3">
                 <label for="">Current {{Label.salary}}</label>
                 <input type="text" class="form-control" id="" placeholder="" formControlName="salary">
                 <div *ngIf="(form.salary.invalid && (form.salary.dirty || form.salary.touched)) || isSubmit" class="text-danger">
@@ -324,7 +324,7 @@
         </div>
 
         <div class="m-2 text-center w-100 p-3">
-          <button *ngIf="state.url === 'edit'; else add" (click) = "onSubmit(cookRegistrationForm.value)" class="btn btn-success btn-mg">Update</button>
+          <button *ngIf="state.url === 'edit' || state.url === 'edit-devotee' || state.url === 'edit-cook'; else add" (click) = "onSubmit(cookRegistrationForm.value)" class="btn btn-success btn-mg">Update</button>
           <ng-template #add>
             <button (click) = "onSubmit(cookRegistrationForm.value)" class="btn btn-success btn-mg">Sign Up</button>
             <button (click) = "onReset()" class="btn btn-primary btn-danger">Reset</button>

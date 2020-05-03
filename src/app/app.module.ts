@@ -46,6 +46,7 @@ import { LatestFromBlogComponent } from './latest-from-blog/latest-from-blog.com
 import { ArticleComponent } from './article/article.component';
 import { DirectorBlogComponent } from './director-blog/director-blog.component';
 import { GuideComponent } from './guide/guide.component';
+import { RegisteredCookListComponent } from './registered-cook-list/registered-cook-list.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { GuideComponent } from './guide/guide.component';
     LatestFromBlogComponent,
     ArticleComponent,
     DirectorBlogComponent,
-    GuideComponent
+    GuideComponent,
+    RegisteredCookListComponent
   ],
   imports: [
     BrowserModule,

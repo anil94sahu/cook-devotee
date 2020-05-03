@@ -11,6 +11,11 @@ body{
     font-family: "Times New Roman", Times, serif;
 }
 
+.form-group.required label:after {
+  content:"*";
+  color:red;
+}
+
 .mg-8 {
     margin-top: 8vh;
 }
