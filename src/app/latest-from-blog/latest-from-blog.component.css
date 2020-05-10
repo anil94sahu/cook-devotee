@@ -56,8 +56,25 @@
   
   .latest-from-blog .read-older { padding: 60px 0px; }
   
-  
-  
+  .receipe-box .row .col-sm-6{  
+    min-height: 300px;
+    
+  }
+
+  .upload-button button{
+    top: 50%;;
+  }
+
+  .find-devotee{
+    font-weight: 200;
+    font-family: 'Lobster', cursive;
+}
+
+  @media (max-width:500px){
+    .receipe-box .row .col-sm-6{  
+      width: 100%;
+    }
+  }
   
   
   /***************************************************/
