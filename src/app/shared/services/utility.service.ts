@@ -79,7 +79,16 @@ export class UtilityService {
       return JSON.parse(localStorage.getItem(key));
     }
 
-    response(res){
+    response(res) {
       return res.map(e => e.payload.doc.data());
+    }
+
+    // response with ID
+    responsive(res) {
+      return res.map(e => {
+        const payload =   e.payload.doc.data();
+        payload.id = e.payload.doc.id;
+        return payload;
+      });
     }
 }

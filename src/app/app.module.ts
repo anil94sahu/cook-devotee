@@ -47,6 +47,7 @@ import { ArticleComponent } from './article/article.component';
 import { DirectorBlogComponent } from './director-blog/director-blog.component';
 import { GuideComponent } from './guide/guide.component';
 import { RegisteredCookListComponent } from './registered-cook-list/registered-cook-list.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { RegisteredCookListComponent } from './registered-cook-list/registered-c
     ArticleComponent,
     DirectorBlogComponent,
     GuideComponent,
-    RegisteredCookListComponent
+    RegisteredCookListComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

@@ -50,7 +50,7 @@ export class MobileVerificationComponent implements OnInit, OnDestroy, AfterCont
     const mob = this.form.mobileNo.value;
     const num = '+91' + mob;
     if (this.form.mobileNo.invalid) {
-     return this.toastr.warning('please enter valid mobile number', 'warning');
+     return this.toastr.warning('please enter valid mobile number', 'info');
     }
     firebase.auth().signInWithPhoneNumber(num, appVerifier)
       .then(result => {

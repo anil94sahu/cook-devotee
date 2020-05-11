@@ -1,0 +1,61 @@
+<div class="container-fluid my-5">
+  <div class="row">
+    <div class="col-sm-2">
+      <nav class="navbar bg-light">
+      
+        <!-- Links -->
+        <ul class="navbar-nav bg bg-info">
+          <li class="nav-item px-5 border">
+            <a class="nav-link" (click) = "getCooks()">All Cooks</a>
+          </li>
+          <li class="nav-item px-5 border">
+            <a class="nav-link" (click) = "getDevotees()">Al Devotee</a>
+          </li>
+        </ul>
+      
+      </nav>
+    </div>
+    <div class="col-sm-8">
+      <div class="container mx-auto w-100">
+        <h4>
+          List are given below : 
+            <!-- Cook(s) registered by me :  -->
+        </h4>
+        <table class="table table-hover  border border-dark">
+            <thead>
+              <tr class="table table-success">
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Picture</th>
+                <th scope="col">Mobile No</th>
+                <th scope="col">Available</th>
+                <th scope="col">Age</th>
+                <th scope="col">Experience</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table table-warning" *ngFor="let item of arr;let index = index">
+                <th scope="row">{{index+1}}</th>
+                <td>{{item.name}}</td>
+                <td>
+                    <div class="show">
+                        <img 
+                         src="{{item.photo}}" class="img-fluid profile-pic" alt="Loading image...">
+                    </div>
+                </td>
+                <td>{{item.mobileNo}}</td>
+                <td>{{item.availibility}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item && item.workExperience && item.workExperience[0].periodOfWork}}</td>
+                <td><button type="button" (click)="delete(item.id)" class="btn btn-danger">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    </div>
+  </div>
+
+</div>
+
+

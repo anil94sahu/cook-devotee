@@ -13,7 +13,7 @@ export class CanActivateTeam implements CanActivate {
         if (token) {
             return true;
         } else {
-            this.toastr.info('please login first', 'warning');
+            this.toastr.info('please login first', 'info');
             return false;
         }
   }

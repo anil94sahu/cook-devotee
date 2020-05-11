@@ -21,7 +21,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link find-devotee" [routerLink]="['/search-cook/cook']" routerLinkActive="router-link-active" >
-            <app-scroll-to [linkText]="'find cook devotee'" [scrollToClass]="'rank'"></app-scroll-to>
+            <app-scroll-to [linkText]="'find a cook devotee'" [scrollToClass]="'rank'"></app-scroll-to>
           </a>
         </li>
       </ul>
@@ -34,7 +34,9 @@
         <button *ngIf="!auth.isAuthenticate" [routerLink] ="'/register-devotee'"  class="btn my-2 my-sm-0 btn-default-white m-2" >Center Registration</button>
         <input class="form-control mr-sm-2 search" [(ngModel)]="searchParam" type="search" placeholder="Search" aria-label="Search">
         <button (click) = "navigateToSearch(searchParam)" class="btn btn-default-white my-2 my-sm-0" type="submit">Search</button>
+        <button *ngIf="auth.isAuthenticate && currentEmailId === 'anil94sahu@gmail.com'"  [routerLink] ="'/admin'" class="btn btn-default-white my-2 my-sm-0" >Admin</button>
       </div>
+
     </div>
   </nav>
 

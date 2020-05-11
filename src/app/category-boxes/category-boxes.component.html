@@ -7,43 +7,16 @@
     </div>
     <div class=" container">
         <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12 text-center">
-                <div class="category-boxes-item">
+            <div class="col-md-3 col-sm-6 col-xs-12 text-center" *ngFor="let item of cooks; let i = index">
+                <div class="category-boxes-item" *ngIf="i < 8">
                     <figure>
-                        <img src="../../assets/images/profile/profile-pic-default.jpg">
-                        <h4>Vidhan pr</h4>
-                    </figure>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 col-xs-12  text-center">
-                <div class="category-boxes-item">
-                    <figure>
-                        <img src="../../assets/images/profile/profile-pic-default.jpg">
-                        <h4>Nimai pr</h4>
-                    </figure>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 col-xs-12 text-center">
-                <div class="category-boxes-item">
-                    <figure>
-                        <img src="../../assets/images/profile/profile-pic-default.jpg">
-                        <h4>Anil pr</h4>
-                    </figure>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 col-xs-12 text-center">
-                <div class="category-boxes-item">
-                    <figure>
-                        <img class="img-responsive" src="../../assets/images/profile/profile-pic-default.jpg">
-                        <h4>Palash pr</h4>
+                        <img (click)="viewDetails(item, i)" src="{{item.photo? item.photo : '../../assets/images/profile/profile-pic-default.jpg'}}">
+                        <h4>{{item.name}}</h4>
                     </figure>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12 text-center">
                 <div class="category-boxes-item">
                     <figure>
@@ -79,7 +52,7 @@
                     </figure>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- end .row -->
 
     </div>

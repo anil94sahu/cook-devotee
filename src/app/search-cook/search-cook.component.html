@@ -30,7 +30,7 @@
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <div class="container row align-items-center search-list">
                     <div class="col | col-sm-2 cook-image">
-                        <img 
+                        <img [style.height.px]="120"
                          src="{{cook.photo && offline ? cook.photo  : profilePics}}" class="img-fluid profile-pic" alt="Loading images...">
                     </div>
                     <div class="col | col-sm-8 cook-detail">
