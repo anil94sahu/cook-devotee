@@ -168,11 +168,11 @@
           <b>Request Detail</b>  
         </legend>
       <div *ngIf="profile">
-        <ul class="cook-box list-group" *ngFor="let cook of requestDevoteeArr">
-            <li  class="list-group-item d-flex justify-content-between align-items-center mb-3">
+        <ul class="cook-box list-group" *ngFor="let cook of requestDevoteeArr; let i = index">
+            <li *ngIf="i < 2" class="list-group-item d-flex justify-content-between align-items-center mb-3">
                 <div class="container row align-items-center search-list">
                     <div class="col | col-sm-2 cook-image">
-                        <img 
+                        <img [style.height.px]="120"
                          src="{{cook.user && cook.user.photo?cook.user.photo: defaultProfilePic}}" class="img-fluid profile-pic" alt="Loading image...">
                     </div>
                     <div *ngIf="cook && cook.user" class="col | col-sm-8  cook-detail">
@@ -183,6 +183,10 @@
                                 <li *ngIf="cook.user && cook.user.workExperience && cook.user.workExperience[0].periodOfWork" class="list-group-item d-inline-flex justify-content-between align-items-center">
                                     <strong>Experience</strong>
                                   <span class="badge badge-primary badge-pill text-break">{{cook.user.workExperience[0].periodOfWork}}</span>
+                                </li>
+                                <li *ngIf="cook.user.salary" class="list-group-item d-inline-flex justify-content-between align-items-center">
+                                    <strong>Expected Salary</strong>
+                                  <span class="badge badge-primary badge-pill text-break">{{cook.user.salary}}</span>
                                 </li>
                                 <li *ngIf="cook.user.centerName" class="list-group-item d-inline-flex justify-content-between align-items-center">
                                     <strong>Center Name</strong>
