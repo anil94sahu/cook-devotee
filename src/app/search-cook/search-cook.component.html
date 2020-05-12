@@ -41,6 +41,10 @@
                                     <strong>Experience</strong>
                                   <span class="badge badge-primary badge-pill text-break">{{cook.workExperience[0].periodOfWork}}</span>
                                 </li>
+                                <li *ngIf="cook.salary" class="list-group-item d-inline-flex justify-content-between align-items-center">
+                                    <strong>Expected Salary</strong>
+                                  <span class="badge badge-primary badge-pill text-break">{{cook.salary}}</span>
+                                </li>
                                 <li *ngIf="utilityService.reFrameAddress(cook.address)" class="list-group-item .d-inline-flex justify-content-between align-items-center">
                                     <strong> Address</strong>
                                   <span class="badge badge-primary badge-pill text-break">{{utilityService.reFrameAddress(cook.address)}}</span>
