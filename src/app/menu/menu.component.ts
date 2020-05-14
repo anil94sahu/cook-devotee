@@ -20,11 +20,15 @@ export class MenuComponent implements OnInit {
   currentEmailId = '';
 
   constructor(private router: Router, public auth: AuthService) {
-    const currentuserdata = JSON.parse(localStorage.getItem('currentuserdata')); 
-    if(currentuserdata){
+    const currentuserdata = JSON.parse(localStorage.getItem('currentuserdata'));
+    if (currentuserdata) {
       this.currentEmailId = currentuserdata.email;
     }
    }
+
+  isAdmin() {
+    return this.auth.isAuthenticate && this.currentEmailId === 'anil94sahu@gmail.com';
+  }
 
   ngOnInit() {
   }

@@ -55,17 +55,28 @@ export class AdminComponent implements OnInit {
     return this.editForm.controls;
   }
   getCooks() {
-    this.adminService.getCooks().subscribe(cooks => {this.arr = this.utilityService.responsive(cooks); this.tempList = [...this.arr];
-                                                     this.searchByParams(); });
+    this.loaderService.show();
+    this.adminService.getCooks().subscribe(cooks => {this.loaderService.hide();
+                                                     this.arr = this.utilityService.responsive(cooks);
+                                                     this.tempList = [...this.arr];
+                                                     this.searchByParams(); },
+                                                     err => {
+                                                       this.loaderService.hide();
+                                                     });
   }
 
   delete(id) {
     confirm('Are you sure you want to delete');
+    this.loaderService.show();
     this.adminService.removeCook(id);
+    this.loaderService.hide();
   }
 
   getDevotees() {
-    this.adminService.getDevotees().subscribe(cooks => {this.arr = this.utilityService.responsive(cooks); this.tempList = [...this.arr]; });
+    this.loaderService.show();
+    this.adminService.getDevotees().subscribe(cooks => {
+      this.loaderService.hide();
+      this.arr = this.utilityService.responsive(cooks); this.tempList = [...this.arr]; });
   }
 
   edit(values) {
@@ -107,7 +118,9 @@ export class AdminComponent implements OnInit {
     if (this.editForm.valid) {
       console.log(body);
       confirm('Are you sure you want to update');
+      this.loaderService.show();
       this.adminService.editCook(id, body);
+      this.loaderService.hide();
       this.modal.close();
     } else {
 
@@ -116,6 +129,7 @@ export class AdminComponent implements OnInit {
   }
 
   searchByParams() {
+    this.loaderService.show();
     const arr = [...this.arr];
     let tempArr = arr;
     const params = {...this.params};
@@ -125,6 +139,7 @@ export class AdminComponent implements OnInit {
       });
     }
     this.tempList = tempArr;
+    this.loaderService.hide();
   }
 
 }
