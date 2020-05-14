@@ -10,27 +10,30 @@ export class AdminService {
 
   constructor(private fbs: FirebaseService) { }
 
-  getCooks(){
+  getCooks() {
     const tableName = API.RegisterTableName;
     return this.fbs.get(tableName);
   }
 
-  getDevotees(){
+  getDevotees() {
     const tableName = API.DevoteeRegisterTableName;
     return this.fbs.get(tableName);
   }
 
-  removeCook(id){
+  removeCook(id) {
     const tableName = `${API.RegisterTableName}/`;
     return this.fbs.delete(tableName, id);
   }
 
-  removeDevote(id){
+  removeDevote(id) {
     const tableName = API.DevoteeRegisterTableName;
     return this.fbs.delete(tableName, id);
   }
 
-  editCook(id,body){}
+  editCook(id, body) {
+    const tableName = API.RegisterTableName;
+    return this.fbs.update(tableName, body, id);
+  }
 
-  editDevotee(id, body){}
+  editDevotee(id, body) {}
 }

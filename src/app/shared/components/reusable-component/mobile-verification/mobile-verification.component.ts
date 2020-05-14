@@ -67,6 +67,8 @@ export class MobileVerificationComponent implements OnInit, OnDestroy, AfterCont
       .confirm(this.verificationCode)
       .then(result => {
         this.toastr.success('verified successfully', 'success');
+        this.windowRef.confirmationResult = undefined;
+        this.verificationCode = undefined;
       })
       .catch(error => {
         this.toastr.error('Incorrect code entered?', 'error');

@@ -32,6 +32,7 @@
                 <th scope="col">Age</th>
                 <th scope="col">Experience</th>
                 <th scope="col">Action</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -40,14 +41,15 @@
                 <td>{{item.name}}</td>
                 <td>
                     <div class="show">
-                        <img 
-                         src="{{item.photo}}" class="img-fluid profile-pic" alt="Loading image...">
+                        <img [style.height.px] = "35"
+                         src="{{item.photo?item.photo: '../../../../assets/images/profile/profile-pic-default.jpg'}}" class="img-fluid profile-pic" alt="Loading image...">
                     </div>
                 </td>
                 <td>{{item.mobileNo}}</td>
                 <td>{{item.availibility}}</td>
                 <td>{{item.age}}</td>
                 <td>{{item && item.workExperience && item.workExperience[0].periodOfWork}}</td>
+                <td><button type="button" (click)="openScrollableContent(longContent, item)" class="btn btn-info">Edit</button></td>
                 <td><button type="button" (click)="delete(item.id)" class="btn btn-danger">Delete</button></td>
               </tr>
             </tbody>
@@ -55,7 +57,61 @@
     </div>
     </div>
   </div>
-
 </div>
+
+//modal popup for edit part
+<ng-template #longContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Modal title</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="pd-10 register-ui" [formGroup]="editForm">
+      <div class="form-row">
+        <div class="form-group required col-md-6">
+          <label for="">User Name: </label>
+          <input type="text" class="form-control" id="" placeholder="" formControlName="name">
+          <div *ngIf="(form.name.invalid && (form.name.dirty || form.name.touched))" class="text-danger">
+          </div>
+        </div>
+        <div class="form-group required col-md-6">
+          <label for="">Salary: </label>
+          <input type="text" class="form-control" id="" placeholder="" formControlName="salary">
+          <div *ngIf="(form.salary.invalid && (form.salary.dirty || form.salary.touched))" class="text-danger">
+            salary is mandatory.
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="">Available</label>
+          <select  formControlName="availibility"  class="form-control" >
+            <option value = "true" class="dropdown-item">Yes</option>
+            <option value = "false" class="dropdown-item">No</option>
+            <option value = "on" class="dropdown-item">On</option>
+          </select>
+        </div>
+        <div  class="form-group col-md-6">
+          <label for="">Age</label>
+          <input type="text" class="form-control" id="" placeholder="" formControlName="age">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="">No of years of cooking</label>
+          <input type="text" class="form-control" formControlName="periodOfWork" id="" placeholder="">
+        </div>
+        <div class="row px-5">
+          <div  class="form-group col-md-12 br">
+            <app-profile-loader (valueChange)='profileImage($event)'></app-profile-loader>
+          </div>
+        </div>
+      </div>
+      <button (click) = "onSubmit(editForm.value)" class="btn btn-success btn-mg">Update</button>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
 
 
