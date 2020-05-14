@@ -7,7 +7,7 @@
     </div>
     <div class="modal-body">
       <app-change-password *ngIf="role === 'cp'" (response)="response($event)"></app-change-password>
-      <app-reset-password *ngIf="role === 'fp'" (response)="response($event)"></app-reset-password>     
+      <app-reset-password *ngIf="role === 'fp'" (response)="response($event)"></app-reset-password>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
