@@ -3,18 +3,12 @@
     <form class="pd-10 register-ui" [formGroup]="cookRegistrationForm">
         <div class="form-row">
           <div *ngIf="state.name" class="form-group required col-md-6">
-            <label for="">{{Label.name}}</label>
+            <label for="">{{state.url === 'cook' || state.url === 'edit-cook' || state.url === 'cookByDevotee' ? 'Cook Name' : 'Devotee Name'}}</label>
             <input type="text" class="form-control" id="" placeholder="" formControlName="name">
             <div *ngIf="(form.name.invalid && (form.name.dirty || form.name.touched)) || isSubmit" class="text-danger">
               <div *ngIf="form.name.errors?.required">
                 {{RegistrationMessage.name}}
               </div>
-              <!-- <div *ngIf="name.errors.minlength">
-                Name must be at least 4 characters long.
-              </div>
-              <div *ngIf="name.errors.maxlength">
-                Name must not exceed 15 characters.
-              </div> -->
             </div>
           </div>
           <div *ngIf="state.password" class="form-group required col-md-6">
@@ -27,9 +21,6 @@
                <div *ngIf="form.password.errors?.pattern">
                 {{RegistrationMessage.strong_password}}
               </div>
-             <!-- <div *ngIf="name.errors.maxlength">
-                Name must not exceed 15 characters.
-              </div> -->
             </div>
           </div>
           <div class="col-md-6">
@@ -43,6 +34,7 @@
             </ng-container>
           </div>
           <div *ngIf="state.photo" class="form-group col-md-6 br">
+            <label for="">{{state.url === 'cook' || state.url === 'edit-cook' || state.url === 'cookByDevotee' ? 'Cook Photo' : 'Devotee Photo'}}</label>
             <app-profile-loader (valueChange)='profileImage($event)'></app-profile-loader>
           </div>
         </div>
@@ -98,17 +90,15 @@
               </div>
               <div class="form-group col-md-6">
                   <label for="">{{Label.address.state}}</label>
-                  <input type="text" class="form-control" id="" placeholder="" formControlName="state">
+                  <select class="form-control form-control-sm" placeholder="state" formControlName="state" id="exampleFormControlSelect1">
+                    <option  value = "state" selected>state</option>
+                    <option *ngFor="let item of paramsConst.allStates" [value] = "item">{{item}}</option>
+                  </select>
+                  <!-- <input type="text" class="form-control" id="" placeholder="" formControlName="state"> -->
                   <div *ngIf="aform.state.invalid && (aform.state.dirty || aform.state.touched)" class="text-danger">
                     <div *ngIf="aform.state.errors?.required">
                       {{RegistrationMessage.state}}
                     </div>
-                    <!-- <div *ngIf="name.errors.minlength">
-                      Name must be at least 4 characters long.
-                    </div>
-                    <div *ngIf="name.errors.maxlength">
-                      Name must not exceed 15 characters.
-                    </div> -->
                   </div>
               </div>
           </div>

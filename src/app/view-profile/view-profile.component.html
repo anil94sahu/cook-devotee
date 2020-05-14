@@ -150,7 +150,7 @@
             <td>
                 <div class="show-cook">
                     <img 
-                     src="{{item.photo}}" class="img-fluid profile-pic" [style.height.px]="35" alt="Loading image...">
+                     src="{{item.photo?item.photo:defaultProfilePic }}" class="img-fluid profile-pic" [style.height.px]="35" alt="Loading image...">
                 </div>
             </td>
             <td>{{item.mobileNo}}</td>

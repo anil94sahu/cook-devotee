@@ -1,4 +1,19 @@
+
 <div class="container-fluid my-5">
+  <div class="container search-container">
+    <div class= "col-sm-offset-2 col-sm-10 search-params ml-5">
+        <div class="input-group search-row">
+            <input type="text" class="form-control search-input" placeholder="search..." [(ngModel)]="params.searchString" (input)="searchByParams()" aria-label="search box" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-success btn-outline-primary text-white" type="button" (click)="searchByParams()">search</button>
+            </div>
+            <hr>
+        </div>
+        <hr>
+    </div>
+</div>
+<hr>
+
   <div class="row">
     <div class="col-sm-2">
       <nav class="navbar bg-light">
@@ -36,7 +51,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="table table-warning" *ngFor="let item of arr;let index = index">
+              <tr class="table table-warning" *ngFor="let item of tempList;let index = index">
                 <th scope="row">{{index+1}}</th>
                 <td>{{item.name}}</td>
                 <td>
@@ -59,7 +74,7 @@
   </div>
 </div>
 
-//modal popup for edit part
+<!-- modal popup for edit part -->
 <ng-template #longContent let-modal>
   <div class="modal-header">
     <h4 class="modal-title">Modal title</h4>

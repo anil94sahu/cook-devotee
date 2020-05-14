@@ -15,8 +15,11 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 export class AdminComponent implements OnInit {
 
   arr = [];
+  tempList = [];
   editForm: FormGroup;
   modal: NgbModalRef;
+  params = {searchString: '', name: '', emailId: '', salary: 'salary', state: 'state', centerName: '', };
+
 
   constructor(private adminService: AdminService, private utilityService: UtilityService, private modalService: NgbModal,
               private fb: FormBuilder,
@@ -52,7 +55,8 @@ export class AdminComponent implements OnInit {
     return this.editForm.controls;
   }
   getCooks() {
-    this.adminService.getCooks().subscribe(cooks => this.arr = this.utilityService.responsive(cooks));
+    this.adminService.getCooks().subscribe(cooks => {this.arr = this.utilityService.responsive(cooks); this.tempList = [...this.arr];
+                                                     this.searchByParams(); });
   }
 
   delete(id) {
@@ -61,7 +65,7 @@ export class AdminComponent implements OnInit {
   }
 
   getDevotees() {
-    this.adminService.getDevotees().subscribe(cooks => this.arr = this.utilityService.responsive(cooks));
+    this.adminService.getDevotees().subscribe(cooks => {this.arr = this.utilityService.responsive(cooks); this.tempList = [...this.arr]; });
   }
 
   edit(values) {
@@ -109,6 +113,18 @@ export class AdminComponent implements OnInit {
 
     }
     this.loaderService.hide();
+  }
+
+  searchByParams() {
+    const arr = [...this.arr];
+    let tempArr = arr;
+    const params = {...this.params};
+    if (this.params.searchString) {
+      tempArr = tempArr.filter(item => {
+         return item.name.toLowerCase().includes(params.searchString.toLowerCase());
+      });
+    }
+    this.tempList = tempArr;
   }
 
 }

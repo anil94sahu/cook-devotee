@@ -1,3 +1,4 @@
+import { allState } from './../../../constants/utility.constant';
 import { token } from './../../../constants/local-storage.constant';
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { PhoneNumber } from 'src/app/shared/models/phone.model';
@@ -34,6 +35,7 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
   RegistrationMessage = RegistrationMessage;
   isSubmit = false;
   isEdit = false;
+  paramsConst = {allStates: allState};
   @Input()state: IStateModel;
   @Output() response = new EventEmitter<{cookDetail, url, userId}>();
 
