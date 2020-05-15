@@ -66,7 +66,9 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button (click) = "signInWithEmailAndPassword()"   type="button" class="btn btn-success">Login</button>
+          <button (click) = "signInWithEmailAndPassword()"   type="button" class="btn btn-success">Login
+            <i class="fa fa-circle-o-notch fa-spin" *ngIf="loading"></i>
+          </button>
           <button id = "closeLoginModal" type="button" (click) = "closeLoginModal()" class="btn btn-success" data-dismiss="modal">Close</button>
                   
         </div>

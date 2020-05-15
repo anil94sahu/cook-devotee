@@ -40,7 +40,7 @@ export class UtilityService {
         if (address.city) {fullAddress += address.city + ` `; }
         if (address.state) {fullAddress += address.state + ` `; }
         if (address.country) {fullAddress += address.country + ` `; }
-        if (address.pincode !== 0) {fullAddress += address.pincode + ` `; }
+        if (address.pincode && address.pincode !== 0) {fullAddress += address.pincode + ` `; }
       }
       return fullAddress;
     }

@@ -25,6 +25,8 @@ export class MobileVerificationComponent implements OnInit, OnDestroy, AfterCont
   verificationCode: string;
   verifyButton = false;
   windowRef: any;
+  loading = false;
+  verifyLoading = false;
 
   constructor(private win: WindowService, private toastr: ToastrService) { }
 
@@ -52,25 +54,31 @@ export class MobileVerificationComponent implements OnInit, OnDestroy, AfterCont
     if (this.form.mobileNo.invalid) {
      return this.toastr.warning('please enter valid mobile number', 'info');
     }
+    this.loading = true;
     firebase.auth().signInWithPhoneNumber(num, appVerifier)
       .then(result => {
+        this.loading = false;
         this.windowRef.confirmationResult = result;
         this.toastr.success('OTP sent successfully', 'success');
       })
       .catch(error => {
+        this.loading = false;
         this.toastr.error('Incorrect code entered?', 'error');
       });
   }
 
   verifyLoginCode() {
+    this.verifyLoading = true;
     this.windowRef.confirmationResult
       .confirm(this.verificationCode)
       .then(result => {
+        this.verifyLoading = false;
         this.toastr.success('verified successfully', 'success');
         this.windowRef.confirmationResult = undefined;
         this.verificationCode = undefined;
       })
       .catch(error => {
+        this.verifyLoading = false;
         this.toastr.error('Incorrect code entered?', 'error');
         }
       );

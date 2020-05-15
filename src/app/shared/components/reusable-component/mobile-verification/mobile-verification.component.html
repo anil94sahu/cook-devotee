@@ -23,14 +23,18 @@
             <div class="input-group mb-3">
                 <div class="" id="recaptcha-container"></div>
                 <div *ngIf="verifyButton" class="input-group-append">
-                  <button class="btn btn-primary" (click)="sendLoginCode()">OTP</button>
+                  <button class="btn btn-primary" (click)="sendLoginCode()"><span *ngIf="!loading">OTP</span>
+                    <i class="fa fa-circle-o-notch fa-spin" *ngIf="loading" style="font-size:40px"></i>
+                  </button>
                 </div>
             </div>
             <div *ngIf="windowRef.confirmationResult">
               <hr>
               <label for="code">Enter OTP</label><br>
               <input type="text" name="code" [(ngModel)]="verificationCode" [ngModelOptions]="{standalone: true}">
-              <button class="btn btn-primary" (click)="verifyLoginCode()">Verify</button>
+              <button class="btn btn-primary" (click)="verifyLoginCode()">Verify
+                <i class="fa fa-circle-o-notch fa-spin" *ngIf="verifyLoading" style="font-size:40px"></i>
+              </button>
             </div>
             
           </div>

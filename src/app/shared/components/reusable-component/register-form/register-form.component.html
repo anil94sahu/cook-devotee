@@ -314,9 +314,13 @@
         </div>
 
         <div class="m-2 text-center w-100 p-3">
-          <button *ngIf="state.url === 'edit' || state.url === 'edit-devotee' || state.url === 'edit-cook'; else add" (click) = "onSubmit(cookRegistrationForm.value)" class="btn btn-success btn-mg">Update</button>
+          <button *ngIf="state.url === 'edit' || state.url === 'edit-devotee' || state.url === 'edit-cook'; else add" (click) = "onSubmit(cookRegistrationForm.value)" class="btn btn-success btn-mg">Update
+            <i class="fa fa-circle-o-notch fa-spin" *ngIf="loading"></i>
+          </button>
           <ng-template #add>
-            <button (click) = "onSubmit(cookRegistrationForm.value)" class="btn btn-success btn-mg">Sign Up</button>
+            <button (click) = "onSubmit(cookRegistrationForm.value)" class="btn btn-success btn-mg">Sign Up
+              <i class="fa fa-circle-o-notch fa-spin" *ngIf="loading"></i>
+            </button>
             <button (click) = "onReset()" class="btn btn-primary btn-danger">Reset</button>
           </ng-template>
         </div>

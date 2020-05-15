@@ -38,6 +38,7 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
   paramsConst = {allStates: allState};
   @Input()state: IStateModel;
   @Output() response = new EventEmitter<{cookDetail, url, userId}>();
+  loading = false;
 
   constructor(private fb: FormBuilder,
               private loaderService: LoaderService) { }
@@ -135,12 +136,13 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     const userId = localStorage.getItem(token);
     const state = {cookDetail, url, userId};
     this.loaderService.show();
+    this.loading = true;
     if (this.cookRegistrationForm.valid) {
       this.response.emit(state);
     } else {
-
     }
     this.loaderService.hide();
+    this.loading = false;
   }
 
   onReset() {
