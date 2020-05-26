@@ -1,0 +1,60 @@
+<div class="category-boxes-icons">
+    <div class="hero-area horizontal text-center m-0">
+        <div class="hero-content">
+            <h2>Cooks At A Glance</h2>
+            <!-- <h3>All over india cook</h3>   -->
+        </div>
+    </div>
+    <div class=" container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12 text-center" *ngFor="let item of cooks; let i = index">
+                <div class="category-boxes-item" *ngIf="i < 8">
+                    <figure>
+                        <img (click)="viewDetails(item, i)" src="{{item.photo? item.photo : '../../assets/images/profile/profile-pic-default.jpg'}}">
+                        <h4>{{item.name}}</h4>
+                    </figure>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12 text-center">
+                <div class="category-boxes-item">
+                    <figure>
+                        <img src="../../assets/images/profile/profile-pic-default.jpg">
+                        <h4>Vikram pr</h4>
+                    </figure>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12  text-center">
+                <div class="category-boxes-item">
+                    <figure>
+                        <img src="../../assets/images/profile/profile-pic-default.jpg">
+                        <h4>Visambhar pr</h4>
+                    </figure>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12 text-center">
+                <div class="category-boxes-item">
+                    <figure>
+                        <img src="../../assets/images/profile/profile-pic-default.jpg">
+                        <h4>Tapas pr</h4>
+                    </figure>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12 text-center">
+                <div class="category-boxes-item">
+                    <figure>
+                        <img class="img-responsive" src="../../assets/images/profile/profile-pic-default.jpg">
+                        <h4>Tapan Pr</h4>
+                    </figure>
+                </div>
+            </div>
+        </div> -->
+        <!-- end .row -->
+
+    </div>
+    <!-- end .category-boxes-icons -->
+</div>

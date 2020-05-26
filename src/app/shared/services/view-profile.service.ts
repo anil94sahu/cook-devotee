@@ -35,4 +35,9 @@ export class ViewProfileService {
     //     return this.behave.asObservable();
     }
 
+    getListOfRegisteredCook(param) {
+        const tableName = 'register';
+        return  this.fbs.getByTableParam(tableName, 'emailId', param );
+    }
+
 }

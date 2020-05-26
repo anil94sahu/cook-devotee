@@ -12,7 +12,7 @@ export const images = {
     // tslint:disable-next-line: max-line-length
     prbhupadcooking: 'https://firebasestorage.googleapis.com/v0/b/demo2-ad873.appspot.com/o/assets%2Fimages%2Fcourasel%2Fprabhupada-cooking.jpg?alt=media&token=c17e28bf-db15-445a-98e4-043c808be73b',
     // tslint:disable-next-line: max-line-length
-    logo: 'https://gitalife.in/wp-content/uploads/2019/07/Gita-Life-Logo-Raw.png'
+    logo: '../../assets/images/logo/logo.png'
 };
 
 export const offlineCouraselImages = {
@@ -22,7 +22,7 @@ export const offlineCouraselImages = {
     vegpic2: '../../assets/images/courasel/vegpic2.jpg',
     gulabjamun : '../../assets/images/courasel/gulab jamun.jpg',
     prbhupadcooking: '../../assets/images/courasel/prbhupad cooking.jpg',
-    logo: 'https://gitalife.in/wp-content/uploads/2019/07/Gita-Life-Logo-Raw.png'
+    logo: '../../assets/images/logo/logo.png'
 };
 
 // tslint:disable-next-line: variable-name

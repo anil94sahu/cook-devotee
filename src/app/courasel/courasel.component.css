@@ -1,3 +1,9 @@
 img.d-block {
     height: 90vh;
 }
+
+@media (max-width: 768px) {
+    #gallery{
+        height: 500px;
+    }
+}

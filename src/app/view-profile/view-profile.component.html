@@ -28,19 +28,19 @@
                 </div>
                 <div class="col-md-2">
                     <button type="button" class="btn btn-success btn-lg" title= "edit profile" (click) = "editProfile(profile)">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"> Edit profile</i> 
                     </button>
                 </div>
                 <div class="col-md-2" *ngIf="isAddCook">
                     <button type="button" class="btn btn-success btn-lg" title= "Do you want to register a cook" (click) = "registerCookByDevotee(profile)">
-                        <i class="fa fa-plus" aria-hidden="true"></i> 
+                        <i class="fa fa-plus" aria-hidden="true"> Add cook</i> 
                     </button>
                 </div>
             </div>
-            <div class="col-md-12 ml-5">
+            <div class="col-md-10 ml-5">
                 <div class="tab-content profile-tab" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="row">
+                                <div class="row" *ngIf="profile.name">
                                     <div class="col-md-6">
                                         <label>Name</label>
                                     </div>
@@ -48,7 +48,7 @@
                                         <p>{{profile.name | lowercase}}</p>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" *ngIf="profile.address">
                                     <div class="col-md-6">
                                         <label>Address</label>
                                     </div>
@@ -56,7 +56,7 @@
                                         <p>{{utilityService.reFrameAddress(profile.address) | lowercase}}</p>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" *ngIf="profile.mobileNo">
                                     <div class="col-md-6">
                                         <label>Mobile No</label>
                                     </div>
@@ -64,7 +64,7 @@
                                         <p>{{profile.mobileNo}}</p>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" *ngIf="profile.married">
                                     <div class="col-md-6">
                                         <label>Married</label>
                                     </div>
@@ -72,7 +72,7 @@
                                         <p>{{profile.married | lowercase}}</p>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" *ngIf="profile.specialist">
                                     <div class="col-md-6">
                                         <label>Specialist</label>
                                     </div>
@@ -80,7 +80,7 @@
                                         <p>{{profile.specialist | lowercase}}</p>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" *ngIf="profile.salary">
                                     <div class="col-md-6">
                                         <label>Salary</label>
                                     </div>
@@ -88,7 +88,7 @@
                                         <p>{{profile.salary | lowercase}}</p>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" *ngIf="profile.age">
                                     <div class="col-md-6">
                                         <label>Age</label>
                                     </div>
@@ -96,7 +96,7 @@
                                         <p>{{profile.age}}</p>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" *ngIf="profile.emailId">
                                     <div class="col-md-6">
                                         <label>Email</label>
                                     </div>
@@ -104,7 +104,7 @@
                                         <p>{{profile.emailId | lowercase}}</p>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" *ngIf="profile.study">
                                     <div class="col-md-6">
                                         <label>Study</label>
                                     </div>
@@ -112,12 +112,12 @@
                                         <p>{{profile.study | titlecase}}</p>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" *ngIf="profile.workExperience[0].periodOfWork">
                                     <div class="col-md-6">
                                         <label>Work Experience</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>4 year</p>
+                                        <p>{{profile.workExperience[0].periodOfWork}}</p>
                                     </div>
                                 </div>
                     </div>
@@ -127,6 +127,40 @@
         </div>
 </div>
 
+<div class="container mx-auto w-100" *ngIf="role === 2">
+    <h4>
+        Cook(s) registered by me : 
+    </h4>
+    <table class="table table-hover  border border-dark">
+        <thead>
+          <tr class="table table-success">
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Picture</th>
+            <th scope="col">Mobile No</th>
+            <th scope="col">Available</th>
+            <th scope="col">Age</th>
+            <th scope="col">Experience</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table table-warning" *ngFor="let item of registeredCooks;let index = index">
+            <th scope="row">{{index+1}}</th>
+            <td>{{item.name}}</td>
+            <td>
+                <div class="show-cook">
+                    <img 
+                     src="{{item.photo?item.photo:defaultProfilePic }}" class="img-fluid profile-pic" [style.height.px]="35" alt="Loading image...">
+                </div>
+            </td>
+            <td>{{item.mobileNo}}</td>
+            <td>{{item.availibility}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item && item.workExperience && item.workExperience[0].periodOfWork}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
 
 <div class="request-box">
     <fieldset>
@@ -134,21 +168,25 @@
           <b>Request Detail</b>  
         </legend>
       <div *ngIf="profile">
-        <ul class="cook-box list-group" *ngFor="let cook of requestDevoteeArr">
-            <li  class="list-group-item d-flex justify-content-between align-items-center mb-3">
+        <ul class="cook-box list-group" *ngFor="let cook of requestDevoteeArr; let i = index">
+            <li *ngIf="i < 2" class="list-group-item d-flex justify-content-between align-items-center mb-3">
                 <div class="container row align-items-center search-list">
                     <div class="col | col-sm-2 cook-image">
-                        <img 
-                         src="{{cook.user.photo?cook.user.photo: defaultProfilePic}}" class="img-fluid profile-pic" alt="Loading image...">
+                        <img [style.height.px]="120"
+                         src="{{cook.user && cook.user.photo?cook.user.photo: defaultProfilePic}}" class="img-fluid profile-pic" alt="Loading image...">
                     </div>
                     <div *ngIf="cook && cook.user" class="col | col-sm-8  cook-detail">
                         <h1 *ngIf="cook.user.name">{{cook.user.name | titlecase}}</h1>
                         <!-- <h6>{{cook.user.description}}</h6> -->
                         <perfect-scrollbar class="scroll-container" [config]="config" >
                             <ul class="p-0 m-0 d-inline-flex">
-                                <li class="list-group-item d-inline-flex justify-content-between align-items-center">
+                                <li *ngIf="cook.user && cook.user.workExperience && cook.user.workExperience[0].periodOfWork" class="list-group-item d-inline-flex justify-content-between align-items-center">
                                     <strong>Experience</strong>
-                                  <span class="badge badge-primary badge-pill text-break">10 Month</span>
+                                  <span class="badge badge-primary badge-pill text-break">{{cook.user.workExperience[0].periodOfWork}}</span>
+                                </li>
+                                <li *ngIf="cook.user.salary" class="list-group-item d-inline-flex justify-content-between align-items-center">
+                                    <strong>Expected Salary</strong>
+                                  <span class="badge badge-primary badge-pill text-break">{{cook.user.salary}}</span>
                                 </li>
                                 <li *ngIf="cook.user.centerName" class="list-group-item d-inline-flex justify-content-between align-items-center">
                                     <strong>Center Name</strong>
@@ -158,30 +196,34 @@
                                     <strong>Mobile No.</strong>
                                   <span class="badge badge-primary badge-pill text-break">{{cook.user.mobileNo}}</span>
                                 </li>
+                                <li *ngIf="cook.user.age" class="list-group-item d-inline-flex justify-content-between align-items-center">
+                                    <strong>Age</strong>
+                                  <span class="badge badge-primary badge-pill text-break">{{cook.user.age}}</span>
+                                </li>
                                 <li *ngIf="utilityService.reFrameAddress(cook.user.address)" class="list-group-item .d-inline-flex justify-content-between align-items-center">
                                     <strong> Address</strong>
                                   <span class="badge badge-primary badge-pill text-break">{{utilityService.reFrameAddress(cook.user.address)}}</span>
                                 </li>
-                                <li *ngIf="cook.user.specialist" class="list-group-item .d-inline-flex justify-content-between align-items-center">
+                                <!-- <li *ngIf="cook.user.specialist" class="list-group-item .d-inline-flex justify-content-between align-items-center">
                                     <strong>Specialist</strong>
                                   <span class="badge badge-primary badge-pill text-break">{{cook.user.specialist}}</span>
-                                </li>
+                                </li> -->
                             </ul>
                         </perfect-scrollbar>
                     </div>
                     <div class="col-sm-2 cook-request-button">
                         <div class="col-sm-12" *ngIf="role==1; else devotee" [ngSwitch]="cook.status">
                          <button type="button" *ngSwitchCase="1" (click) = "hiringResponse(RequestStatus.approve, cook.serviceId)" class="btn btn-primary mr-2">{{RequestStatusName[4]}}</button>
-                         <button type="button" *ngSwitchCase="1" (click) = "hiringResponse(RequestStatus.reject, cook.serviceId)" class="btn btn-primary mr-2">{{RequestStatusName[5]}}</button>
+                         <button type="button" *ngSwitchCase="1" (click) = "hiringResponse(RequestStatus.hireMe, cook.serviceId)" class="btn btn-primary mr-2">{{RequestStatusName[5]}}</button>
                          <button type="button" *ngSwitchCase="4"  class="btn btn-success mr-2">{{RequestStatusName[8]}}</button>
-                         <button type="button" *ngSwitchCase="5"  class="btn btn-success mr-2">{{RequestStatusName[9]}}</button>
+                         <!-- <button type="button" *ngSwitchCase="5"  class="btn btn-success mr-2">{{RequestStatusName[9]}}</button> -->
                         </div>
                         <ng-template #devotee>
                             <div class="col" [ngSwitch]="cook.status">
                              <button *ngSwitchCase="1" type="button" (click) = "hiringResponse(RequestStatus.requestSend, cook.serviceId)" class="btn btn-primary mr-2">{{RequestStatusName[1]}}</button>
-                             <button *ngSwitchCase="(cook.status === 1 || cook.status === 4)?true:false" type="button" (click) = "hiringResponse(RequestStatus.reject, cook.serviceId)" class="btn btn-primary mr-2">{{RequestStatusName[5]}}</button>
+                             <button *ngSwitchCase="(cook.status === 1 || cook.status === 4)?true:false" type="button" (click) = "hiringResponse(RequestStatus.hireMe, cook.serviceId)" class="btn btn-primary mr-2">{{RequestStatusName[5]}}</button>
                              <button *ngSwitchCase="4" type="button"  class="btn btn-success mr-2">{{RequestStatusName[8]}}</button>
-                             <button *ngSwitchCase="5" type="button"  class="btn btn-success mr-2">{{RequestStatusName[9]}}</button>
+                             <!-- <button *ngSwitchCase="5" type="button"  class="btn btn-success mr-2">{{RequestStatusName[9]}}</button> -->
                             </div>
                         </ng-template>
                     </div>
@@ -192,3 +234,5 @@
     
     </fieldset>
 </div>
+
+

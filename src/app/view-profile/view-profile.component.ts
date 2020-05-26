@@ -26,6 +26,7 @@ export class ViewProfileComponent implements OnInit {
   role = parseInt(localStorage.getItem(role), 10);
   state: IStateModel;
   isAddCook = false;
+  registeredCooks = [];
   public config: PerfectScrollbarConfigInterface = {};
 
   constructor(private viewProfileService: ViewProfileService,
@@ -42,6 +43,7 @@ export class ViewProfileComponent implements OnInit {
     const id = this.route.snapshot.params.id;
     this.getCook(id);
     this.getRequestCook();
+    this.getListOfRegisteredCook();
   }
 
   getCook(id: string) {
@@ -76,7 +78,7 @@ export class ViewProfileComponent implements OnInit {
           this.viewProfileService.getProfileById(oppRole, e.cookId)
             .subscribe(arg => {
               this.loaderService.hide();
-              if (arg) {this.requestDevoteeArr.push({user: arg.data(), serviceId : e.id, status: e.status}); }
+              if (arg && e.status !== 0) {this.requestDevoteeArr.push({user: arg.data(), serviceId : e.id, status: e.status}); }
               console.log(arg);
             },
             () => {
@@ -103,7 +105,7 @@ export class ViewProfileComponent implements OnInit {
       mobileNo: 'disable',
       altMobileNO: true,
       password: false,
-      photo: false,
+      photo: true,
       married: true,
       specialist: true,
       description: true,
@@ -158,11 +160,24 @@ export class ViewProfileComponent implements OnInit {
     }
 
   hiringResponse(status, serviceId) {
-    this.hrManagementService.updateStatus(serviceId, {status});
+    const body = {status, valid: true};
+    if (status === 0) {
+      this.hrManagementService.deleteHireRequest(serviceId);
+     } else {
+      this.hrManagementService.updateStatus(serviceId, body);
+    }
   }
 
   registerCookByDevotee() {
     this.setState('cookByDevotee');
     this.router.navigate(['register']);
+  }
+
+  getListOfRegisteredCook() {
+    const {currentUser} = this.utilityService.getLocalStorage();
+    this.viewProfileService.getListOfRegisteredCook(currentUser.email)
+    .subscribe(res => {
+        this.registeredCooks = this.utilityService.response(res);
+      });
   }
 }

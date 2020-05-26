@@ -312,3 +312,8 @@ li.list-group-item {
 .cook-request-button{
     padding: 0rem !important;
 }
+
+.show-cook > .profile-pic{
+    width:2rem;
+    border-radius: 0% !important;
+}

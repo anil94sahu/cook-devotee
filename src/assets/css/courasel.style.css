@@ -1,0 +1,37 @@
+.carousel-caption {
+    top: 50%;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    display: flex;
+    align-items: center;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    background-color: black;
+    opacity: 0.7;
+    width:50%;
+    margin-left: 25%;
+  }
+
+  @media (max-width: 768px) {
+    .carousel-caption {
+      width: 100% !important;
+      height: 50%;
+      margin: 0;
+      padding:2%;
+    }
+  }
+
+.align-right {
+text-align: right; 
+}
+
+.display-1 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 4.25rem;
+}
+
+.mbr-section-btn {
+    margin-left: -.25rem;
+    margin-right: -.25rem;
+    font-size: 0; }

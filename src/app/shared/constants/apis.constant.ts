@@ -1,5 +1,6 @@
 export const API =  {
     RegisterTableName : 'register',
+    NewTableName : 'new/',
     DevoteeRegisterTableName : 'devotee-register',
     HRManagementTableName : 'hr-management',
     // view-profile parameter

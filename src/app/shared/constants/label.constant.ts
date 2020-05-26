@@ -14,6 +14,7 @@ export const WorkExperience = {
     periodOfWork: 'Period Of Work',
     comment: 'Comment',
     PMName: 'Project Manager Name',
+    inchargeName: 'Incharge Name',
     PMMobile: 'Project Manager Mobile No.',
     KIName: 'Kitchen Incharge Name',
     KIMobile: 'Kitchen Incharge Mobile No',

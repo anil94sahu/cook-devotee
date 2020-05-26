@@ -33,13 +33,15 @@ export class UtilityService {
 
     reFrameAddress(address: IAddress) {
       let fullAddress = '';
-      if (address.houseNo) {fullAddress += address.houseNo + ` `; }
-      if (address.address1) {fullAddress += address.address1 + ` `; }
-      if (address.landmark) {fullAddress += address.landmark + ` `; }
-      if (address.city) {fullAddress += address.city + ` `; }
-      if (address.state) {fullAddress += address.state + ` `; }
-      if (address.country) {fullAddress += address.country + ` `; }
-      if (address.pincode !== 0) {fullAddress += address.pincode + ` `; }
+      if (address) {
+        if (address.houseNo) {fullAddress += address.houseNo + ` `; }
+        if (address.address1) {fullAddress += address.address1 + ` `; }
+        if (address.landmark) {fullAddress += address.landmark + ` `; }
+        if (address.city) {fullAddress += address.city + ` `; }
+        if (address.state) {fullAddress += address.state + ` `; }
+        if (address.country) {fullAddress += address.country + ` `; }
+        if (address.pincode && address.pincode !== 0) {fullAddress += address.pincode + ` `; }
+      }
       return fullAddress;
     }
 
@@ -75,5 +77,18 @@ export class UtilityService {
 
     getValue(key) {
       return JSON.parse(localStorage.getItem(key));
+    }
+
+    response(res) {
+      return res.map(e => e.payload.doc.data());
+    }
+
+    // response with ID
+    responsive(res) {
+      return res.map(e => {
+        const payload =   e.payload.doc.data();
+        payload.id = e.payload.doc.id;
+        return payload;
+      });
     }
 }

@@ -17,8 +17,18 @@ export class MenuComponent implements OnInit {
   @ViewChild(ModalPopUpComponent, {static: false}) ModalPopUpComponentChild: ModalPopUpComponent;
   logoImages = images;
   searchParam = '';
+  currentEmailId = '';
 
-  constructor(private router: Router, public auth: AuthService) { }
+  constructor(private router: Router, public auth: AuthService) {
+    const currentuserdata = JSON.parse(localStorage.getItem('currentuserdata'));
+    if (currentuserdata) {
+      this.currentEmailId = currentuserdata.email;
+    }
+   }
+
+  isAdmin() {
+    return this.auth.isAuthenticate && this.currentEmailId === 'anil94sahu@gmail.com';
+  }
 
   ngOnInit() {
   }

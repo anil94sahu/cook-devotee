@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand bg-wht" href="">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark menu">
+    <a class="navbar-brand" href="">
         <img src="{{logoImages.logo}}" class="card-img-top logo" alt="...">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,41 +9,34 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="javascript:void(0);"><span class="sr-only">(current)</span>
+          <a class="nav-link" [routerLink]="['']" routerLinkActive="router-link-active" ><span class="sr-only">(current)</span>
             <app-scroll-to [linkText]="'Home'" [scrollToClass]="'home'"></app-scroll-to>
           </a>
         </li>
+        
         <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0);">
-            <app-scroll-to [linkText]="'Gallery'" [scrollToClass]="'gallery'"></app-scroll-to>
+            <a class="nav-link" href="javascript:void(0);">
+              <app-scroll-to [linkText]="'Contact'" [scrollToClass]="'footer'"></app-scroll-to>
+            </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link find-devotee" [routerLink]="['/search-cook/cook']" routerLinkActive="router-link-active" >
+            <app-scroll-to [linkText]="'find a cook devotee'" [scrollToClass]="'rank'"></app-scroll-to>
           </a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link" href="javascript:void(0);">
-              <app-scroll-to [linkText]="'Section'" [scrollToClass]="'section'"></app-scroll-to>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);">
-              <app-scroll-to [linkText]="'Rank'" [scrollToClass]="'rank'"></app-scroll-to>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);">
-              <app-scroll-to [linkText]="'Contact'" [scrollToClass]="'contact'"></app-scroll-to>
-            </a>
         </li>
       </ul>
       <div class="form-inline my-2 my-lg-0">
-        <button *ngIf="!auth.isAuthenticate" (click) = "login()"  class="btn my-2 my-sm-0 btn-success m-2" >Login</button>
-        <button *ngIf="auth.isAuthenticate" (click) = "logout()"  class="btn my-2 my-sm-0 btn-success m-2" >Logout</button>
-        <button *ngIf="auth.isAuthenticate" (click) = "navigateToViewProfile()"  class="btn my-2 my-sm-0 btn-success m-2" >View Profile</button>
-        <button *ngIf="auth.isAuthenticate" (click) = "openChangePassword()"  class="btn my-2 my-sm-0 btn-success m-2" ><i class="fa fa-key" aria-hidden="true"></i></button>
-        <button *ngIf="!auth.isAuthenticate" [routerLink] ="'/register'"  class="btn my-2 my-sm-0 btn-success m-2" >Registration</button>
-        <button *ngIf="!auth.isAuthenticate" [routerLink] ="'/register-devotee'"  class="btn my-2 my-sm-0 btn-success m-2" >Registration as devotee</button>
+        <button *ngIf="!auth.isAuthenticate" (click) = "login()"  class="btn btn-default-white my-2 my-sm-0 m-2" >Login</button>
+        <button *ngIf="auth.isAuthenticate" (click) = "logout()"  class="btn btn-default-white my-2 my-sm-0 m-2" >Logout</button>
+        <button *ngIf="auth.isAuthenticate" (click) = "navigateToViewProfile()"  class="btn btn-default-white my-2 my-sm-0  m-2" >View Profile</button>
+        <button *ngIf="auth.isAuthenticate" (click) = "openChangePassword()"  class="btn my-2 my-sm-0 btn-default-white m-2" ><i class="fa fa-key" aria-hidden="true"></i></button>
+        <button *ngIf="!auth.isAuthenticate" [routerLink] ="'/register'"  class="btn my-2 my-sm-0 btn-default-white m-2" >Registration as cook</button>
+        <button *ngIf="!auth.isAuthenticate" [routerLink] ="'/register-devotee'"  class="btn my-2 my-sm-0 btn-default-white m-2" >Center Registration</button>
         <input class="form-control mr-sm-2 search" [(ngModel)]="searchParam" type="search" placeholder="Search" aria-label="Search">
-        <button (click) = "navigateToSearch(searchParam)" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button (click) = "navigateToSearch(searchParam)" class="btn btn-default-white my-2 my-sm-0" type="submit">Search</button>
+        <button *ngIf="isAdmin()"  [routerLink] ="'/admin'" class="btn btn-default-white ml-3" >Admin</button>
       </div>
+
     </div>
   </nav>
 

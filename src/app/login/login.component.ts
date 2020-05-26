@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   loginModalPopup: NgbModalRef;
   cookUsers = [];
   selectUser: any; // ngmodel for select cook
+  loading = false;
   @ViewChild(ModalPopUpComponent, {static: false}) forgorPasswordComponentChild: ModalPopUpComponent;
   constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router,
               private loaderService: LoaderService,
@@ -118,15 +119,17 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.controls.emailId.value;
     const password  = this.loginForm.controls.password.value;
     const credential: EmailPasswordCredentials = {email, password};
+    this.loading = true;
     this.auth.login(credential)
     .then((result) => {
-     if (result.user.emailVerified !== true) {
+      this.loading = false;
+      if (result.user.emailVerified !== true) {
        this.toastr.info('Please validate your email address. Kindly check your inbox.', 'Alert');
      } else {
       const userId = result.user.uid;
       this.login(userId);
      }
-     console.log(result.user);
+      console.log(result.user);
    }).catch((error) => {
     this.toastr.error(error.message, 'Alert');
    });

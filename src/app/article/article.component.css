@@ -1,0 +1,32 @@
+.cid-r91EAcXsSl {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: #ffffff;
+
+    font-style: normal;
+    line-height: 1.5;
+    color: #232323;
+  }
+  .cid-r91EAcXsSl .line {
+    background-color: #ffac00;
+    color: #ffac00;
+    align: center;
+    height: 2px;
+    margin: 0 auto;
+  }
+  .cid-r91EAcXsSl .section-text {
+    padding: 2rem 0;
+  }
+  .cid-r91EAcXsSl .inner-container {
+    margin: 0 auto;
+  }
+  @media (max-width: 768px) {
+    .cid-r91EAcXsSl .inner-container {
+      width: 100% !important;
+    }
+  }
+
+  .display-7 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.5rem;
+  }

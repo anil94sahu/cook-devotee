@@ -1,3 +1,4 @@
+import { CanActivateTeam } from './shared/components/reusable-component/canActivateTeam/canActivateTeam';
 import { ScrollToComponent } from './shared/components/reusable-component/scroll-to/scroll-to.component';
 import { RegisterDevoteeComponent } from './register-devotee/register-devotee.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -38,6 +39,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalPopUpComponent } from './shared/components/reusable-component/modal-pop-up/modal-pop-up.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { CategoryBoxesComponent } from './category-boxes/category-boxes.component';
+import { SlideContentComponent } from './slide-content/slide-content.component';
+import { FooterComponent } from './footer/footer.component';
+import { LatestFromBlogComponent } from './latest-from-blog/latest-from-blog.component';
+import { ArticleComponent } from './article/article.component';
+import { DirectorBlogComponent } from './director-blog/director-blog.component';
+import { GuideComponent } from './guide/guide.component';
+import { RegisteredCookListComponent } from './registered-cook-list/registered-cook-list.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +69,16 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     ModalPopUpComponent,
     ChangePasswordComponent,
     ResetPasswordComponent,
-    ScrollToComponent
+    ScrollToComponent,
+    CategoryBoxesComponent,
+    SlideContentComponent,
+    FooterComponent,
+    LatestFromBlogComponent,
+    ArticleComponent,
+    DirectorBlogComponent,
+    GuideComponent,
+    RegisteredCookListComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +95,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
   ],
   providers: [AngularFirestore, RegistrationService, 
     StorageFirebaseService, DevoteeRegistrationService,
-  SearchCookService, LoaderService, WindowService, UtilityService, AngularFireStorage],
+  SearchCookService, LoaderService, WindowService, UtilityService, AngularFireStorage, CanActivateTeam],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

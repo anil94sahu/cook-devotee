@@ -26,29 +26,38 @@
     </div>
     <hr>
     <div class="search-result" *ngIf="cooks">
+        <p class="cook-box list-group text-danger">Note* : Devotee can send request for maximum 2 cooks. For more request, devotee can please release the cook from his profile page.</p>
         <ul class="cook-box list-group" *ngFor="let cook of tempCookList">
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <div class="container row align-items-center search-list">
                     <div class="col | col-sm-2 cook-image">
-                        <img 
+                        <img [style.height.px]="120"
                          src="{{cook.photo && offline ? cook.photo  : profilePics}}" class="img-fluid profile-pic" alt="Loading images...">
                     </div>
                     <div class="col | col-sm-8 cook-detail">
                         <h1>{{cook.name | titlecase}}</h1>
                         <perfect-scrollbar class="scroll-container" [config]="config" >
                             <ul class="p-0 m-0 d-inline-flex">
-                                <li class="list-group-item .d-inline-flex justify-content-between align-items-center">
+                                <li *ngIf="cook.workExperience[0].periodOfWork" class="list-group-item d-inline-flex justify-content-between align-items-center">
                                     <strong>Experience</strong>
-                                  <span class="badge badge-primary badge-pill text-break">10 Month</span>
+                                  <span class="badge badge-primary badge-pill text-break">{{cook.workExperience[0].periodOfWork}}</span>
+                                </li>
+                                <li *ngIf="cook.salary" class="list-group-item d-inline-flex justify-content-between align-items-center">
+                                    <strong>Expected Salary</strong>
+                                  <span class="badge badge-primary badge-pill text-break">{{cook.salary}}</span>
+                                </li>
+                                <li *ngIf="cook.age" class="list-group-item d-inline-flex justify-content-between align-items-center">
+                                    <strong>Age</strong>
+                                  <span class="badge badge-primary badge-pill text-break">{{ cook.age}}</span>
                                 </li>
                                 <li *ngIf="utilityService.reFrameAddress(cook.address)" class="list-group-item .d-inline-flex justify-content-between align-items-center">
                                     <strong> Address</strong>
                                   <span class="badge badge-primary badge-pill text-break">{{utilityService.reFrameAddress(cook.address)}}</span>
                                 </li>
-                                <li *ngIf="cook.specialist" class="list-group-item .d-inline-flex justify-content-between align-items-center">
+                                <!-- <li *ngIf="cook.specialist" class="list-group-item d-inline-flex justify-content-between align-items-center">
                                     <strong>Specialist</strong>
                                   <span class="badge badge-primary badge-pill text-break">{{cook.specialist}}</span>
-                                </li>
+                                </li> -->
                             </ul>
                         </perfect-scrollbar>
                     </div>

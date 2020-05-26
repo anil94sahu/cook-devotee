@@ -1,3 +1,4 @@
+import { allState } from './../../../constants/utility.constant';
 import { token } from './../../../constants/local-storage.constant';
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { PhoneNumber } from 'src/app/shared/models/phone.model';
@@ -34,8 +35,10 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
   RegistrationMessage = RegistrationMessage;
   isSubmit = false;
   isEdit = false;
+  paramsConst = {allStates: allState};
   @Input()state: IStateModel;
   @Output() response = new EventEmitter<{cookDetail, url, userId}>();
+  loading = false;
 
   constructor(private fb: FormBuilder,
               private loaderService: LoaderService) { }
@@ -72,7 +75,8 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     centerName: new FormControl(''),
     PMName: new FormControl(''),
     emailId: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-    availibility: new FormControl(new Date()),
+    availibility: new FormControl('true'),
+    availibilityDate: new FormControl(true),
     role: new FormControl(1, Validators.compose([Validators.required])),
     workExperience: new FormArray([this.fb.group(this.initWorkExperience())])
     };
@@ -132,12 +136,13 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     const userId = localStorage.getItem(token);
     const state = {cookDetail, url, userId};
     this.loaderService.show();
+    this.loading = true;
     if (this.cookRegistrationForm.valid) {
       this.response.emit(state);
     } else {
-
     }
     this.loaderService.hide();
+    this.loading = false;
   }
 
   onReset() {

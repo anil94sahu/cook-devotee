@@ -1,0 +1,132 @@
+
+<div class="container-fluid my-5">
+  <div class="container search-container">
+    <div class= "col-sm-offset-2 col-sm-10 search-params ml-5">
+        <div class="input-group search-row">
+            <input type="text" class="form-control search-input" placeholder="search..." [(ngModel)]="params.searchString" (input)="searchByParams()" aria-label="search box" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-success btn-outline-primary text-white" type="button" (click)="searchByParams()">search</button>
+            </div>
+            <hr>
+        </div>
+        <hr>
+    </div>
+</div>
+<hr>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <nav class="navbar bg-light">
+      
+        <!-- Links -->
+        <ul class="navbar-nav bg bg-info">
+          <li class="nav-item px-5 border">
+            <a class="nav-link" (click) = "getCooks()">All Cooks</a>
+          </li>
+          <li class="nav-item px-5 border">
+            <a class="nav-link" (click) = "getDevotees()">Al Devotee</a>
+          </li>
+        </ul>
+      
+      </nav>
+    </div>
+    <div class="col-sm-8">
+      <div class="container mx-auto w-100">
+        <h4>
+          List are given below : 
+            <!-- Cook(s) registered by me :  -->
+        </h4>
+        <table class="table table-hover  border border-dark">
+            <thead>
+              <tr class="table table-success">
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Picture</th>
+                <th scope="col">Mobile No</th>
+                <th scope="col">Available</th>
+                <th scope="col">Age</th>
+                <th scope="col">Experience</th>
+                <th scope="col">Action</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table table-warning" *ngFor="let item of tempList;let index = index">
+                <th scope="row">{{index+1}}</th>
+                <td>{{item.name}}</td>
+                <td>
+                    <div class="show">
+                        <img [style.height.px] = "35"
+                         src="{{item.photo?item.photo: '../../../../assets/images/profile/profile-pic-default.jpg'}}" class="img-fluid profile-pic" alt="Loading image...">
+                    </div>
+                </td>
+                <td>{{item.mobileNo}}</td>
+                <td>{{item.availibility}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item && item.workExperience && item.workExperience[0].periodOfWork}}</td>
+                <td><button type="button" (click)="openScrollableContent(longContent, item)" class="btn btn-info">Edit</button></td>
+                <td><button type="button" (click)="delete(item.id)" class="btn btn-danger">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal popup for edit part -->
+<ng-template #longContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Modal title</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="pd-10 register-ui" [formGroup]="editForm">
+      <div class="form-row">
+        <div class="form-group required col-md-6">
+          <label for="">User Name: </label>
+          <input type="text" class="form-control" id="" placeholder="" formControlName="name">
+          <div *ngIf="(form.name.invalid && (form.name.dirty || form.name.touched))" class="text-danger">
+          </div>
+        </div>
+        <div class="form-group required col-md-6">
+          <label for="">Salary: </label>
+          <input type="text" class="form-control" id="" placeholder="" formControlName="salary">
+          <div *ngIf="(form.salary.invalid && (form.salary.dirty || form.salary.touched))" class="text-danger">
+            salary is mandatory.
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="">Available</label>
+          <select  formControlName="availibility"  class="form-control" >
+            <option value = "true" class="dropdown-item">Yes</option>
+            <option value = "false" class="dropdown-item">No</option>
+            <option value = "on" class="dropdown-item">On</option>
+          </select>
+        </div>
+        <div  class="form-group col-md-6">
+          <label for="">Age</label>
+          <input type="text" class="form-control" id="" placeholder="" formControlName="age">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="">No of years of cooking</label>
+          <input type="text" class="form-control" formControlName="periodOfWork" id="" placeholder="">
+        </div>
+        <div class="row px-5">
+          <div  class="form-group col-md-12 br">
+            <app-profile-loader (valueChange)='profileImage($event)'></app-profile-loader>
+          </div>
+        </div>
+      </div>
+      <button (click) = "onSubmit(editForm.value)" class="btn btn-success btn-mg">Update</button>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
+
+
