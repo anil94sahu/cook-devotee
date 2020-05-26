@@ -13,5 +13,4 @@ export const API =  {
     CookId: 'cookId',
     Mobile: 'mobileNo',
     Status: 'status',
-    Receipe: 'receipe'
 };
