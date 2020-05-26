@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class CategoryBoxesComponent implements OnInit {
 
   cooks = [];
-  constructor(private adminService: AdminService, private utilityService: UtilityService, private router: Router,) { }
+  constructor(private adminService: AdminService, private utilityService: UtilityService, private router: Router) { }
 
   ngOnInit() {
     this.getCooks();

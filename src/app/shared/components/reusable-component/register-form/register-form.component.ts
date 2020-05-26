@@ -179,9 +179,7 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  profileImage(imageUrl) {
-    this.form.photo.setValue(imageUrl);
-  }
+  
 
   ngOnDestroy() {
   }

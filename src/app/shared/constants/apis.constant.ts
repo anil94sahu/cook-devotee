@@ -3,6 +3,7 @@ export const API =  {
     NewTableName : 'new/',
     DevoteeRegisterTableName : 'devotee-register',
     HRManagementTableName : 'hr-management',
+    Receipe: 'receipe',
     // view-profile parameter
     Id: 'id',
     DevoteeId: 'devoteeId',
@@ -11,5 +12,5 @@ export const API =  {
     UserId: 'userId',
     CookId: 'cookId',
     Mobile: 'mobileNo',
-    Status: 'status'
+    Status: 'status',
 };

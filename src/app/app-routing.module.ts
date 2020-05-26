@@ -6,6 +6,7 @@ import { SearchCookModule } from './search-cook/search-cook.module';
 import { RegisterDevoteeComponent } from './register-devotee/register-devotee.component';
 import { CanActivateTeam } from './shared/components/reusable-component/canActivateTeam/canActivateTeam';
 import { AdminComponent } from './admin/admin.component';
+import { SpecialRecipesComponent } from './latest-from-blog/special-recipes/special-recipes.component';
 
 const routes: Routes = [
   {path : 'register', component: RegistrationComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path : 'search-cook', loadChildren: './search-cook/search-cook.module#SearchCookModule', canActivate: [CanActivateTeam]},
   {path : 'view-profile', loadChildren: './view-profile/view-profile.module#ViewProfileModule'},
   {path : 'admin', component: AdminComponent, canActivate: [CanActivateTeam]},
+  {path : 'special-recipes', component: SpecialRecipesComponent},
   {path: '', component: HomeComponent}
 ];
 
