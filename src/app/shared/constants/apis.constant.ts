@@ -3,6 +3,7 @@ export const API =  {
     NewTableName : 'new/',
     DevoteeRegisterTableName : 'devotee-register',
     HRManagementTableName : 'hr-management',
+    Receipe: 'receipe',
     // view-profile parameter
     Id: 'id',
     DevoteeId: 'devoteeId',

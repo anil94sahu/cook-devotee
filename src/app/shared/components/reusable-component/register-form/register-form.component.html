@@ -155,8 +155,8 @@
             <div *ngIf="state.url === 'cook' || state.url === 'edit-cook' || state.url === 'cookByDevotee'" class="form-group col-md-3">
               <label for="">Available</label>
               <select  formControlName="availibility"  class="form-control" >
-                <option value = "true" class="dropdown-item">Yes</option>
-                <option value = "false" class="dropdown-item">No</option>
+                <option value = "true" class="dropdown-item">Yes(everyone can see)</option>
+                <option value = "false" class="dropdown-item">No(only you can see)</option>
                 <!-- <option value = "on" class="dropdown-item">On</option> -->
               </select>
             </div>
