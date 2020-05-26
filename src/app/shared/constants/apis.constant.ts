@@ -11,5 +11,6 @@ export const API =  {
     UserId: 'userId',
     CookId: 'cookId',
     Mobile: 'mobileNo',
-    Status: 'status'
+    Status: 'status',
+    Receipe: 'receipe'
 };
