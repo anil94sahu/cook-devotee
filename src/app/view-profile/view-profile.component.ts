@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoaderService } from '../shared/services/loader.service';
 import { HRManagementService } from '../shared/services/hr-management.service';
 import { token, role } from '../shared/constants/local-storage.constant';
-import { API } from '../shared/constants/apis.constant';
+import { API, CONFIGAPI } from '../shared/constants/apis.constant';
 import { Role, RequestStatus, RequestStatusName } from '../shared/constants/utility.constant';
 import { UtilityService } from '../shared/services/utility.service';
 
@@ -159,13 +159,69 @@ export class ViewProfileComponent implements OnInit {
     this.viewProfileService.setState(value);
     }
 
-  hiringResponse(status, serviceId) {
+  hiringResponse(status, serviceId, cook?, profile?) {
     const body = {status, valid: true};
     if (status === 0) {
       this.hrManagementService.deleteHireRequest(serviceId);
+      const item = {
+        name : profile.name,
+        email : profile.emailId,
+        question: '',
+        cookname: cook.user.name,
+      };
+      this.sendMail(item);
      } else {
       this.hrManagementService.updateStatus(serviceId, body);
     }
+  }
+
+  sendMail(item) {
+    // this.loading = true;
+    // this.buttonText = 'Submiting...';
+    const user = {
+      name: item.name,
+      email: item.email,
+      question: item.question,
+      body: `
+      <p><strong>Hare Krishna ${item.name} pr</strong></p>
+        <br>
+        <p>
+            Thank you for choosing cookdevotee.com.
+        </p>
+        <p>
+            You have hired ${item.cookname} by ${item.name}. Deal Done !!!
+        </p>
+        <br/>
+        <p>
+            Please feel free to write any query related to cookdevotee.com
+        </p>
+        <br>
+        <br>
+        <p>
+            <b>
+                Your Servant
+            </b>
+        </p>
+        <p>
+            <strong>
+                cookdevotee Team
+            </strong>
+      </p>
+      `
+    };
+    this.utilityService.sendMail(`${CONFIGAPI}sendmail`, user).subscribe(
+      data => {
+        const res: any = data;
+      },
+      err => {
+        console.log(err);
+        // this.loading = false;
+        // this.buttonText = 'Submit';
+      }, () => {
+        // this.loading = false;
+        // this.buttonText = 'Submit';
+      }
+    );
   }
 
   registerCookByDevotee() {

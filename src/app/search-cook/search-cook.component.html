@@ -1,11 +1,10 @@
-
 <div class="search-box">
     <div class="container m-5 p-5 search-container">
-        <div class= "col-sm-10 search-params">
+        <div class="col-sm-10 search-params">
             <div class="input-group search-row">
                 <input type="text" class="form-control search-input" placeholder="search..." [(ngModel)]="params.searchString" (input)="searchByParams()" aria-label="search box" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                  <button class="btn btn-success btn-outline-primary text-white" type="button" (click)="searchByParams()">search</button>
+                    <button class="btn btn-success btn-outline-primary text-white" type="button" (click)="searchByParams()">search</button>
                 </div>
                 <hr>
             </div>
@@ -31,28 +30,27 @@
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <div class="container row align-items-center search-list">
                     <div class="col | col-sm-2 cook-image">
-                        <img [style.height.px]="120"
-                         src="{{cook.photo && offline ? cook.photo  : profilePics}}" class="img-fluid profile-pic" alt="Loading images...">
+                        <img [style.height.px]="120" src="{{cook.photo && offline ? cook.photo  : profilePics}}" class="img-fluid profile-pic" alt="Loading images...">
                     </div>
                     <div class="col | col-sm-8 cook-detail">
                         <h1>{{cook.name | titlecase}}</h1>
-                        <perfect-scrollbar class="scroll-container" [config]="config" >
+                        <perfect-scrollbar class="scroll-container" [config]="config">
                             <ul class="p-0 m-0 d-inline-flex">
                                 <li *ngIf="cook.workExperience[0].periodOfWork" class="list-group-item d-inline-flex justify-content-between align-items-center">
                                     <strong>Experience</strong>
-                                  <span class="badge badge-primary badge-pill text-break">{{cook.workExperience[0].periodOfWork}}</span>
+                                    <span class="badge badge-primary badge-pill text-break">{{cook.workExperience[0].periodOfWork}}</span>
                                 </li>
                                 <li *ngIf="cook.salary" class="list-group-item d-inline-flex justify-content-between align-items-center">
                                     <strong>Expected Salary</strong>
-                                  <span class="badge badge-primary badge-pill text-break">{{cook.salary}}</span>
+                                    <span class="badge badge-primary badge-pill text-break">{{cook.salary}}</span>
                                 </li>
                                 <li *ngIf="cook.age" class="list-group-item d-inline-flex justify-content-between align-items-center">
                                     <strong>Age</strong>
-                                  <span class="badge badge-primary badge-pill text-break">{{ cook.age}}</span>
+                                    <span class="badge badge-primary badge-pill text-break">{{ cook.age}}</span>
                                 </li>
                                 <li *ngIf="utilityService.reFrameAddress(cook.address)" class="list-group-item .d-inline-flex justify-content-between align-items-center">
                                     <strong> Address</strong>
-                                  <span class="badge badge-primary badge-pill text-break">{{utilityService.reFrameAddress(cook.address)}}</span>
+                                    <span class="badge badge-primary badge-pill text-break">{{utilityService.reFrameAddress(cook.address)}}</span>
                                 </li>
                                 <!-- <li *ngIf="cook.specialist" class="list-group-item d-inline-flex justify-content-between align-items-center">
                                     <strong>Specialist</strong>
@@ -61,14 +59,15 @@
                             </ul>
                         </perfect-scrollbar>
                     </div>
-                   <div class="col | col-sm-2 cook-request-button">
-                       <span class="badge badge-primary badge-pill float-right" (click) = "hireMe(cook)"> 
+                    <div class="col | col-sm-2 cook-request-button">
+                        <span *ngIf="cook.availibility === 'true'" class="badge badge-primary badge-pill float-right" (click)="hireMe(cook)"> 
                         {{RequestStatusName[cook.status]}}    
-                        <!-- Hire Me   -->
-                             <!-- <button  class="mb-2"></button> -->
-                       </span>
-        
-                   </div>
+                        </span>
+                        <button *ngIf="cook.availibility === 'false'" disabled class="badge badge-danger badge-pill float-right p-3"> 
+                            Already Employed    
+                        </button>
+
+                    </div>
                 </div>
             </li>
         </ul>

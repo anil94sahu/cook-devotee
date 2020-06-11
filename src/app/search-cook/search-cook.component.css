@@ -1,35 +1,47 @@
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
-    [class*="col-"], h1, h2, h3, h4, h5, h6, div, strong, label {
-      /* width: 100%; */
-      text-align: center;
-      padding: 2vw;
-      box-shadow: 1vw;
-      word-break: break-all;
+    [class*="col-"],
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    div,
+    strong,
+    label {
+        /* width: 100%; */
+        text-align: center;
+        padding: 2vw;
+        box-shadow: 1vw;
+        word-break: break-all;
     }
-
     img {
         border-radius: 50%;
     }
-
     .row {
         display: block;
         font-size: 5vmin;
     }
 }
 
- h2, h3, h4, h5 div, strong, label {
+h2,
+h3,
+h4,
+h5 div,
+strong,
+label {
     /* width: 100%; */
-   font-size: 3vmin;
-  }
+    font-size: 3vmin;
+}
 
-  .badge-primary {
+.badge-primary {
     padding: 1rem;
-  }
+}
 
-  .badge-primary:hover {
-      border: 1px solid black;
-  }
+.badge-primary:hover {
+    border: 1px solid black;
+}
 
 img.profile-pic {
     border-radius: 50% !important;
@@ -41,7 +53,7 @@ img.profile-pic {
     line-height: 7min;
 }
 
-.cook-box > li.list-group-item:hover {
+.cook-box>li.list-group-item:hover {
     margin-left: 1vw;
     margin-top: 1vh;
     z-index: 100;
@@ -55,7 +67,6 @@ li.list-group-item {
     z-index: 0;
     box-shadow: 1px 1px 1px 1px;
     transition: all linear 0.5s;
-    
 }
 
 .row {
@@ -65,7 +76,6 @@ li.list-group-item {
 .list-group {
     padding: 0rem 3rem;
     margin: 1rem 1rem;
-    
 }
 
 .list-group-item {
@@ -74,17 +84,16 @@ li.list-group-item {
     box-shadow: 2px 2px 2px 2px;
 }
 
-
-.col-sm-8{
+.col-sm-8 {
     overflow-y: hidden;
     border-right: 1px solid #ccc;
 }
 
-.cook-request-button > span:hover{
+.cook-request-button>span:hover {
     cursor: pointer;
 }
 
-.cook-request-button{
+.cook-request-button {
     padding: 3rem;
 }
 
@@ -92,17 +101,22 @@ li.list-group-item {
     .container {
         max-width: 100% !important;
     }
-    
 }
 
-.search-container > .search-params > .search-row > .search-input {
+.search-container>.search-params>.search-row>.search-input {
     border: 5px solid lightslategray;
 }
 
-.scroll-container{
+.scroll-container {
     position: relative;
 }
 
-.search-box > .search-result >  .cook-box, .search-box > .search-container {
+.search-box>.search-result>.cook-box,
+.search-box>.search-container {
     font-family: "Times New Roman", Times, serif;
+}
+
+:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
 }

@@ -14,3 +14,5 @@ export const API =  {
     Mobile: 'mobileNo',
     Status: 'status',
 };
+
+export const CONFIGAPI = 'https://question-answer-portal-sendmai.herokuapp.com/'
