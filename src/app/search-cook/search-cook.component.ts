@@ -52,6 +52,7 @@ export class SearchCookComponent implements OnInit {
 
   ngOnInit() {
     this.getCook();
+    this.getAllRequest();
   }
 
   getCook() {
@@ -68,7 +69,7 @@ export class SearchCookComponent implements OnInit {
         return e.role === 1;
       });
       // this.cooks = cookJson.data;
-      this.cooks = this.cooks.filter(e => {if (e.availibility === 'true') {return true; }});
+      // this.cooks = this.cooks.filter(e => {if (e.availibility === 'true') {return true; }});
       this.cooks = this.addStatusParams(this.cooks);
       this.tempCookList = [...this.cooks];
       const roleValue =  this.utilityService.getRole();
@@ -85,7 +86,6 @@ export class SearchCookComponent implements OnInit {
   getContent() {
     this.loaderService.show();
     this.searchCookService.getData().then(data => {
-      console.log(data);
     });
   }
 
@@ -132,8 +132,21 @@ export class SearchCookComponent implements OnInit {
      }
   }
 
-  hiringResponse() {
+  getAllRequest() {
+    this.hrManagementService.getAll()
+    .subscribe(req => {
+      const allRequest = this.utilityService.responsive(req);
+    });
+  }
 
+  /**
+   * checking Is this cook already get call from somewhere or not
+  */
+  isCookHold() {
+    this.hrManagementService.getAll()
+      .subscribe(response => {
+        const value = this.utilityService.response(response);
+      });
   }
 
   searchByParams() {

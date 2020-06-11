@@ -49,6 +49,7 @@ import { GuideComponent } from './guide/guide.component';
 import { RegisteredCookListComponent } from './registered-cook-list/registered-cook-list.component';
 import { AdminComponent } from './admin/admin.component';
 import { SpecialRecipesComponent } from './latest-from-blog/special-recipes/special-recipes.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,9 @@ import { SpecialRecipesComponent } from './latest-from-blog/special-recipes/spec
     FormsModule,
     ProfileLoaderModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot(), // ToastrModule added
+    HttpClientModule
+
   ],
   providers: [AngularFirestore, RegistrationService, 
     StorageFirebaseService, DevoteeRegistrationService,

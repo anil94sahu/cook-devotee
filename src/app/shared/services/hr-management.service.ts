@@ -22,6 +22,10 @@ export class HRManagementService {
         return this.fbs.getByTableParam(this.tableName, param, id );
       }
 
+  public getAll() {
+    return this.fbs.get(this.tableName);
+  }
+
   public getHireRequest(cookId: string, devoteeId: string, cookParam: string, devoteeParam: string) {
     return this.firestore.collection(this.tableName, ref => ref.where(cookParam, '==', cookId)
         .where(devoteeParam, '==', devoteeId))

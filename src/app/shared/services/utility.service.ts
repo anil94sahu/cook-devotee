@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { IStateModel } from './../models/state.model';
 import { Routing } from './../constants/routing.constant';
 import { role, currentUserData } from './../constants/local-storage.constant';
@@ -9,7 +10,7 @@ import { Role } from '../constants/utility.constant';
 
 @Injectable({providedIn: 'root'})
 export class UtilityService {
-    constructor(private fbs: FirebaseService) { }
+    constructor(private fbs: FirebaseService, private http: HttpClient) { }
 
     chooseTableName(role: number) {
         const temp = role;
@@ -90,5 +91,10 @@ export class UtilityService {
         payload.id = e.payload.doc.id;
         return payload;
       });
+    }
+
+    /* send mail */
+    sendMail(url, data){
+      return  this.http.post(url, data);
     }
 }
