@@ -1,3 +1,4 @@
+import { GoogleAnalyticsService } from './../google-analytics.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -16,7 +17,11 @@ export class ChangePasswordComponent implements OnInit {
   @Output() response = new EventEmitter();
   @Input()state: any = {header: 'Chnage password', body: 'Body', footer: 'Save'};
   changePasswordForm: FormGroup;
-  constructor(private toastr: ToastrService, public auth: AuthService, private router: Router) { }
+  constructor(private toastr: ToastrService, public auth: AuthService, private router: Router,
+              public googleAnalyticsService: GoogleAnalyticsService) {
+    this.googleAnalyticsService.eventEmitter('changePassword', 'like', 'change', 1);
+
+  }
 
   ngOnInit() {
     this.createForm();

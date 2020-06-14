@@ -1,3 +1,4 @@
+import { GoogleAnalyticsService } from './google-analytics.service';
 import { CanActivateTeam } from './shared/components/reusable-component/canActivateTeam/canActivateTeam';
 import { ScrollToComponent } from './shared/components/reusable-component/scroll-to/scroll-to.component';
 import { RegisterDevoteeComponent } from './register-devotee/register-devotee.component';
@@ -100,7 +101,7 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   providers: [AngularFirestore, RegistrationService, 
     StorageFirebaseService, DevoteeRegistrationService,
-  SearchCookService, LoaderService, WindowService, UtilityService, AngularFireStorage, CanActivateTeam],
+  SearchCookService, LoaderService, WindowService, UtilityService, AngularFireStorage, CanActivateTeam, GoogleAnalyticsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

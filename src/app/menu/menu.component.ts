@@ -1,3 +1,4 @@
+import { GoogleAnalyticsService } from './../google-analytics.service';
 import { ModalPopUpComponent } from './../shared/components/reusable-component/modal-pop-up/modal-pop-up.component';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
@@ -19,7 +20,7 @@ export class MenuComponent implements OnInit {
   searchParam = '';
   currentEmailId = '';
 
-  constructor(private router: Router, public auth: AuthService) {
+  constructor(private router: Router, public auth: AuthService, public googleAnalyticsService: GoogleAnalyticsService) {
     const currentuserdata = JSON.parse(localStorage.getItem('currentuserdata'));
     if (currentuserdata) {
       this.currentEmailId = currentuserdata.email;
@@ -57,6 +58,7 @@ export class MenuComponent implements OnInit {
   }
 
   login() {
+    this.googleAnalyticsService.eventEmitter('loginPage', 'like', 'login', 1);
     this.loginComponentChild.openLoginModal();
   }
 
