@@ -7,11 +7,19 @@ import { AuthService } from '../shared/services/auth.service';
 import { token, role } from '../shared/constants/local-storage.constant';
 import { Routing } from '../shared/constants/routing.constant';
 import { images } from '../shared/constants/image.constant';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { bounceInDown } from 'ng-animate';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
+  animations: [
+    trigger('bounce', [transition('* => *', useAnimation(bounceInDown, {
+      // Set the duration to 5seconds and delay to 2seconds
+      params: { timing: 5, delay: 0 }
+    }))])
+  ],
 })
 export class MenuComponent implements OnInit {
   @ViewChild(LoginComponent, {static: false}) loginComponentChild: LoginComponent;
@@ -19,6 +27,7 @@ export class MenuComponent implements OnInit {
   logoImages = images;
   searchParam = '';
   currentEmailId = '';
+  bounce: any;
 
   constructor(private router: Router, public auth: AuthService, public googleAnalyticsService: GoogleAnalyticsService) {
     const currentuserdata = JSON.parse(localStorage.getItem('currentuserdata'));

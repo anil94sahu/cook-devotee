@@ -2,15 +2,26 @@ import { Router } from '@angular/router';
 import { UtilityService } from './../shared/services/utility.service';
 import { AdminService } from './../admin.service';
 import { Component, OnInit } from '@angular/core';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { bounceInLeft } from 'ng-animate';
+
 
 @Component({
   selector: 'app-category-boxes',
   templateUrl: './category-boxes.component.html',
-  styleUrls: ['./category-boxes.component.css', '../rank/rank.component.scss']
+  styleUrls: ['./category-boxes.component.css', '../rank/rank.component.scss'],
+  animations: [
+    trigger('bounce', [transition('* => *', useAnimation(bounceInLeft, {
+      // Set the duration to 5seconds and delay to 2seconds
+      params: { timing: 10, delay: 0 }
+    }))])
+  ],
 })
 export class CategoryBoxesComponent implements OnInit {
 
+  bounce: any;
   cooks = [];
+  
   constructor(private adminService: AdminService, private utilityService: UtilityService, private router: Router) { }
 
   ngOnInit() {
@@ -26,7 +37,7 @@ export class CategoryBoxesComponent implements OnInit {
     });
   }
 
-  viewDetails(item, i){
+  viewDetails(item, i) {
     this.router.navigate(['/search-cook/cook']);
   }
 
