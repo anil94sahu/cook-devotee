@@ -1,32 +1,32 @@
-<div class="latest-from-blog text-center bg-warning">
+<div class="latest-from-blog text-center bg-warning" inViewport (inViewportAction)="animation($event)">
     <div class="container">
         <div class="hero-area horizontal text-center m-0">
             <div class="hero-content">
                 <h2>Special Recipes</h2>
             </div>
         </div>
-        <div class="container my-5 receipe-box">
+        <div class="container my-5 receipe-box" *ngIf="animate">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" *ngFor="let item of recipes | slice:0:3;let i = index">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" [@bounce]="bounce" *ngFor="let item of recipes | slice:0:3;let i = index">
                     <div class="blog-latest">
                         <div class="row">
                             <div class="col-md-6 col-sm-12">
                                 <img class="" src="{{item.recipePic}}" alt="blog-image">
                             </div>
                             <div class="col-md-6 col-sm-12">
-                                <h5><a >{{item.receipeName}}</a>
+                                <h5><a>{{item.receipeName}}</a>
                                 </h5>
                                 <p><i class="fa fa-clock-o"></i>
                                     <span class="date">{{item.createdDate}}</span>at
                                     <span class="time">{{item.createdTime}}</span>
                                 </p>
                                 <p class="bl-sort">{{item.description}}</p>
-                                <a  class="btn btn-default-red"><i class="fa fa-file-text-o"></i> Read  More</a>
+                                <a class="btn btn-default-red"><i class="fa fa-file-text-o"></i> Read  More</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 my-5" >
+                <div class="col-sm-6 my-5">
                     <div class="border bg bg-dark m-2 h-100 upload-button">
                         <button type="button" class="border btn btn-info position-relative" [routerLink]="['special-recipes']" routerLinkActive="router-link-active">Upload Receipe</button>
                     </div>
@@ -130,7 +130,7 @@
         </h1>
         <br>
         <br>
-        <br>  
+        <br>
         <!-- read older button -->
         <!-- <div class="read-older">
             <a  class="btn btn-default-red"><i class="fa fa-file-text-o"></i> Read Older Entries</a>

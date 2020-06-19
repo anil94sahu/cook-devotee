@@ -4,6 +4,7 @@ import { AdminService } from './../admin.service';
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { bounceInLeft } from 'ng-animate';
+import { event } from 'jquery';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { bounceInLeft } from 'ng-animate';
   animations: [
     trigger('bounce', [transition('* => *', useAnimation(bounceInLeft, {
       // Set the duration to 5seconds and delay to 2seconds
-      params: { timing: 10, delay: 0 }
+      params: { timing: 5, delay: 0 }
     }))])
   ],
 })
@@ -21,11 +22,15 @@ export class CategoryBoxesComponent implements OnInit {
 
   bounce: any;
   cooks = [];
-  
+  animate = false;
   constructor(private adminService: AdminService, private utilityService: UtilityService, private router: Router) { }
 
   ngOnInit() {
     this.getCooks();
+  }
+
+  animation(event) {
+    this.animate = event.visible;
   }
 
   getCooks() {

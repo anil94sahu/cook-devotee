@@ -11,6 +11,11 @@ export const images = {
     gulabjamun : 'https://firebasestorage.googleapis.com/v0/b/demo2-ad873.appspot.com/o/assets%2Fimages%2Fcourasel%2Fgulab%20jamun.jpg?alt=media&token=49a2d96b-f83d-47b0-bf08-8a6820049120',
     // tslint:disable-next-line: max-line-length
     prbhupadcooking: 'https://firebasestorage.googleapis.com/v0/b/demo2-ad873.appspot.com/o/assets%2Fimages%2Fcourasel%2Fprabhupada-cooking.jpg?alt=media&token=c17e28bf-db15-445a-98e4-043c808be73b',
+    parasadam1: 'https://b.zmtcdn.com/data/pictures/1/102781/843a20a1feb982a25f03e817f08d892d.jpg',
+    // tslint:disable-next-line: max-line-length
+    parasadam2: 'https://3.bp.blogspot.com/-QF6cQBXQEgU/W8InUtIWEUI/AAAAAAAABkM/lJrXYHRwIAY951JtKKtDgetbgVLL9sgQQCLcBGAs/s1600/Dasara-Special-Recipes.jpg',
+    // tslint:disable-next-line: max-line-length
+    parasadam3: 'https://content.jdmagicbox.com/comp/delhi/d3/011p1227805275p7j8d3/catalogue/prasadam-laxmi-nagar-delhi-south-indian-restaurants-vrhrosdj7i.jpg',
     // tslint:disable-next-line: max-line-length
     logo: '../../assets/images/logo/logo.png'
 };
@@ -22,7 +27,12 @@ export const offlineCouraselImages = {
     vegpic2: '../../assets/images/courasel/vegpic2.jpg',
     gulabjamun : '../../assets/images/courasel/gulab jamun.jpg',
     prbhupadcooking: '../../assets/images/courasel/prbhupad cooking.jpg',
-    logo: '../../assets/images/logo/logo.png'
+    logo: '../../assets/images/logo/logo.png',
+    parasadam1: 'https://b.zmtcdn.com/data/pictures/1/102781/843a20a1feb982a25f03e817f08d892d.jpg',
+    // tslint:disable-next-line: max-line-length
+    parasadam2: 'https://3.bp.blogspot.com/-QF6cQBXQEgU/W8InUtIWEUI/AAAAAAAABkM/lJrXYHRwIAY951JtKKtDgetbgVLL9sgQQCLcBGAs/s1600/Dasara-Special-Recipes.jpg',
+    // tslint:disable-next-line: max-line-length
+    parasadam3: 'https://content.jdmagicbox.com/comp/delhi/d3/011p1227805275p7j8d3/catalogue/prasadam-laxmi-nagar-delhi-south-indian-restaurants-vrhrosdj7i.jpg',
 };
 
 // tslint:disable-next-line: variable-name

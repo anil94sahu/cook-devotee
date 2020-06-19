@@ -51,6 +51,7 @@ import { RegisteredCookListComponent } from './registered-cook-list/registered-c
 import { AdminComponent } from './admin/admin.component';
 import { SpecialRecipesComponent } from './latest-from-blog/special-recipes/special-recipes.component';
 import {HttpClientModule} from '@angular/common/http';
+import {InViewportModule} from 'ng-in-viewport';
 
 @NgModule({
   declarations: [
@@ -96,8 +97,8 @@ import {HttpClientModule} from '@angular/common/http';
     ProfileLoaderModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    HttpClientModule
-
+    HttpClientModule,
+    InViewportModule
   ],
   providers: [AngularFirestore, RegistrationService, 
     StorageFirebaseService, DevoteeRegistrationService,

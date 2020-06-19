@@ -27,6 +27,7 @@
         "font-awesome": "^4.7.0",
         "jquery": "^3.4.1",
         "ng-animate": "^0.3.4",
+        "ng-in-viewport": "^6.1.0",
         "ngx-perfect-scrollbar": "^9.0.0",
         "ngx-toastr": "^10.0.4",
         "owl.carousel": "^2.3.4",
