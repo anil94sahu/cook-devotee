@@ -12,7 +12,7 @@ export class CouraselComponent implements OnInit {
 
   public baseHref = baseHref;
   offline = offline;
-  couraselImages = (this.offline) ? images : offlineCouraselImages;
+  couraselImages = (this.offline) ? offlineCouraselImages : offlineCouraselImages;
   constructor() { }
 
   ngOnInit() {

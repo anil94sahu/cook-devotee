@@ -1,9 +1,12 @@
 img.d-block {
-    height: 90vh;
+    height: 80vh;
 }
 
-@media (max-width: 768px) {
-    #gallery{
-        height: 500px;
+@media only screen and (max-width: 600px) {
+    #gallery {
+        height: auto;
+    }
+    img.d-block {
+        height: 300px;
     }
 }

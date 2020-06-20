@@ -28,11 +28,11 @@ export const offlineCouraselImages = {
     gulabjamun : '../../assets/images/courasel/gulab jamun.jpg',
     prbhupadcooking: '../../assets/images/courasel/prbhupad cooking.jpg',
     logo: '../../assets/images/logo/logo.png',
-    parasadam1: 'https://b.zmtcdn.com/data/pictures/1/102781/843a20a1feb982a25f03e817f08d892d.jpg',
+    parasadam1: '../../assets/images/courasel/parsadam 2.jpg',
     // tslint:disable-next-line: max-line-length
-    parasadam2: 'https://3.bp.blogspot.com/-QF6cQBXQEgU/W8InUtIWEUI/AAAAAAAABkM/lJrXYHRwIAY951JtKKtDgetbgVLL9sgQQCLcBGAs/s1600/Dasara-Special-Recipes.jpg',
+    parasadam2: '../../assets/images/courasel/parsadamFinal.jpg',
     // tslint:disable-next-line: max-line-length
-    parasadam3: 'https://content.jdmagicbox.com/comp/delhi/d3/011p1227805275p7j8d3/catalogue/prasadam-laxmi-nagar-delhi-south-indian-restaurants-vrhrosdj7i.jpg',
+    parasadam3: '../../assets/images/courasel/Dasara-Special-Recipes.jpg',
 };
 
 // tslint:disable-next-line: variable-name
